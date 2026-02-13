@@ -1,5 +1,5 @@
 const listaCanales = [
-{ nombre: "HBO HD", url: "" },
+{ nombre: "HBO HD", url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=" },
 { nombre: "PRUEBA", url: "" },
 { nombre: "CANAL 3", url: "#" },
 { nombre: "CANAL 4", url: "#" },
