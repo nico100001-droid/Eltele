@@ -11,6 +11,8 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
 .caja:focus { background: blue; outline: none; }
 #vid { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; }
 </style>
+<script src=""></script>
+<script src="canales.js"></script>
 </head>
 <body>
 <div class="grid" id="menu"></div>
@@ -18,22 +20,25 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
 <button onclick="location.reload()" style="position:absolute; z-index:9; right:0;">CERRAR</button>
 <video id="v" class="video-js vjs-default-skin" controls style="width:100%;height:100%"></video>
 </div>
-<script src=""></script>
-<script src="canales.js"></script>
 <script>
-const m = document.getElementById('menu');
-const r = videojs('v');
-listaCanales.forEach(c => {
-const d = document.createElement('div');
-d.className = 'caja'; d.innerText = c.nombre; d.tabIndex = 0;
-d.onclick = () => {
-if(c.url.includes('m3u8')) {
-document.getElementById('vid').style.display='block';
-r.src({src: c.url, type: 'application/x-mpegURL'}); r.play();
-} else { window.open(c.url, '_blank'); }
+window.onload = function() {
+const grid = document.getElementById('grid-canales') || document.getElementById('menu');
+const player = videojs('my-video') || videojs('v');
+listaCanales.forEach(canal => {
+const div = document.createElement('div');
+div.className = 'caja';
+div.innerText = canal.nombre;
+div.tabIndex = 0;
+div.onclick = function() {
+if(canal.url.includes('m3u8')) {
+document.getElementById('player-container').style.display='block';
+player.src({src: canal.url, type: 'application/x-mpegURL'});
+player.play();
+} else { window.open(canal.url, '_blank'); }
 };
-m.appendChild(d);
+grid.appendChild(div);
 });
+};
 </script>
 </body>
 </html>
