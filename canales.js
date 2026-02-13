@@ -3,7 +3,7 @@ const listaCanales = [
 { nombre: "PRUEBA", url: "" },
 { nombre: "Telef", url: "https://cointv.site/html/cvatt.html?get=VGVsZWZlSEQ=" },
 { nombre: "CANAL 4", url: "#" },
-{ nombre: "FOX S1", url: "https://cointv.site/html/cvatt.html?get=VGVsZWZlSEQ=" },
+{ nombre: "FOX S1", url: "https://cointv.site/html/cvattde.html?get=Rm94U3BvcnRz" },
 { nombre: "CANAL 6", url: "#" },
 { nombre: "CANAL 7", url: "#" },
 { nombre: "CANAL 8", url: "#" },
