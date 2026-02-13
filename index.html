@@ -21,23 +21,23 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
 <video id="v" class="video-js vjs-default-skin" controls style="width:100%;height:100%"></video>
 </div>
 <script>
-function iniciar() {
-if (typeof videojs === 'undefined') { setTimeout(iniciar, 200); return; }
-const g = document.getElementById('grid-canales') || document.getElementById('menu');
-const p = videojs('my-video') || videojs('v');
-listaCanales.forEach(c => {
-const d = document.createElement('div');
-d.className = 'caja'; d.innerText = c.nombre; d.tabIndex = 0;
-d.onclick = () => {
-if (c.url.includes('m3u8')) {
-document.getElementById('player-container').style.display='block';
-p.src({src: c.url, type: 'application/x-mpegURL'}); p.play();
-} else { window.open(c.url, '_blank'); }
-};
-g.appendChild(d);
-});
+window . onload = function ( ) {
+const contenedor = document . getElementById ( 'grid-canales' ) ;
+listaCanales . forEach ( canal => {
+const boton = document . createElement ( 'div' ) ;
+boton . className = 'caja' ;
+boton . innerText = canal . nombre ;
+boton . tabIndex = 0 ;
+boton . onclick = ( ) => {
+if ( canal . url . includes ( 'm3u8' ) ) {
+alert ( 'Abriendo video...' ) ;
+} else {
+window . open ( canal . url , '_blank' ) ;
 }
-iniciar();
+} ;
+contenedor . appendChild ( boton ) ;
+} ) ;
+}
 </script>
 </body>
 </html>
