@@ -1,9 +1,9 @@
 const listaCanales = [
 { nombre: "HBO HD", url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=" },
 { nombre: "PRUEBA", url: "" },
-{ nombre: "CANAL 3", url: "#" },
+{ nombre: "Telef", url: "https://cointv.site/html/cvatt.html?get=VGVsZWZlSEQ=" },
 { nombre: "CANAL 4", url: "#" },
-{ nombre: "CANAL 5", url: "#" },
+{ nombre: "FOX S1", url: "https://cointv.site/html/cvatt.html?get=VGVsZWZlSEQ=" },
 { nombre: "CANAL 6", url: "#" },
 { nombre: "CANAL 7", url: "#" },
 { nombre: "CANAL 8", url: "#" },
