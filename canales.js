@@ -9,7 +9,7 @@ const listaCanales = [
 { nombre: "tyc", url: "https://cointv.site/html/cvattde.html?get=VHlDU3BvcnQ" },
 { nombre: "Disco World", url: "https://cointv.site/html/cvatt.html?get=RGlzY292ZXJ5X1dvcmxkX0hE" },
 { nombre: "national g", url: "https://cointv.site/html/cvatt.html?get=TmF0R2VvSEQ=" },
-{ nombre: "CANAL 11", url: "#" },
+{ nombre: "Espn Prem2", url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
 { nombre: "CANAL 12", url: "#" },
 { nombre: "CANAL 13", url: "#" },
 { nombre: "CANAL 14", url: "#" },
