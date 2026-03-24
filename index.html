@@ -51,21 +51,40 @@ window.onload = function() {
 };
 
 function cargarCanal(c) {
-// Prueba esta configuración más robusta dentro de tu función cargarCanal
-player.src({
-    src: c.url,
-    type: 'application/dash+xml',
-    keySystemOptions: [
-        {
-            name: 'com.widevine.alpha',
-            options: {
-                serverURL: 'https://multidrm.cvattv.com.ar/widevine/proxy',
-                // Intentamos pasarle el token si es que está en la URL
-                withCredentials: true 
-            }
-        }
-    ]
-});    
+    const container = document.getElementById('player-container');
+    const videoElement = document.getElementById('my-video');
+    
+    // Eliminamos iframes viejos si existen
+    const viejoIframe = document.getElementById('iframe-player');
+    if(viejoIframe) viejoIframe.remove();
+
+    container.style.display = 'block';
+
+    if (c.url.includes('.html') || c.url.includes('nebunexa') || c.url.includes('cointv')) {
+        // ES UNA PÁGINA WEB: Usamos un Iframe para que se vea en el "recuadro"
+        videoElement.style.display = 'none'; // Escondemos el reproductor de video
+        
+        const ifrm = document.createElement("iframe");
+        ifrm.setAttribute("src", c.url);
+        ifrm.setAttribute("id", "iframe-player");
+        ifrm.style.width = "100%";
+        ifrm.style.height = "100%";
+        ifrm.style.border = "none";
+        // Permitir pantalla completa y scripts
+        ifrm.setAttribute("allowfullscreen", "true");
+        
+        container.appendChild(ifrm);
+    } else {
+        // ES UN VIDEO DIRECTO (.m3u8 o .mpd): Usamos Video.js
+        videoElement.style.display = 'block';
+        player.src({
+            src: c.url,
+            type: c.url.includes('.mpd') ? 'application/dash+xml' : 'application/x-mpegURL'
+        });
+        player.play();
+    }
+}
+      
 
 function cerrarPlayer() {
     player.pause();
