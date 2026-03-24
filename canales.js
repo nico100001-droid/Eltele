@@ -13,7 +13,7 @@ const listaCanales = [
 { nombre: "national g", url: "https://cointv.site/html/cvatt.html?get=TmF0R2VvSEQ=" },
 { nombre: "Garage TV", url: "https://stream1.sersat.com/hls/garagetv.m3u8" },
 { nombre: "UNITV Villa Maria", url: "https://vivo.solumedia.com:19360/uniteve/uniteve.m3u8" },
-{ nombre: "Canal 15 Cine", url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8" }
-{ nombre: "NEOTV Cine", url: "https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8" }
+{ nombre: "Canal 15 Cine", url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8" },
+{ nombre: "NEOTV Cine", url: "https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8" },
 { nombre: "canal 18", url: "" },
 ];
