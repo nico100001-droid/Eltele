@@ -1,45 +1,89 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-<title>TELE</title>
-<style>
-body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-.caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; }
-.caja:focus { background: blue; outline: none; }
-#player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
-</style>
+    <title>EL TELE</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        .caja { background: #222; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 18px; border: 2px solid #444; transition: 0.3s; text-align: center; padding: 10px; }
+        .caja:hover, .caja:focus { background: #333; border-color: #007bff; outline: none; transform: scale(1.05); }
+        
+        #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
+        .btn-cerrar { position: absolute; z-index: 101; right: 20px; top: 20px; background: rgba(255,0,0,0.7); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+    </style>
 </head>
 <body>
-<h1 style="text-align:center; color:#666;">EL TELE</h1>
+
+<h1 style="text-align:center; color:#888;">EL TELE</h1>
 <div class="grid" id="grid-canales"></div>
+
 <div id="player-container">
-<button onclick="location.reload()" style="position:absolute; z-index:101; right:20px; top:20px; background:red; color:white;">CERRAR</button>
-<video id="my-video" class="video-js" controls style="width:100%; height:100%"></video>
+    <button class="btn-cerrar" onclick="cerrarPlayer()">CERRAR</button>
+    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" style="width:100%; height:100%"></video>
 </div>
+
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-contrib-dash@5.1.1/dist/videojs-contrib-dash.min.js"></script>
 
 <script src="canales.js"></script>
 
 <script>
+let player;
+
 window.onload = function() {
-const g = document.getElementById('grid-canales');
-listaCanales.forEach(c => {
-const d = document.createElement('div');
-d.className = 'caja';
-d.innerText = c.nombre;
-d.onclick = () => {
-if(c.url.includes('m3u8')) {
-document.getElementById('player-container').style.display='block';
-alert('Cargando video...');
-} else {
-window.open(c.url, '_blank');
+    // Inicializar Video.js una sola vez
+    player = videojs('my-video');
+
+    const g = document.getElementById('grid-canales');
+    
+    listaCanales.forEach(c => {
+        const d = document.createElement('div');
+        d.className = 'caja';
+        d.innerText = c.nombre;
+        d.tabIndex = 0; // Para que sea navegable con teclado
+
+        d.onclick = () => cargarCanal(c);
+        d.onkeypress = (e) => { if(e.key === 'Enter') cargarCanal(c); };
+        
+        g.appendChild(d);
+    });
+};
+
+function cargarCanal(c) {
+    const container = document.getElementById('player-container');
+    container.style.display = 'block';
+
+    let configuracion = {
+        src: c.url,
+        type: c.url.includes('.mpd') ? 'application/dash+xml' : 'application/x-mpegURL'
+    };
+
+    // Si es un canal de Flow (MPD), intentamos meterle la licencia Widevine
+    if (c.url.includes('.mpd')) {
+        player.src({
+            src: c.url,
+            type: 'application/dash+xml',
+            keySystemOptions: [
+                {
+                    name: 'com.widevine.alpha',
+                    options: {
+                        serverURL: 'https://multidrm.cvattv.com.ar/widevine/proxy'
+                    }
+                }
+            ]
+        });
+    } else {
+        player.src(configuracion);
+    }
+
+    player.play();
 }
-};
-g.appendChild(d);
-});
-};
+
+function cerrarPlayer() {
+    player.pause();
+    document.getElementById('player-container').style.display = 'none';
+}
 </script>
 
 </body>
