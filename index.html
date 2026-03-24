@@ -54,6 +54,7 @@ window.onload = function() {
                 
                 const ifrm = document.createElement('iframe');
                 ifrm.id = 'ifrm';
+                ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
                 ifrm.src = c.url;
                 ifrm.allow = "autoplay; encrypted-media; fullscreen";
                 ifrm.setAttribute('allowfullscreen', 'true');
