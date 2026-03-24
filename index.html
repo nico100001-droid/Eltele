@@ -1,95 +1,45 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-    <title>EL TELE</title>
-    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
-    <style>
-        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
-        .caja { background: #222; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 18px; border: 2px solid #444; transition: 0.3s; text-align: center; padding: 10px; }
-        .caja:hover, .caja:focus { background: #333; border-color: #007bff; outline: none; transform: scale(1.05); }
-        
-        #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
-        .btn-cerrar { position: absolute; z-index: 101; right: 20px; top: 20px; background: rgba(255,0,0,0.7); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
-    </style>
+<title>TELE</title>
+<style>
+body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+.caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; }
+.caja:focus { background: blue; outline: none; }
+#player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
+</style>
 </head>
 <body>
-
-<h1 style="text-align:center; color:#888;">EL TELE</h1>
+<h1 style="text-align:center; color:#666;">EL TELE</h1>
 <div class="grid" id="grid-canales"></div>
-
 <div id="player-container">
-    <button class="btn-cerrar" onclick="cerrarPlayer()">CERRAR</button>
-    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" style="width:100%; height:100%"></video>
+<button onclick="location.reload()" style="position:absolute; z-index:101; right:20px; top:20px; background:red; color:white;">CERRAR</button>
+<video id="my-video" class="video-js" controls style="width:100%; height:100%"></video>
 </div>
-
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/videojs-contrib-dash@5.1.1/dist/videojs-contrib-dash.min.js"></script>
 
 <script src="canales.js"></script>
 
 <script>
-let player;
-
 window.onload = function() {
-    // Inicializar Video.js una sola vez
-    player = videojs('my-video');
-
-    const g = document.getElementById('grid-canales');
-    
-    listaCanales.forEach(c => {
-        const d = document.createElement('div');
-        d.className = 'caja';
-        d.innerText = c.nombre;
-        d.tabIndex = 0; // Para que sea navegable con teclado
-
-        d.onclick = () => cargarCanal(c);
-        d.onkeypress = (e) => { if(e.key === 'Enter') cargarCanal(c); };
-        
-        g.appendChild(d);
-    });
+const g = document.getElementById('grid-canales');
+listaCanales.forEach(c => {
+const d = document.createElement('div');
+d.className = 'caja';
+d.innerText = c.nombre;
+d.onclick = () => {
+if(c.url.includes('m3u8')) {
+document.getElementById('player-container').style.display='block';
+alert('Cargando video...');
+} else {
+window.open(c.url, '_blank');
+}
 };
-
-function cargarCanal(c) {
-    const container = document.getElementById('player-container');
-    const videoElement = document.getElementById('my-video');
-    
-    // Eliminamos iframes viejos si existen
-    const viejoIframe = document.getElementById('iframe-player');
-    if(viejoIframe) viejoIframe.remove();
-
-    container.style.display = 'block';
-
-    if (c.url.includes('.html') || c.url.includes('nebunexa') || c.url.includes('cointv')) {
-        // ES UNA PÁGINA WEB: Usamos un Iframe para que se vea en el "recuadro"
-        videoElement.style.display = 'none'; // Escondemos el reproductor de video
-        
-        const ifrm = document.createElement("iframe");
-        ifrm.setAttribute("src", c.url);
-        ifrm.setAttribute("id", "iframe-player");
-        ifrm.style.width = "100%";
-        ifrm.style.height = "100%";
-        ifrm.style.border = "none";
-        // Permitir pantalla completa y scripts
-        ifrm.setAttribute("allowfullscreen", "true");
-        
-        container.appendChild(ifrm);
-    } else {
-        // ES UN VIDEO DIRECTO (.m3u8 o .mpd): Usamos Video.js
-        videoElement.style.display = 'block';
-        player.src({
-            src: c.url,
-            type: c.url.includes('.mpd') ? 'application/dash+xml' : 'application/x-mpegURL'
-        });
-        player.play();
-    }
-}
-      
-
-function cerrarPlayer() {
-    player.pause();
-    document.getElementById('player-container').style.display = 'none';
-}
+g.appendChild(d);
+});
+};
 </script>
 
 </body>
