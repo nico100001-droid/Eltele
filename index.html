@@ -17,7 +17,12 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
 <div class="grid" id="grid-canales"></div>
 
 <div id="player-container">
-    <button onclick="location.reload()" style="position:absolute; z-index:101; right:20px; top:20px; background:red; color:white;">CERRAR</button>
+    <div style="position:absolute; z-index:101; right:20px; top:20px; display:flex; gap:10px;">
+        <button onclick="cambiarCanal(-1)" style="background:gray; color:white; padding:10px;">ANTERIOR</button>
+        <button onclick="cambiarCanal(1)" style="background:gray; color:white; padding:10px;">SIGUIENTE</button>
+        <button onclick="cerrarPlayer()" style="background:red; color:white; padding:10px;">CERRAR</button>
+    </div>
+    
     <video id="my-video" class="video-js" controls style="width:100%; height:100%; display:none;"></video>
 </div>
 
@@ -25,45 +30,68 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
 <script src="canales.js"></script>
 
 <script>
+let player;
+let indiceActual = 0; // Guardamos qué canal se está viendo
+
 window.onload = function() {
     const g = document.getElementById('grid-canales');
     const pc = document.getElementById('player-container');
     const vid = document.getElementById('my-video');
 
-    listaCanales.forEach(c => {
+    // Dibujar la grilla
+    listaCanales.forEach((c, index) => {
         const d = document.createElement('div');
         d.className = 'caja';
         d.innerText = c.nombre;
         
         d.onclick = () => {
-            // 1. Limpiar iframes viejos si existen
-            const iframeViejo = document.getElementById('ifrm');
-            if(iframeViejo) iframeViejo.remove();
-            
-            pc.style.display = 'block';
-
-            if(c.url.includes('m3u8')) {
-                // MODO VIDEO DIRECTO (Garage TV, etc.)
-                vid.style.display = 'block';
-                const player = videojs('my-video');
-                player.src({ src: c.url, type: 'application/x-mpegURL' });
-                player.play();
-            } else {
-                // MODO RECUADRO (HBO, ESPN de cointv/nebunexa)
-                vid.style.display = 'none'; // Ocultar el reproductor de video
-                
-                const ifrm = document.createElement('iframe');
-                ifrm.id = 'ifrm';
-                ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
-                ifrm.src = c.url;
-                ifrm.allow = "autoplay; encrypted-media; fullscreen";
-                ifrm.setAttribute('allowfullscreen', 'true');
-                pc.appendChild(ifrm);
-            }
+            indiceActual = index; // Guardamos la posición al hacer clic
+            cargarCanal(listaCanales[indiceActual]);
         };
         g.appendChild(d);
     });
 };
-</script>
-</body>
-</html>
+
+function cargarCanal(c) {
+    const pc = document.getElementById('player-container');
+    const vid = document.getElementById('my-video');
+    
+    // Limpiar iframes viejos
+    const iframeViejo = document.getElementById('ifrm');
+    if(iframeViejo) iframeViejo.remove();
+    
+    pc.style.display = 'block';
+
+    if(c.url.includes('m3u8')) {
+        vid.style.display = 'block';
+        if (!player) player = videojs('my-video'); // Inicializar si no existe
+        player.src({ src: c.url, type: 'application/x-mpegURL' });
+        player.play();
+    } else {
+        vid.style.display = 'none';
+        if (player) player.pause(); // Pausar video si pasamos a un iframe
+        
+        const ifrm = document.createElement('iframe');
+        ifrm.id = 'ifrm';
+        ifrm.src = c.url;
+        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
+        ifrm.allow = "autoplay; encrypted-media; fullscreen";
+        ifrm.setAttribute('allowfullscreen', 'true');
+        pc.appendChild(ifrm);
+    }
+}
+
+// FUNCIÓN DE ZAPPING
+function cambiarCanal(direccion) {
+    // Calculamos el nuevo índice (si llega al final, vuelve al principio)
+    indiceActual += direccion;
+    
+    if (indiceActual >= listaCanales.length) indiceActual = 0;
+    if (indiceActual < 0) indiceActual = listaCanales.length - 1;
+
+    cargarCanal(listaCanales[indiceActual]);
+}
+
+function cerrarPlayer() {
+    location.reload(); // Mantenemos tu cierre original que limpia todo
+}
