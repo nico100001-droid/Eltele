@@ -26,7 +26,6 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
         <button class="btn-zapping" onclick="cambiarCanal(1)">CH ▶</button>
         <button class="btn-cerrar" onclick="cerrarPlayer()">X</button>
     </div>
-    
     <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%; display:none;"></video>
 </div>
 
@@ -39,8 +38,6 @@ let indiceActual = 0;
 
 window.onload = function() {
     const g = document.getElementById('grid-canales');
-    
-    // Verificación de seguridad por si canales.js falla
     if (typeof listaCanales === 'undefined') {
         alert("Error: No se encontró la lista de canales en canales.js");
         return;
@@ -50,8 +47,7 @@ window.onload = function() {
         const d = document.createElement('div');
         d.className = 'caja';
         d.innerText = c.nombre;
-        d.tabIndex = 0; // Para que funcione el foco en la TV
-        
+        d.tabIndex = 0;
         d.onclick = () => {
             indiceActual = index;
             cargarCanal(listaCanales[indiceActual]);
@@ -63,7 +59,6 @@ window.onload = function() {
 function cargarCanal(c) {
     const pc = document.getElementById('player-container');
     const vid = document.getElementById('my-video');
-    
     const iframeViejo = document.getElementById('ifrm');
     if(iframeViejo) iframeViejo.remove();
     
@@ -77,11 +72,9 @@ function cargarCanal(c) {
     } else {
         vid.style.display = 'none';
         if (player) player.pause();
-        
         const ifrm = document.createElement('iframe');
         ifrm.id = 'ifrm';
         ifrm.src = c.url;
-        // Sandbox corregido para máxima compatibilidad pero bloqueando popups
         ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
         ifrm.allow = "autoplay; encrypted-media; fullscreen";
         ifrm.setAttribute('allowfullscreen', 'true');
@@ -99,5 +92,35 @@ function cambiarCanal(direccion) {
 function cerrarPlayer() {
     location.reload();
 }
-</script> </body>
+
+// AQUÍ ADENTRO VA EL LISTENER DE TECLAS
+document.addEventListener('keydown', function(e) {
+    const pc = document.getElementById('player-container');
+    if (pc.style.display !== 'block') return;
+
+    switch(e.keyCode) {
+        case 33: // Page Up
+        case 38: // Flecha Arriba
+        case 427: // CH+
+            e.preventDefault();
+            cambiarCanal(-1); // Subir en la lista (anterior)
+            break;
+            
+        case 34: // Page Down
+        case 40: // Flecha Abajo
+        case 428: // CH-
+            e.preventDefault();
+            cambiarCanal(1); // Bajar en la lista (siguiente)
+            break;
+
+        case 27: // Esc
+        case 8:  // Back
+        case 461: 
+            e.preventDefault();
+            cerrarPlayer();
+            break;
+    }
+});
+</script> 
+</body>
 </html>
