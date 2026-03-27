@@ -16,9 +16,9 @@ const listaCanales = [
 { nombre: "Canal 15 Cine", url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8" },
 { nombre: "NEOTV Cine", url: "https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8" },
 { nombre: "Locomotion", url: "https://51.222.85.85:81/hls/loco/index.m3u8" },
-{ nombre: "canal 10", url: "" },
-{ nombre: "canal 11", url: "" },
-{ nombre: "canal 12", url: "" },
-{ nombre: "canal 13", url: "" },
+{ nombre: "paka-paka", url: "tps://cointv.site/cvatt.html?get=UEFLQV9QQUtB" },
+{ nombre: "TNT", url: "https://cointv.site/cvatt.html?get=VE5UX0hEX0FyZw" },
+{ nombre: "Animalplanet", url: "https://cointv.site/cvatt.html?get=QW5pbWFsUGxhbmV0" },
+{ nombre: "History", url: "https://cointv.site/cvatt.html?get=SGlzdG9yeUhE" },
 { nombre: "canal 14", url: "" },
 ];
