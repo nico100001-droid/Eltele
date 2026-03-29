@@ -28,7 +28,7 @@ const listaCanales = [
 { nombre: "AMC", url: "https://amc-amcespanol-1-us.plex.wurl.tv/playlist.m3u8" },
 { nombre: "KANADE TV", url: "https://static.kanade.cl/hls/kanade.m3u8" },
 { nombre: "CH Peli 3", url: "https://stmv6.voxtvhd.com.br/cineaccion/cineaccion/playlist.m3u8" },
-{ nombre: "3", url: "" },
+{ nombre: "Pitufos", url: "https://epg.provider.plex.tv/library/parts/608049aefa2b8ae93c2c3995-639ba57d3f4612cc150a5723/variant.m3u8?x-plex-token=fA4bEzv9-YXcXWesSyKU&x-plex-advertising-identifier=&x-plex-client-identifier=d3361eb0-5a17-4e54-9ddf-c005c325c8be&x-plex-playback-id=p_39b8dce2-baab-4623-b325-8020fe782de6&x-plex-playback-session-id=&x-plex-session-id=&x-plex-device=Windows&x-plex-device-name=Plex+Mediaverse&x-plex-advertising-donottrack=1&x-plex-drm=&x-plex-model=&x-plex-platform=Edge&x-plex-platform-version=146.0.0.0&x-plex-product=Plex+Mediaverse&x-plex-device-screen-resolution=&x-plex-device-vendor=&x-plex-version=&x-plex-provider-streaming-start=1774754489&url=6bc4c75666376e6c3521fea810b46362-35025f82988d62814ca511474d5781c2a6bc214d0fc1f2147a3f545d27ae49d8a6bb06a33e73fc82c8cc7ffa9c3bb94604a53dfcdd36f1e7ea7b3d4b3cf1e61434f0f2f5cd93038df23c9139dbfc4c2682163991f7eed770085d3404ac2e0da8" },
 { nombre: "2", url: "" },
 { nombre: "3", url: "" },
 { nombre: "2", url: "" },
