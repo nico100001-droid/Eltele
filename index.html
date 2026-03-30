@@ -19,7 +19,7 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 
 <h1 style="text-align:center; color:#666;">EL TELE</h1>
 <div class="grid" id="grid-canales"></div>
-    
+
 <div id="player-container">
     <div class="controles-zapping">
         <button class="btn-zapping" onclick="cambiarCanal(-1)">◀ CH</button>
@@ -31,35 +31,26 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 <script src="canales.js"></script>
-<script src="renovadoras.js"></script> ```
-    
-```javascript
+
+<script>
 let player;
 let indiceActual = 0;
-let listaCompleta = []; // Nueva lista unificada
 
 window.onload = function() {
     const g = document.getElementById('grid-canales');
-    
-    // Unimos los canales tradicionales con los de YouTube
-    // Validamos que ambas variables existan para evitar errores
-    const c1 = (typeof listaCanales !== 'undefined') ? listaCanales : [];
-    const c2 = (typeof canalesYoutube !== 'undefined') ? canalesYoutube : [];
-    listaCompleta = c1.concat(c2);
-
-    if (listaCompleta.length === 0) {
-        alert("Error: No se encontraron canales.");
+    if (typeof listaCanales === 'undefined') {
+        alert("Error: No se encontró la lista de canales en canales.js");
         return;
     }
 
-    listaCompleta.forEach((c, index) => {
+    listaCanales.forEach((c, index) => {
         const d = document.createElement('div');
         d.className = 'caja';
         d.innerText = c.nombre;
         d.tabIndex = 0;
         d.onclick = () => {
             indiceActual = index;
-            cargarCanal(listaCompleta[indiceActual]);
+            cargarCanal(listaCanales[indiceActual]);
         };
         g.appendChild(d);
     });
@@ -73,28 +64,17 @@ function cargarCanal(c) {
     
     pc.style.display = 'block';
 
-    // Si es un M3U8 tradicional (IPTV)
     if(c.url.includes('m3u8')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
         player.src({ src: c.url, type: 'application/x-mpegURL' });
         player.play();
-    } 
-    // Si es YouTube o cualquier otro link para IFRAME
-    else {
+    } else {
         vid.style.display = 'none';
         if (player) player.pause();
-        
         const ifrm = document.createElement('iframe');
         ifrm.id = 'ifrm';
-        
-        // Convertimos link normal a Embed si es necesario
-        let urlFinal = c.url;
-        if(urlFinal.includes('youtube.com/watch?v=')) {
-            urlFinal = urlFinal.replace('watch?v=', 'embed/');
-        }
-
-        ifrm.src = urlFinal;
+        ifrm.src = c.url;
         ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
         ifrm.allow = "autoplay; encrypted-media; fullscreen";
         ifrm.setAttribute('allowfullscreen', 'true');
@@ -104,10 +84,11 @@ function cargarCanal(c) {
 
 function cambiarCanal(direccion) {
     indiceActual += direccion;
-    if (indiceActual >= listaCompleta.length) indiceActual = 0;
-    if (indiceActual < 0) indiceActual = listaCompleta.length - 1;
-    cargarCanal(listaCompleta[indiceActual]);
+    if (indiceActual >= listaCanales.length) indiceActual = 0;
+    if (indiceActual < 0) indiceActual = listaCanales.length - 1;
+    cargarCanal(listaCanales[indiceActual]);
 }
+
 function cerrarPlayer() {
     location.reload();
 }
