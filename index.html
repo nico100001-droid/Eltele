@@ -4,20 +4,49 @@
 <title>EL TELE</title>
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
 <style>
-body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-.caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; }
-.caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; }
-#player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
-#player-container iframe { width: 100%; height: 100%; border: none; }
-.controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
-.btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
-.btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+    /* Estilos Generales */
+    body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; overflow-x: hidden; }
+    h1 { text-align: center; color: #444; margin-bottom: 30px; }
+    
+    /* Grilla de Canales */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+    .caja { background: #1a1a1a; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer; font-size: 18px; border: 2px solid #333; text-align: center; padding: 10px; transition: 0.2s; }
+    .caja:focus, .caja:hover { background: #0000ff; border-color: #fff; outline: none; transform: scale(1.05); }
+    
+    /* Contenedor del Reproductor */
+    #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
+    #player-container iframe { width: 100%; height: 100%; border: none; }
+    
+    /* Cartelito de Información (OSD) */
+    #canal-info {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #00ff00; /* Verde tipo consola/TV vieja */
+        padding: 12px 25px;
+        border-left: 6px solid #0000ff;
+        font-size: 26px;
+        font-weight: bold;
+        z-index: 110;
+        display: none;
+        border-radius: 4px;
+        text-shadow: 2px 2px #000;
+        pointer-events: none;
+    }
+
+    /* Botones de Control */
+    .controles-zapping { position: absolute; z-index: 105; right: 20px; top: 20px; display: flex; gap: 10px; }
+    .btn-zapping { background: rgba(50, 50, 50, 0.7); color: white; padding: 10px 15px; border: 1px solid #666; cursor: pointer; border-radius: 5px; font-weight: bold; }
+    .btn-cerrar { background: rgba(200, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
 </style>
 </head>
 <body>
 
-<h1 style="text-align:center; color:#666;">EL TELE</h1>
+<h1>EL TELE</h1>
+
+<div id="canal-info"></div>
+
 <div class="grid" id="grid-canales"></div>
 
 <div id="player-container">
@@ -26,7 +55,7 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
         <button class="btn-zapping" onclick="cambiarCanal(1)">CH ▶</button>
         <button class="btn-cerrar" onclick="cerrarPlayer()">X</button>
     </div>
-    <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%;"></video>
+    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" style="width:100%; height:100%;"></video>
 </div>
 
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
@@ -36,11 +65,13 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 <script>
 let player;
 let indiceActual = 0;
+let timeoutInfo;
 
+// 1. Al cargar la página, armamos la grilla
 window.onload = function() {
     const g = document.getElementById('grid-canales');
     if (typeof listaCanales === 'undefined') {
-        alert("Error: No se encontró la lista de canales en canales.js");
+        alert("Error: No se cargó canales.js");
         return;
     }
 
@@ -57,121 +88,128 @@ window.onload = function() {
     });
 };
 
-function obtenerCapituloAleatorio() {
-    if (typeof listaSimpsons === 'undefined' || listaSimpsons.length === 0) return null;
-    const indiceSorteado = Math.floor(Math.random() * listaSimpsons.length);
-    return listaSimpsons[indiceSorteado];
+// 2. Función para mostrar el nombre del canal/capítulo (OSD)
+function mostrarNombreCanal(texto) {
+    const info = document.getElementById('canal-info');
+    clearTimeout(timeoutInfo); // Resetear el tiempo si cambiamos rápido
+    info.innerText = texto;
+    info.style.display = 'block';
+    
+    timeoutInfo = setTimeout(() => {
+        info.style.display = 'none';
+    }, 3000); // Se oculta a los 3 segundos
 }
 
+// 3. Función para elegir capítulo al azar
+function obtenerCapituloAleatorio() {
+    if (typeof listaSimpsons === 'undefined' || listaSimpsons.length === 0) return null;
+    const lucky = Math.floor(Math.random() * listaSimpsons.length);
+    return listaSimpsons[lucky];
+}
+
+// 4. Función Principal de Carga
 function cargarCanal(c) {
     const pc = document.getElementById('player-container');
-    const vid = document.getElementById('my-video');
+    const vidElement = document.getElementById('my-video');
+    
+    // Limpiamos IFRAMES viejos (YouTube)
     const iframeViejo = document.getElementById('ifrm');
     if(iframeViejo) iframeViejo.remove();
     
     pc.style.display = 'block';
 
-    // Determinar qué video usar (si es el canal especial o uno normal)
-    let videoParaReproducir = c;
+    // Determinar qué video toca
+    let videoFinal = c;
+    let nombreFinal = c.nombre;
+
     if(c.nombre === "SIMPSONS TV") {
-        videoParaReproducir = obtenerCapituloAleatorio();
+        const cap = obtenerCapituloAleatorio();
+        if(cap) {
+            videoFinal = cap;
+            nombreFinal = "SIMPSONS: " + cap.nombre;
+        }
     }
 
-    // Caso 1: Es un stream M3U8
-    if(videoParaReproducir.url.includes('m3u8')) {
-        vid.style.display = 'block';
-        if (!player) player = videojs('my-video');
-        player.src({ src: videoParaReproducir.url, type: 'application/x-mpegURL' });
+    // Mostrar el cartelito apenas arranca
+    mostrarNombreCanal(nombreFinal);
+
+    // Inicializar o resetear el Player de Video.js
+    if (!player) {
+        player = videojs('my-video');
+    } else {
+        player.pause();
+        player.src(""); // Limpiamos para evitar trabas
+    }
+
+    // LÓGICA DE REPRODUCCIÓN SEGÚN FORMATO
+    if(videoFinal.url.includes('m3u8')) {
+        vidElement.style.display = 'block';
+        player.src({ src: videoFinal.url, type: 'application/x-mpegURL' });
         player.play();
     } 
-    // Caso 2: Es un archivo MP4 (Archive.org o similares)
-    else if(videoParaReproducir.url.includes('.mp4')) {
-        vid.style.display = 'block';
-        if (!player) player = videojs('my-video');
-        
-        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
+    else if(videoFinal.url.includes('.mp4')) {
+        vidElement.style.display = 'block';
+        player.src({ src: videoFinal.url, type: 'video/mp4' });
         player.play();
 
-        // Lógica de continuación automática
-        player.off('ended'); 
+        // Si el video termina, decidimos qué sigue
+        player.off('ended');
         player.on('ended', function() {
             if(c.nombre === "SIMPSONS TV") {
-                const proximo = obtenerCapituloAleatorio();
-                if(proximo) {
-                    player.src({ src: proximo.url, type: 'video/mp4' });
-                    player.play();
-                }
+                cargarCanal(c); // Recarga otro al azar
             } else {
-                cambiarCanal(1);
+                cambiarCanal(1); // Zapping normal
             }
         });
     } 
-    // Caso 3: Es un enlace para IFRAME (YouTube o Web)
     else {
-        vid.style.display = 'none';
-        if (player) player.pause();
+        // CASO YOUTUBE / WEB (Usa iframe)
+        vidElement.style.display = 'none';
+        player.pause();
+        
         const ifrm = document.createElement('iframe');
         ifrm.id = 'ifrm';
-        // Ajuste para YouTube si es necesario
-        let urlFinal = videoParaReproducir.url;
-        if(urlFinal.includes('youtube.com/watch?v=')) {
-            urlFinal = urlFinal.replace('watch?v=', 'embed/');
+        let urlEmbed = videoFinal.url;
+        if(urlEmbed.includes('youtube.com/watch?v=')) {
+            urlEmbed = urlEmbed.replace('watch?v=', 'embed/');
         }
-        ifrm.src = urlFinal;
-        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
+        ifrm.src = urlEmbed;
         ifrm.allow = "autoplay; encrypted-media; fullscreen";
         ifrm.setAttribute('allowfullscreen', 'true');
         pc.appendChild(ifrm);
     }
 }
 
-function cambiarCanal(direccion) {
-    indiceActual += direccion;
+// 5. Funciones de Navegación
+function cambiarCanal(dir) {
+    indiceActual += dir;
     if (indiceActual >= listaCanales.length) indiceActual = 0;
     if (indiceActual < 0) indiceActual = listaCanales.length - 1;
     cargarCanal(listaCanales[indiceActual]);
 }
 
 function cerrarPlayer() {
+    // Recargar es lo más limpio para liberar memoria en Android TV
     location.reload();
 }
 
+// 6. Control por Control Remoto / Teclado
 document.addEventListener('keydown', function(e) {
     const pc = document.getElementById('player-container');
     if (pc.style.display !== 'block') return;
 
     switch(e.keyCode) {
-        case 33: case 38: case 427:
-            e.preventDefault();
+        case 33: case 38: case 427: // CH+ / Arriba
             cambiarCanal(-1);
             break;
-        case 34: case 40: case 428:
-            e.preventDefault();
+        case 34: case 40: case 428: // CH- / Abajo
             cambiarCanal(1);
             break;
-        case 27: case 8: case 461:
-            e.preventDefault();
+        case 27: case 8: case 461:   // Atrás / Salir
             cerrarPlayer();
             break;
     }
 });
-
-    #canal-info {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px 20px;
-    border-left: 5px solid blue;
-    font-size: 24px;
-    font-weight: bold;
-    z-index: 102;
-    display: none; /* Se oculta por defecto */
-    border-radius: 0 5px 5px 0;
-    text-transform: uppercase;
-}
-    
 </script>
 </body>
 </html>
