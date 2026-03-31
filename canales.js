@@ -29,7 +29,7 @@ const listaCanales = [
 { nombre: "paka-paka", url: "https://cointv.site/cvatt.html?get=UEFLQV9QQUtB" },
 { nombre: "Cartunitos", url: "https://cointv.site/cvatt.html?get=Qm9vbWVyYW5n" },
 { nombre: "KANADE TV", url: "https://static.kanade.cl/hls/kanade.m3u8" },
-{ nombre: "DiscoveryKids", url: "https://wild-wildflower-72b1.nico-100-001.workers.dev/?url=http://xtreamui.ddns.net:8000/live/darksidevideoflix/H76REfL2eRth/235.ts" },
+{ nombre: "DiscoveryKids", url: "https://raw.githubusercontent.com/nico100001-droid/Eltele/refs/heads/main/DiscoveryKids.m3u8" },
 { nombre: "Animalplanet", url: "https://cointv.site/cvatt.html?get=QW5pbWFsUGxhbmV0" },
 { nombre: "History", url: "https://cointv.site/cvatt.html?get=SGlzdG9yeUhE" },  
 { nombre: "H&H", url: "https://cointv.site/cvatt.html?get=RGlzY292ZXJ5SG9tZUhlYWx0aEhE" },
