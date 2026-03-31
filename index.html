@@ -71,20 +71,23 @@ function cargarCanal(c) {
     
     pc.style.display = 'block';
 
-    // Determinar qué video usar (si es el canal especial o uno normal)
+    // 1. Determinar qué video usar (Sorteo si es el canal especial)
     let videoParaReproducir = c;
     if(c.nombre === "SIMPSONS TV") {
         videoParaReproducir = obtenerCapituloAleatorio();
     }
 
-    // Caso 1: Es un stream M3U8
+    // SI NO HAY VIDEO PARA REPRODUCIR, SALIR
+    if (!videoParaReproducir || !videoParaReproducir.url) return;
+
+    // 2. CASO M3U8 (Basado en el video sorteado)
     if(videoParaReproducir.url.includes('m3u8')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
         player.src({ src: videoParaReproducir.url, type: 'application/x-mpegURL' });
         player.play();
     } 
-    // Caso 2: Es un archivo MP4 (Archive.org o similares)
+    // 3. CASO MP4 (Basado en el video sorteado)
     else if(videoParaReproducir.url.includes('.mp4')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
@@ -92,27 +95,21 @@ function cargarCanal(c) {
         player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
         player.play();
 
-        // Lógica de continuación automática
         player.off('ended'); 
         player.on('ended', function() {
             if(c.nombre === "SIMPSONS TV") {
-                const proximo = obtenerCapituloAleatorio();
-                if(proximo) {
-                    player.src({ src: proximo.url, type: 'video/mp4' });
-                    player.play();
-                }
+                cargarCanal(c); // Vuelve a sortear uno nuevo
             } else {
                 cambiarCanal(1);
             }
         });
     } 
-    // Caso 3: Es un enlace para IFRAME (YouTube o Web)
+    // 4. CASO IFRAME (Cualquier otro enlace)
     else {
         vid.style.display = 'none';
         if (player) player.pause();
         const ifrm = document.createElement('iframe');
         ifrm.id = 'ifrm';
-        // Ajuste para YouTube si es necesario
         let urlFinal = videoParaReproducir.url;
         if(urlFinal.includes('youtube.com/watch?v=')) {
             urlFinal = urlFinal.replace('watch?v=', 'embed/');
