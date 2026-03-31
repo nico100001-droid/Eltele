@@ -29,9 +29,10 @@ const listaCanales = [
 { nombre: "paka-paka", url: "https://cointv.site/cvatt.html?get=UEFLQV9QQUtB" },
 { nombre: "Cartunitos", url: "https://cointv.site/cvatt.html?get=Qm9vbWVyYW5n" },
 { nombre: "KANADE TV", url: "https://static.kanade.cl/hls/kanade.m3u8" },
-{ "nombre": "SIMPSONS TV", "url": "ALEATORIO" },
 { nombre: "Animalplanet", url: "https://cointv.site/cvatt.html?get=QW5pbWFsUGxhbmV0" },
 { nombre: "History", url: "https://cointv.site/cvatt.html?get=SGlzdG9yeUhE" },  
 { nombre: "H&H", url: "https://cointv.site/cvatt.html?get=RGlzY292ZXJ5SG9tZUhlYWx0aEhE" },
 { nombre: "Animados", url: "https://raw.githubusercontent.com/nico100001-droid/Eltele/main/Animados.m3u8" },
+{ "nombre": "SIMPSONS TV", "url": "ALEATORIO" },
+{ "nombre": "DIBUS TV", "url": "ALEATORIO" },
 ];
