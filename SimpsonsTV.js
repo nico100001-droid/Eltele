@@ -14,10 +14,10 @@ const listaSimpsons = [
     { "nombre": "E12 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/412.mp4" },
     { "nombre": "E13 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/413.mp4" },
     { "nombre": "E14 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/414.mp4" },
-    { "nombre": "E15 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/415.mp4" }
+    { "nombre": "E15 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/415.mp4" },
     { "nombre": "E16 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/416.mp4" },
     { "nombre": "E17 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/417.mp4" },
-    { "nombre": "E18 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/418.mp4" }
+    { "nombre": "E18 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/418.mp4" },
     { "nombre": "E19 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/419.mp4" },
     { "nombre": "E20 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/420.mp4" },
     { "nombre": "E21 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/421.mp4" },
