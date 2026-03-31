@@ -2,16 +2,16 @@
 const listaSimpsons = [
     { "nombre": "E1 - América", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/401.mp4" },
     { "nombre": "E2 - Faraón", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/402.mp4" },
-    { "nombre": "E3 - Loto Azul", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/403.mp4" }
+    { "nombre": "E3 - Loto Azul", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/403.mp4" },
     { "nombre": "E4 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/404.mp4" },
     { "nombre": "E5 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/405.mp4" },
-    { "nombre": "E6 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/406.mp4" }
+    { "nombre": "E6 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/406.mp4" },
     { "nombre": "E7 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/407.mp4" },
     { "nombre": "E8 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/408.mp4" },
-    { "nombre": "E9 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/409.mp4" }
+    { "nombre": "E9 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/409.mp4" },
     { "nombre": "E10 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/410.mp4" },
     { "nombre": "E11 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/411.mp4" },
-    { "nombre": "E12 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/412.mp4" }
+    { "nombre": "E12 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/412.mp4" },
     { "nombre": "E13 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/413.mp4" },
     { "nombre": "E14 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/414.mp4" },
     { "nombre": "E15 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/415.mp4" }
@@ -20,10 +20,7 @@ const listaSimpsons = [
     { "nombre": "E18 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/418.mp4" }
     { "nombre": "E19 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/419.mp4" },
     { "nombre": "E20 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/420.mp4" },
-    { "nombre": "E21 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/421.mp4" }
+    { "nombre": "E21 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/421.mp4" },
     { "nombre": "E22 - nn", "url": "https://ia800905.us.archive.org/28/items/lossimpsonstemp4/Los%20Simpsons%20temporada%204/Temporada%204/422.mp4" },
-    
-    
-    
     // Agregá todos los que quieras aquí...
 ];
