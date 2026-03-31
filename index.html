@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TELE</title>
+<title>EL TELE</title>
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
 <style>
 body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
@@ -26,13 +26,13 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
         <button class="btn-zapping" onclick="cambiarCanal(1)">CH ▶</button>
         <button class="btn-cerrar" onclick="cerrarPlayer()">X</button>
     </div>
-    <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%; display:none;"></video>
+    <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%;"></video>
 </div>
 
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 <script src="canales.js"></script>
 <script src="SimpsonsTV.js"></script>
-    
+
 <script>
 let player;
 let indiceActual = 0;
@@ -57,12 +57,12 @@ window.onload = function() {
     });
 };
 
-// Función para obtener un video aleatorio de la lista de los Simpsons
 function obtenerCapituloAleatorio() {
+    if (typeof listaSimpsons === 'undefined' || listaSimpsons.length === 0) return null;
     const indiceSorteado = Math.floor(Math.random() * listaSimpsons.length);
     return listaSimpsons[indiceSorteado];
-}    
-    
+}
+
 function cargarCanal(c) {
     const pc = document.getElementById('player-container');
     const vid = document.getElementById('my-video');
@@ -71,56 +71,60 @@ function cargarCanal(c) {
     
     pc.style.display = 'block';
 
-    // NUEVA LÓGICA PARA CANAL ALEATORIO
+    // Determinar qué video usar (si es el canal especial o uno normal)
     let videoParaReproducir = c;
-
     if(c.nombre === "SIMPSONS TV") {
         videoParaReproducir = obtenerCapituloAleatorio();
     }
-    
-    if(c.url.includes('m3u8')) {
+
+    // Caso 1: Es un stream M3U8
+    if(videoParaReproducir.url.includes('m3u8')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
-        player.src({ src: c.url, type: 'application/x-mpegURL' });
+        player.src({ src: videoParaReproducir.url, type: 'application/x-mpegURL' });
         player.play();
-
-    } else {
-        vid.style.display = 'none';
-        if (player) player.pause();
-        const ifrm = document.createElement('iframe');
-        ifrm.id = 'ifrm';
-        ifrm.src = c.url;
-        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
-        ifrm.allow = "autoplay; encrypted-media; fullscreen";
-        ifrm.setAttribute('allowfullscreen', 'true');
-        pc.appendChild(ifrm);
-    }
-}
-else if(videoParaReproducir.url.includes('.mp4')) {
+    } 
+    // Caso 2: Es un archivo MP4 (Archive.org o similares)
+    else if(videoParaReproducir.url.includes('.mp4')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
         
         player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
         player.play();
 
-        // Cuando termine el video, si es el canal de los Simpsons, que busque otro al azar
+        // Lógica de continuación automática
         player.off('ended'); 
         player.on('ended', function() {
             if(c.nombre === "SIMPSONS TV") {
                 const proximo = obtenerCapituloAleatorio();
-                console.log("Cargando próximo capítulo aleatorio: " + proximo.nombre);
-                player.src({ src: proximo.url, type: 'video/mp4' });
-                player.play();
+                if(proximo) {
+                    player.src({ src: proximo.url, type: 'video/mp4' });
+                    player.play();
+                }
             } else {
-                cambiarCanal(1); // Zapping normal para otros canales
+                cambiarCanal(1);
             }
         });
-    } else {
-        // ... tu lógica de YouTube/Iframe
+    } 
+    // Caso 3: Es un enlace para IFRAME (YouTube o Web)
+    else {
+        vid.style.display = 'none';
+        if (player) player.pause();
+        const ifrm = document.createElement('iframe');
+        ifrm.id = 'ifrm';
+        // Ajuste para YouTube si es necesario
+        let urlFinal = videoParaReproducir.url;
+        if(urlFinal.includes('youtube.com/watch?v=')) {
+            urlFinal = urlFinal.replace('watch?v=', 'embed/');
+        }
+        ifrm.src = urlFinal;
+        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
+        ifrm.allow = "autoplay; encrypted-media; fullscreen";
+        ifrm.setAttribute('allowfullscreen', 'true');
+        pc.appendChild(ifrm);
     }
 }
-    
-    
+
 function cambiarCanal(direccion) {
     indiceActual += direccion;
     if (indiceActual >= listaCanales.length) indiceActual = 0;
@@ -132,34 +136,25 @@ function cerrarPlayer() {
     location.reload();
 }
 
-// AQUÍ ADENTRO VA EL LISTENER DE TECLAS
 document.addEventListener('keydown', function(e) {
     const pc = document.getElementById('player-container');
     if (pc.style.display !== 'block') return;
 
     switch(e.keyCode) {
-        case 33: // Page Up
-        case 38: // Flecha Arriba
-        case 427: // CH+
+        case 33: case 38: case 427:
             e.preventDefault();
-            cambiarCanal(-1); // Subir en la lista (anterior)
+            cambiarCanal(-1);
             break;
-            
-        case 34: // Page Down
-        case 40: // Flecha Abajo
-        case 428: // CH-
+        case 34: case 40: case 428:
             e.preventDefault();
-            cambiarCanal(1); // Bajar en la lista (siguiente)
+            cambiarCanal(1);
             break;
-
-        case 27: // Esc
-        case 8:  // Back
-        case 461: 
+        case 27: case 8: case 461:
             e.preventDefault();
             cerrarPlayer();
             break;
     }
 });
-</script> 
+</script>
 </body>
 </html>
