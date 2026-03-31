@@ -1,5 +1,5 @@
 // DibusNico.js
-const listaSimpsons = [
+const listaDibusNico = [
     { "nombre": "E2 - nn", "url": "https://dn711402.ca.archive.org/0/items/the-pink-panther-classic-cartoon-collection/%28vgroupnetwork.com%29%20La%20Pantera%20Rosa%20%28La%20Coleccion%20Animada%29%20%28The%20Pink%20Panther%20Classic%20Cartoon%20Collection%29%20%281964-1980%29%20DVD%203%20de%205%20NTSC%20-%20VgroupTeam1.mp4" },
     { "nombre": "E4 - nn", "url": "https://ia600709.us.archive.org/30/items/the-pink-panther-classic-cartoon-collection/La%20Pantera%20Rosa%20%28La%20Coleccion%20Animada%29%20%28The%20Pink%20Panther%20Classic%20Cartoon%20Collection%29%20%281964-1980%29%20Dvd%205%20De%205%20-%20Vgroupteam12.mp4" },
     { "nombre": "E5 - nn", "url": "https://dn711402.ca.archive.org/0/items/the-pink-panther-classic-cartoon-collection/La%20Pantera%20Rosa%20%28La%20Coleccion%20Animada%29%20%28The%20Pink%20Panther%20Classic%20Cartoon%20Collection%29%20%281964-1980%29%20Dvd%205%20De%205%20-%20Vgroupteam15.mp4" },
