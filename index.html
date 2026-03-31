@@ -9,10 +9,10 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 .caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; }
 .caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; }
 #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
+#player-container iframe { width: 100%; height: 100%; border: none; }
 .controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
 .btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
 .btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
-#my-video { width: 100%; height: 100%; }
 </style>
 </head>
 <body>
@@ -26,7 +26,7 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
         <button class="btn-zapping" onclick="cambiarCanal(1)">CH ▶</button>
         <button class="btn-cerrar" onclick="cerrarPlayer()">X</button>
     </div>
-    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto"></video>
+    <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%;"></video>
 </div>
 
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
@@ -65,42 +65,63 @@ function obtenerCapituloAleatorio() {
 
 function cargarCanal(c) {
     const pc = document.getElementById('player-container');
+    const vid = document.getElementById('my-video');
+    const iframeViejo = document.getElementById('ifrm');
+    if(iframeViejo) iframeViejo.remove();
+    
     pc.style.display = 'block';
 
-    // 1. Determinar el video a reproducir
+    // Determinar qué video usar (si es el canal especial o uno normal)
     let videoParaReproducir = c;
     if(c.nombre === "SIMPSONS TV") {
         videoParaReproducir = obtenerCapituloAleatorio();
     }
 
-    // 2. Inicializar Video.js si no existe
-    if (!player) {
-        player = videojs('my-video');
-    }
-
-    // 3. Lógica de carga según extensión
-    let tipo = "";
-    if (videoParaReproducir.url.includes('m3u8')) {
-        tipo = 'application/x-mpegURL';
-    } else if (videoParaReproducir.url.includes('.mp4')) {
-        tipo = 'video/mp4';
-    }
-
-    if (tipo !== "") {
-        player.src({ src: videoParaReproducir.url, type: tipo });
+    // Caso 1: Es un stream M3U8
+    if(videoParaReproducir.url.includes('m3u8')) {
+        vid.style.display = 'block';
+        if (!player) player = videojs('my-video');
+        player.src({ src: videoParaReproducir.url, type: 'application/x-mpegURL' });
+        player.play();
+    } 
+    // Caso 2: Es un archivo MP4 (Archive.org o similares)
+    else if(videoParaReproducir.url.includes('.mp4')) {
+        vid.style.display = 'block';
+        if (!player) player = videojs('my-video');
+        
+        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
         player.play();
 
-        // 4. Manejo del final del video
-        player.off('ended');
+        // Lógica de continuación automática
+        player.off('ended'); 
         player.on('ended', function() {
             if(c.nombre === "SIMPSONS TV") {
-                cargarCanal(c); // Sortea otro capítulo
+                const proximo = obtenerCapituloAleatorio();
+                if(proximo) {
+                    player.src({ src: proximo.url, type: 'video/mp4' });
+                    player.play();
+                }
             } else {
-                cambiarCanal(1); // Salta al siguiente canal de la lista
+                cambiarCanal(1);
             }
         });
-    } else {
-        console.error("Formato no soportado para: " + videoParaReproducir.url);
+    } 
+    // Caso 3: Es un enlace para IFRAME (YouTube o Web)
+    else {
+        vid.style.display = 'none';
+        if (player) player.pause();
+        const ifrm = document.createElement('iframe');
+        ifrm.id = 'ifrm';
+        // Ajuste para YouTube si es necesario
+        let urlFinal = videoParaReproducir.url;
+        if(urlFinal.includes('youtube.com/watch?v=')) {
+            urlFinal = urlFinal.replace('watch?v=', 'embed/');
+        }
+        ifrm.src = urlFinal;
+        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
+        ifrm.allow = "autoplay; encrypted-media; fullscreen";
+        ifrm.setAttribute('allowfullscreen', 'true');
+        pc.appendChild(ifrm);
     }
 }
 
@@ -120,15 +141,15 @@ document.addEventListener('keydown', function(e) {
     if (pc.style.display !== 'block') return;
 
     switch(e.keyCode) {
-        case 33: case 38: case 427: // Arriba / CH+
+        case 33: case 38: case 427:
             e.preventDefault();
             cambiarCanal(-1);
             break;
-        case 34: case 40: case 428: // Abajo / CH-
+        case 34: case 40: case 428:
             e.preventDefault();
             cambiarCanal(1);
             break;
-        case 27: case 8: case 461:  // Salir / Back
+        case 27: case 8: case 461:
             e.preventDefault();
             cerrarPlayer();
             break;
