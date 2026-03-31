@@ -57,44 +57,53 @@ window.onload = function() {
 };
 
 function cargarCanal(c) {
+
     const pc = document.getElementById('player-container');
+
     const vid = document.getElementById('my-video');
+
     const iframeViejo = document.getElementById('ifrm');
+
     if(iframeViejo) iframeViejo.remove();
+
     
+
     pc.style.display = 'block';
 
-    // 1. CASO M3U8 (IPTV TRADICIONAL)
+
+
     if(c.url.includes('m3u8')) {
+
         vid.style.display = 'block';
+
         if (!player) player = videojs('my-video');
+
         player.src({ src: c.url, type: 'application/x-mpegURL' });
+
         player.play();
-    } 
-    // 2. CASO TU PROXY O ARCHIVOS .TS
-    else if(c.url.includes('workers.dev') || c.url.includes('.ts')) {
-        vid.style.display = 'block';
-        if (!player) player = videojs('my-video');
-        
-        // Aquí está el secreto: forzamos el tipo 'video/mp2t'
-        player.src({ 
-            src: c.url, 
-            type: 'video/mp2t' 
-        });
-        player.play();
-    }
-    // 3. CASO TODO LO DEMÁS (YOUTUBE / IFRAMES)
-    else {
+
+    } else {
+
         vid.style.display = 'none';
+
         if (player) player.pause();
+
         const ifrm = document.createElement('iframe');
+
         ifrm.id = 'ifrm';
+
         ifrm.src = c.url;
+
         ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
+
         ifrm.allow = "autoplay; encrypted-media; fullscreen";
+
         ifrm.setAttribute('allowfullscreen', 'true');
+
         pc.appendChild(ifrm);
+
     }
+
 }
 
 function cambiarCanal(direccion) {
