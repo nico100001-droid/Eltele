@@ -57,15 +57,27 @@ window.onload = function() {
     });
 };
 
+// Función para obtener un video aleatorio de la lista de los Simpsons
+function obtenerCapituloAleatorio() {
+    const indiceSorteado = Math.floor(Math.random() * listaSimpsons.length);
+    return listaSimpsons[indiceSorteado];
+}    
+    
 function cargarCanal(c) {
     const pc = document.getElementById('player-container');
     const vid = document.getElementById('my-video');
     const iframeViejo = document.getElementById('ifrm');
     if(iframeViejo) iframeViejo.remove();
     
-
     pc.style.display = 'block';
 
+    // NUEVA LÓGICA PARA CANAL ALEATORIO
+    let videoParaReproducir = c;
+
+    if(c.nombre === "SIMPSONS TV") {
+        videoParaReproducir = obtenerCapituloAleatorio();
+    }
+    
     if(c.url.includes('m3u8')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
@@ -84,7 +96,31 @@ function cargarCanal(c) {
         pc.appendChild(ifrm);
     }
 }
+else if(videoParaReproducir.url.includes('.mp4')) {
+        vid.style.display = 'block';
+        if (!player) player = videojs('my-video');
+        
+        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
+        player.play();
 
+        // Cuando termine el video, si es el canal de los Simpsons, que busque otro al azar
+        player.off('ended'); 
+        player.on('ended', function() {
+            if(c.nombre === "SIMPSONS TV") {
+                const proximo = obtenerCapituloAleatorio();
+                console.log("Cargando próximo capítulo aleatorio: " + proximo.nombre);
+                player.src({ src: proximo.url, type: 'video/mp4' });
+                player.play();
+            } else {
+                cambiarCanal(1); // Zapping normal para otros canales
+            }
+        });
+    } else {
+        // ... tu lógica de YouTube/Iframe
+    }
+}
+    
+    
 function cambiarCanal(direccion) {
     indiceActual += direccion;
     if (indiceActual >= listaCanales.length) indiceActual = 0;
