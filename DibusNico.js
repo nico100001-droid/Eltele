@@ -16,5 +16,10 @@ const listaDibusNico = [
     { "nombre": "E16 - nn", "url": "https://dn711402.ca.archive.org/0/items/the-pink-panther-classic-cartoon-collection/%28vgroupnetwork.com%29%20La%20Pantera%20Rosa%20%28La%20Coleccion%20Animada%29%20%28The%20Pink%20Panther%20Classic%20Cartoon%20Collection%29%20%281964-1980%29%20DVD%203%20de%205%20NTSC%20-%20VgroupTeam24.mp4" },
     { "nombre": "E17 - nn", "url": "https://dn711402.ca.archive.org/0/items/the-pink-panther-classic-cartoon-collection/%28vgroupnetwork.com%29%20La%20Pantera%20Rosa%20%28La%20Coleccion%20Animada%29%20%28The%20Pink%20Panther%20Classic%20Cartoon%20Collection%29%20%281964-1980%29%20DVD%203%20de%205%20NTSC%20-%20VgroupTeam27.mp4" },
     { "nombre": "E18 - nn", "url": "https://dn711402.ca.archive.org/0/items/the-pink-panther-classic-cartoon-collection/%28vgroupnetwork.com%29%20La%20Pantera%20Rosa%20%28La%20Coleccion%20Animada%29%20%28The%20Pink%20Panther%20Classic%20Cartoon%20Collection%29%20%281964-1980%29%20DVD%203%20de%205%20NTSC%20-%20VgroupTeam17.mp4" },
-    
+    { "nombre": "Sheriff Huckleberry", "url": "https://archive.org/download/huckleberry-hound_202601/01%20Sheriff%20huckleberry%20.mp4" },
+    { "nombre": "Sir Hulckleberry", "url": "https://archive.org/download/huckleberry-hound_202601/02%20Sir%20huckleberry%20hound.mp4" },
+    { "nombre": "Lion heart huck", "url": "https://archive.org/download/huckleberry-hound_202601/03%20Lion%20hearted%20huck.mp4" },
+    { "nombre": "E18 - nn", "url": "" },
+    { "nombre": "E18 - nn", "url": "" },
+    { "nombre": "E18 - nn", "url": "" },
   ];
