@@ -95,10 +95,17 @@ function cargarCanal(c) {
     else if(videoParaReproducir.url.includes('.mp4')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
-        
-        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
-        player.play();
 
+        player.pause();
+        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
+        player.load();
+
+        var playPromise = player.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.log("El autoplay fue bloqueado o el link falló");
+        });
+    }
         player.off('ended'); 
         player.on('ended', function() {
             if(c.nombre === "SIMPSONS TV"|| c.nombre === "DIBUS TV") {
