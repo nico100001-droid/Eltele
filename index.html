@@ -12,6 +12,8 @@
     .controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
     .btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
     .btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+    /* Estilo para que el iframe ocupe todo */
+    #iframe-player { display: none; width: 100%; height: 100%; border: none; }
 </style>
 </head>
 <body>
@@ -26,6 +28,7 @@
         <button class="btn-cerrar" onclick="cerrarPlayer()">X</button>
     </div>
     <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%;"></video>
+    <iframe id="iframe-player" allow="autoplay; fullscreen"></iframe>
 </div>
 
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
@@ -38,12 +41,9 @@
 let player;
 let indiceActual = 0;
 
-// MECÁNICA PARA AGREGAR MÁS CANALES FÁCIL:
-// Solo tenés que poner el NOMBRE que sale en canales.js y la VARIABLE de tu otro archivo .js
 const canalesEspeciales = {
     "SIMPSONS TV": () => listaSimpsons,
     "DIBUS TV": () => listaDibusNico
-    // Si agregás "WARNER TV", solo ponés: "WARNER TV": () => listaWarner,
 };
 
 window.onload = function() {
@@ -71,14 +71,13 @@ function obtenerCapituloAleatorio(lista) {
 
 function cargarCanal(c) {
     const pc = document.getElementById('player-container');
-    const vid = document.getElementById('my-video');
+    const vidEl = document.getElementById('my-video');
+    const ifrEl = document.getElementById('iframe-player');
     
     pc.style.display = 'block';
 
-    // 1. Lógica Automática de Maratón
     let videoParaReproducir = c;
     
-    // Si el nombre del canal está en nuestra lista de especiales, sorteamos un capítulo
     if (canalesEspeciales[c.nombre]) {
         const listaAUsar = canalesEspeciales[c.nombre]();
         videoParaReproducir = obtenerCapituloAleatorio(listaAUsar);
@@ -86,24 +85,36 @@ function cargarCanal(c) {
 
     if (!videoParaReproducir || !videoParaReproducir.url) return;
 
-    // 2. Inicializar Video.js
-    if (!player) player = videojs('my-video');
+    // DETECCIÓN: ¿Es una página web o un video directo?
+    const esWeb = videoParaReproducir.url.includes('.html') || videoParaReproducir.url.includes('cointv.site');
 
-    // 3. Determinar tipo de video
-    let tipo = videoParaReproducir.url.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+    if (esWeb) {
+        // MODO IFRAME
+        if (player) player.pause(); 
+        vidEl.parentElement.style.display = 'none'; // Oculta contenedor de Video.js
+        ifrEl.style.display = 'block';
+        ifrEl.src = videoParaReproducir.url;
+    } else {
+        // MODO VIDEO.JS
+        ifrEl.style.display = 'none';
+        ifrEl.src = ""; 
+        vidEl.parentElement.style.display = 'block';
 
-    player.src({ src: videoParaReproducir.url, type: tipo });
-    player.play();
+        if (!player) player = videojs('my-video');
 
-    // 4. Lógica de Continuidad
-    player.off('ended'); 
-    player.on('ended', function() {
-        if (canalesEspeciales[c.nombre]) {
-            cargarCanal(c); // Sigue en el mismo canal (maratón)
-        } else {
-            cambiarCanal(1); // Salta al siguiente canal de la grilla
-        }
-    });
+        let tipo = videoParaReproducir.url.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+        player.src({ src: videoParaReproducir.url, type: tipo });
+        player.play();
+
+        player.off('ended'); 
+        player.on('ended', function() {
+            if (canalesEspeciales[c.nombre]) {
+                cargarCanal(c);
+            } else {
+                cambiarCanal(1);
+            }
+        });
+    }
 }
 
 function cambiarCanal(direccion) {
