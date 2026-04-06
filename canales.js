@@ -18,7 +18,7 @@ const listaCanales = [
 { nombre: "Telef", url: "https://cointv.site/html/cvatt.html?get=VGVsZWZlSEQ=" },
 { nombre: "EsPn", url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true" },
 { nombre: "FOXsports", url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz" },
-{ nombre: "Espn Prem", url: "https://cointv.site/html/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
+{ nombre: "Espn Prem", url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
 { nombre: "Espn Prem2", url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
 { nombre: "Espn 2", url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn" },
 { nombre: "TNT S prem", url: "https://cointv.site/html/cvattde.html?get=VE5UX1Nwb3J0c19IRA" },
