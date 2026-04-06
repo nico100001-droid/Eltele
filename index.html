@@ -4,16 +4,15 @@
 <title>EL TELE</title>
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
 <style>
-    body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-    .caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; }
-    .caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; }
-    #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
-    .controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
-    .btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
-    .btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
-    /* Estilo para que el iframe ocupe todo */
-    #iframe-player { display: none; width: 100%; height: 100%; border: none; }
+body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+.caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; }
+.caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; }
+#player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
+#player-container iframe { width: 100%; height: 100%; border: none; }
+.controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
+.btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
+.btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
 </style>
 </head>
 <body>
@@ -28,27 +27,22 @@
         <button class="btn-cerrar" onclick="cerrarPlayer()">X</button>
     </div>
     <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%;"></video>
-    <iframe id="iframe-player" allow="autoplay; fullscreen"></iframe>
 </div>
 
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-
 <script src="canales.js"></script>
 <script src="SimpsonsTV.js"></script>
-<script src="DibusNico.js"></script>
 
 <script>
 let player;
 let indiceActual = 0;
 
-const canalesEspeciales = {
-    "SIMPSONS TV": () => listaSimpsons,
-    "DIBUS TV": () => listaDibusNico
-};
-
 window.onload = function() {
     const g = document.getElementById('grid-canales');
-    if (typeof listaCanales === 'undefined') return;
+    if (typeof listaCanales === 'undefined') {
+        alert("Error: No se encontró la lista de canales en canales.js");
+        return;
+    }
 
     listaCanales.forEach((c, index) => {
         const d = document.createElement('div');
@@ -63,62 +57,75 @@ window.onload = function() {
     });
 };
 
-function obtenerCapituloAleatorio(lista) {
-    if (!lista || lista.length === 0) return null;
-    const indiceSorteado = Math.floor(Math.random() * lista.length);
-    return lista[indiceSorteado];
+function obtenerCapituloAleatorio() {
+    if (typeof listaSimpsons === 'undefined' || listaSimpsons.length === 0) return null;
+    const indiceSorteado = Math.floor(Math.random() * listaSimpsons.length);
+    return listaSimpsons[indiceSorteado];
 }
 
 function cargarCanal(c) {
     const pc = document.getElementById('player-container');
-    const vidEl = document.getElementById('my-video');
-    const ifrEl = document.getElementById('iframe-player');
+    const vid = document.getElementById('my-video');
+    const iframeViejo = document.getElementById('ifrm');
+    if(iframeViejo) iframeViejo.remove();
     
     pc.style.display = 'block';
 
+    // 1. Determinar qué video usar (Sorteo si es el canal especial)
     let videoParaReproducir = c;
-    
-    if (canalesEspeciales[c.nombre]) {
-        const listaAUsar = canalesEspeciales[c.nombre]();
-        videoParaReproducir = obtenerCapituloAleatorio(listaAUsar);
+    if(c.nombre === "SIMPSONS TV") {
+        videoParaReproducir = obtenerCapituloAleatorio();
     }
 
+    // SI NO HAY VIDEO PARA REPRODUCIR, SALIR
     if (!videoParaReproducir || !videoParaReproducir.url) return;
 
-    // DETECCIÓN: ¿Es una página web o un video directo?
-    const esWeb = videoParaReproducir.url.includes('.html') || videoParaReproducir.url.includes('cointv.site');
-
-    if (esWeb) {
-        // MODO IFRAME
-        if (player) player.pause(); 
-        vidEl.parentElement.style.display = 'none'; // Oculta contenedor de Video.js
-        ifrEl.style.display = 'block';
-        ifrEl.src = videoParaReproducir.url;
-    } else {
-        // MODO VIDEO.JS
-        ifrEl.style.display = 'none';
-        ifrEl.src = ""; 
-        vidEl.parentElement.style.display = 'block';
-
+    // 2. CASO M3U8 (Basado en el video sorteado)
+    if(videoParaReproducir.url.includes('m3u8')) {
+        vid.style.display = 'block';
         if (!player) player = videojs('my-video');
-
-        let tipo = videoParaReproducir.url.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
-        player.src({ src: videoParaReproducir.url, type: tipo });
+        player.src({ src: videoParaReproducir.url, type: 'application/x-mpegURL' });
+        player.play();
+    } 
+    // 3. CASO MP4 (Basado en el video sorteado)
+    else if(videoParaReproducir.url.includes('.mp4')) {
+        vid.style.display = 'block';
+        if (!player) player = videojs('my-video');
+        
+        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
         player.play();
 
         player.off('ended'); 
         player.on('ended', function() {
-            if (canalesEspeciales[c.nombre]) {
-                cargarCanal(c);
+            if(c.nombre === "SIMPSONS TV") {
+                cargarCanal(c); // Vuelve a sortear uno nuevo
             } else {
                 cambiarCanal(1);
             }
         });
+    } 
+    // 4. CASO IFRAME (Cualquier otro enlace)
+    else {
+        vid.style.display = 'none';
+        if (player) player.pause();
+        const ifrm = document.createElement('iframe');
+        ifrm.id = 'ifrm';
+        let urlFinal = videoParaReproducir.url;
+        if(urlFinal.includes('youtube.com/watch?v=')) {
+            urlFinal = urlFinal.replace('watch?v=', 'embed/');
+        }
+        ifrm.src = urlFinal;
+        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
+        ifrm.allow = "autoplay; encrypted-media; fullscreen";
+        ifrm.setAttribute('allowfullscreen', 'true');
+        pc.appendChild(ifrm);
     }
 }
 
 function cambiarCanal(direccion) {
-    indiceActual = (indiceActual + direccion + listaCanales.length) % listaCanales.length;
+    indiceActual += direccion;
+    if (indiceActual >= listaCanales.length) indiceActual = 0;
+    if (indiceActual < 0) indiceActual = listaCanales.length - 1;
     cargarCanal(listaCanales[indiceActual]);
 }
 
@@ -131,9 +138,18 @@ document.addEventListener('keydown', function(e) {
     if (pc.style.display !== 'block') return;
 
     switch(e.keyCode) {
-        case 33: case 38: case 427: cambiarCanal(-1); break;
-        case 34: case 40: case 428: cambiarCanal(1); break;
-        case 27: case 8: case 461: cerrarPlayer(); break;
+        case 33: case 38: case 427:
+            e.preventDefault();
+            cambiarCanal(-1);
+            break;
+        case 34: case 40: case 428:
+            e.preventDefault();
+            cambiarCanal(1);
+            break;
+        case 27: case 8: case 461:
+            e.preventDefault();
+            cerrarPlayer();
+            break;
     }
 });
 </script>
