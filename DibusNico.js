@@ -54,5 +54,4 @@ const listaDibusNico = [
      { "nombre": "E18 - nn", "url": "" },
      { "nombre": "E18 - nn", "url": "" },
      { "nombre": "E18 - nn", "url": "" },
-    
   ];
