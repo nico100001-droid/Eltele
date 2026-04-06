@@ -99,12 +99,6 @@ function cargarCanal(c) {
         player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
         player.play();
 
-        var playPromise = player.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(error => {
-            console.log("El autoplay fue bloqueado o el link falló");
-        });
-    }
         player.off('ended'); 
         player.on('ended', function() {
             if(c.nombre === "SIMPSONS TV"|| c.nombre === "DIBUS TV") {
