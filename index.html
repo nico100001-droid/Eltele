@@ -101,7 +101,7 @@ function cargarCanal(c) {
 
         player.off('ended'); 
         player.on('ended', function() {
-            if(c.nombre === "SIMPSONS TV"|| c.nombre === "DIBUS TV")) {
+            if(c.nombre === "SIMPSONS TV"|| c.nombre === "DIBUS TV") {
                 cargarCanal(c); // Vuelve a sortear uno nuevo
             } else {
                 cambiarCanal(1);
