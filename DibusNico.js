@@ -19,7 +19,7 @@ const listaDibusNico = [
     { "nombre": "rock de la ciudad roca", "url": "https://archive.org/download/el-nuevo-show-de-picapiedras/05.-%20Rock%20en%20ciudad%20Roca.mp4" },
     { "nombre": "hermano de sangre", "url": "https://archive.org/download/el-nuevo-show-de-picapiedras/06.-%20Hermanos%20de%20Sangre.mp4" },
     { "nombre": "pablo sus gallinas", "url": "https://archive.org/download/el-nuevo-show-de-picapiedras/07.-%20Pablo%20y%20Sus%20Gallinas.mp4" },
-    { "nombre": "el mayor robot": "https://archive.org/download/el-nuevo-show-de-picapiedras/08.-%20El%20Mayordomo%20Robot.mp4" },
+    { "nombre": "el mayor robot", "url": "https://archive.org/download/el-nuevo-show-de-picapiedras/08.-%20El%20Mayordomo%20Robot.mp4" },
     { "nombre": "dinero ajeno", "url": "https://archive.org/download/el-nuevo-show-de-picapiedras/09.-%20Dinero%20Ajeno.mp4" },
     { "nombre": "suerte de pablo", "url": "https://archive.org/download/el-nuevo-show-de-picapiedras/10.-%20La%20Suerte%20de%20Pablo.mp4" },
     { "nombre": "mounstruo de piedra", "url": "https://archive.org/download/el-nuevo-show-de-picapiedras/11.-%20El%20Monstruo%20de%20la%20Edad%20de%20Piedra.mp4" },
