@@ -65,7 +65,7 @@ function obtenerCapituloAleatorio(lista) {
     return lista[indiceSorteado];
 }
 
-function cargarCanal(c) {
+async function cargarCanal(c) {
     const pc = document.getElementById('player-container');
     const vid = document.getElementById('my-video');
     const iframeViejo = document.getElementById('ifrm');
@@ -93,44 +93,47 @@ function cargarCanal(c) {
         player.play();
     } 
     // 3. CASO MP4 (Basado en el video sorteado)
-    else if(videoParaReproducir.url.includes('.mp4')) {
-        vid.style.display = 'block';
-        if (!player) player = videojs('my-video');
+else if(videoParaReproducir.url.toLowerCase().includes('.mp4')) {
+    vid.style.display = 'block';
 
-        // Inicializamos el player si no existe
-        if (!player) {
-            player = videojs('my-video', {
-                autoplay: true,
-                preload: 'auto'
-            });
+    if (!player) {
+        player = videojs('my-video', {
+            autoplay: true,
+            preload: 'auto'
+        });
+    }
+
+    player.pause();
+
+    let urlFinal = videoParaReproducir.url;
+
+    // 👇 Resolver redirect de Archive
+    if (urlFinal.includes('archive.org')) {
+        urlFinal = await resolverArchive(urlFinal);
+        console.log("URL final:", urlFinal);
+    }
+
+    player.src({ src: urlFinal, type: 'video/mp4' });
+    player.load();
+
+    const promise = player.play();
+    if (promise !== undefined) {
+        promise.catch(() => {
+            player.muted(true);
+            player.play();
+        });
+    }
+
+    // Evento fin de video
+    player.off('ended');
+    player.on('ended', function() {
+        if(c.nombre === "SIMPSONS TV" || c.nombre === "DIBUS TV") {
+            cargarCanal(c); 
+        } else {
+            cambiarCanal(1);
         }
-
-        player.pause();
-        
-        // El secreto: Pasamos el link y forzamos el load antes del play
-        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
-        player.load(); 
-
-        // Intentamos reproducir de forma robusta
-        const promise = player.play();
-        if (promise !== undefined) {
-            promise.catch(error => {
-                // Si el navegador bloquea el autoplay con sonido, lo muteamos y arranca sí o sí
-                console.log("Autoplay con sonido bloqueado, iniciando muteado");
-                player.muted(true);
-                player.play();
-            });
-        }
-
-        player.off('ended'); 
-        player.on('ended', function() {
-            if(c.nombre === "SIMPSONS TV"|| c.nombre === "DIBUS TV") {
-                cargarCanal(c); 
-            } else {
-                cambiarCanal(1);
-            }
-        });
-    }
+    });
+}
     // 4. CASO IFRAME (Cualquier otro enlace)
     else {
         vid.style.display = 'none';
@@ -179,6 +182,24 @@ document.addEventListener('keydown', function(e) {
             break;
     }
 });
+    const cacheArchive = {};
+
+async function resolverArchive(url) {
+    if (cacheArchive[url]) return cacheArchive[url];
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            redirect: 'follow'
+        });
+
+        cacheArchive[url] = response.url;
+        return response.url;
+    } catch (e) {
+        console.log("Error resolviendo archive:", e);
+        return url;
+    }
+}
 </script>
 </body>
 </html>
