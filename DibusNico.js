@@ -53,9 +53,9 @@ const listaDibusNico = [
     { "nombre": "Pantera rosa 11", "url": "https://archive.org/download/pantera-rosa-capitulo-30-rosa-aereo-audio-latino-1080p-hd-1080-p-hd/LA%20PANTERA%20ROSA%20%E2%99%A6%20R%20de%20Rosa%20%E2%99%A6%20Audio%20Espa%C3%B1ol%20Latino%28360P%29.mp4" },
     { "nombre": "Pantera rosa 12", "url": "https://archive.org/download/pantera-rosa-capitulo-30-rosa-aereo-audio-latino-1080p-hd-1080-p-hd/LA%20PANTERA%20ROSA%20%E2%99%A6%20Refresco%20Rosado%20%E2%99%A6%20Audio%20Espa%C3%B1ol%20Latino%281080P_HD%29.mp4" },
     { "nombre": "Pantera rosa 13", "url": "https://archive.org/download/pantera-rosa-capitulo-30-rosa-aereo-audio-latino-1080p-hd-1080-p-hd/LA%20PANTERA%20ROSA%20%E2%99%A6%20Regalamos%20Estampillas%20Rosa%20%E2%99%A6%20Audio%20Espa%C3%B1ol%20Latino%281080P_HD%29.mp4" },
-    { "nombre": "Pantera rosa 14", "url": "" },
-    { "nombre": "Pantera rosa 15", "url": "" },
-    { "nombre": "Pantera rosa 16", "url": "" },
+    { "nombre": "Pantera rosa 14", "url": "https://archive.org/download/pantera-rosa-capitulo-30-rosa-aereo-audio-latino-1080p-hd-1080-p-hd/LA%20PANTERA%20ROSA%20%E2%99%A6%20Toreo%20Rosado%20%E2%99%A6%20Audio%20Espa%C3%B1ol%20Latino%281080P_HD%29.mp4" },
+    { "nombre": "Pantera rosa 15", "url": "https://archive.org/download/pantera-rosa-capitulo-30-rosa-aereo-audio-latino-1080p-hd-1080-p-hd/LA%20PANTERA%20ROSA%20%E2%99%A6%20Tragos%20Color%20de%20Rosa%20%E2%99%A6%20Audio%20Espa%C3%B1ol%20Latino%28360P%29.mp4" },
+    { "nombre": "Pantera rosa 16", "url": "https://archive.org/download/pantera-rosa-capitulo-30-rosa-aereo-audio-latino-1080p-hd-1080-p-hd/LA%20PANTERA%20ROSA%20%E2%99%A6%20Un%20Genio%20con%20Piel%20Color%20de%20Rosa%20%E2%99%A6%20Audio%20Espa%C3%B1ol%20Latino%28360P%29.mp4" },
     { "nombre": "E18 - nn", "url": "" },
     
   ];
