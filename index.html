@@ -161,7 +161,6 @@ else if(videoParaReproducir.url.toLowerCase().includes('.mp4')) {
             urlFinal = urlFinal.replace('watch?v=', 'embed/');
         }
         ifrm.src = urlFinal;
-        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
         ifrm.allow = "autoplay; encrypted-media; fullscreen";
         ifrm.setAttribute('allowfullscreen', 'true');
         pc.appendChild(ifrm);
