@@ -1,12 +1,11 @@
 // harry.js
 const listaharry = [
-    { "nombre": "la piedra filosofal 01", "url": "" },
-    { "nombre": "02", "url": "" },
-    { "nombre": "03", "url": "" },
+    { "nombre": "la piedra filosofal 01", "url": "https://jefferycontrolmodel.com/e/op7yfbj043rx" },
+    { "nombre": "La Camara Secreta 02", "url": "https://uqload.is/embed-w62yrm45ct9c.html" },
+    { "nombre": "el prisionero de Azkaban 03", "url": "https://jefferycontrolmodel.com/e/zytetp11zqxn" },
     { "nombre": "el cáliz de fuego 04", "url": "https://jefferycontrolmodel.com/e/zw3hzw59h7bf" },
-    { "nombre": "05", "url": "" },
-    { "nombre": "06", "url": "" },
-    { "nombre": "07", "url": "" },
-    { "nombre": "08", "url": "" },
-        
+    { "nombre": "la orden del Fénix 05", "url": "https://jefferycontrolmodel.com/e/4mu28xmc6t3k" },
+    { "nombre": "el misterio del príncipe06", "url": "https://jefferycontrolmodel.com/e/o548916w2kej" },
+    { "nombre": "las Reliquias de la Muerte: Parte 1 07", "url": "https://jefferycontrolmodel.com/e/vyj8xlbi18pz" },
+    { "nombre": "las Reliquias de la Muerte: Parte 2 08", "url": "https://jefferycontrolmodel.com/e/pcz1p47xlkb5" },  
   ];
