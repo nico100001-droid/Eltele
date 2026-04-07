@@ -96,18 +96,40 @@ function cargarCanal(c) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
 
-        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
-        player.play();
+        // Inicializamos el player si no existe
+        if (!player) {
+            player = videojs('my-video', {
+                autoplay: true,
+                preload: 'auto'
+            });
+        }
 
-        player.off('ended'); 
-        player.on('ended', function() {
-            if(c.nombre === "SIMPSONS TV"|| c.nombre === "DIBUS TV") {
-                cargarCanal(c); // Vuelve a sortear uno nuevo
-            } else {
-                cambiarCanal(1);
-            }
-        });
-    } 
+        player.pause();
+        
+        // El secreto: Pasamos el link y forzamos el load antes del play
+        player.src({ src: videoParaReproducir.url, type: 'video/mp4' });
+        player.load(); 
+
+        // Intentamos reproducir de forma robusta
+        const promise = player.play();
+        if (promise !== undefined) {
+            promise.catch(error => {
+                // Si el navegador bloquea el autoplay con sonido, lo muteamos y arranca sí o sí
+                console.log("Autoplay con sonido bloqueado, iniciando muteado");
+                player.muted(true);
+                player.play();
+            });
+        }
+
+        player.off('ended'); 
+        player.on('ended', function() {
+            if(c.nombre === "SIMPSONS TV"|| c.nombre === "DIBUS TV") {
+                cargarCanal(c); 
+            } else {
+                cambiarCanal(1);
+            }
+        });
+    }
     // 4. CASO IFRAME (Cualquier otro enlace)
     else {
         vid.style.display = 'none';
