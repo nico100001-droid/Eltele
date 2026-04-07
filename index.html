@@ -34,6 +34,7 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 <script src="canales.js"></script>
 <script src="SimpsonsTV.js"></script>
 <script src="DibusNico.js"></script>
+<script src="harry.js"></script>
     
 <script>
 let player;
@@ -80,6 +81,9 @@ async function cargarCanal(c) {
     } 
     else if(c.nombre === "DIBUS TV") {
         videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico); 
+    }
+    else if(c.nombre === "HARRY") {
+        videoParaReproducir = obtenerCapituloAleatorio(listaharry); 
     }
 
     // SI NO HAY VIDEO PARA REPRODUCIR, SALIR
@@ -139,7 +143,7 @@ else if(videoParaReproducir.url.toLowerCase().includes('.mp4')) {
     // Evento fin
     player.off('ended');
     player.on('ended', function() {
-        if(c.nombre === "SIMPSONS TV" || c.nombre === "DIBUS TV") {
+        if(c.nombre === "SIMPSONS TV" || c.nombre === "DIBUS TV" || c.nombre === "HARRY") {
             cargarCanal(c); 
         } else {
             cambiarCanal(1);
