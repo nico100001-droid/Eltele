@@ -41,4 +41,5 @@ const listaCanales = [
 { nombre: "Animados", url: "https://raw.githubusercontent.com/nico100001-droid/Eltele/main/Animados.m3u8" },
 { "nombre": "SIMPSONS TV", "url": "ALEATORIO" },
 { "nombre": "DIBUS TV", "url": "ALEATORIO" },
+{ "nombre": "HARRY", "url": "ALEATORIO" },
 ];
