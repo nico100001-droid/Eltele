@@ -23,6 +23,7 @@ const listaCanales = [
 { nombre: "FOXsports", url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz" },
 { nombre: "Espn Prem", url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
 { nombre: "Espn Prem2", url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
+{ nombre: "Espn prem3", url: "https://pecdl1.streameasthd.net/espnpremium/index.m3u8?token=b2afe990736780aca70c971c05ecfe55a6ac8db1-57-1775662234-1775608234&ip=186.128.41.239" },
 { nombre: "Espn 2", url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn" },
 { nombre: "TNT S prem", url: "https://cointv.site/html/cvattde.html?get=VE5UX1Nwb3J0c19IRA" },
 { nombre: "tyc", url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8" },
