@@ -37,6 +37,7 @@ const listaCanales = [
 { nombre: "KANADE TV", url: "https://static.kanade.cl/hls/kanade.m3u8" },
 { nombre: "Dibus Vision", url: "https://cdn.streamhispanatv.net:3531/live/tvsretrogtlive.m3u8" },
 { nombre: "Pitufos", url: "https://imps-smrfs.otteravision.com/imps/smrfs/smrfs.m3u8" },
+{ nombre: "Nickelodeon", url: "https://jmp2.uk/plu-5d8d08395f39465da6fb3ec4.m3u8" },
 { nombre: "Animalplanet", url: "https://cointv.site/cvatt.html?get=QW5pbWFsUGxhbmV0" },
 { nombre: "History", url: "https://cointv.site/cvatt.html?get=SGlzdG9yeUhE" },  
 { nombre: "H&H", url: "https://cointv.site/cvatt.html?get=RGlzY292ZXJ5SG9tZUhlYWx0aEhE" },
