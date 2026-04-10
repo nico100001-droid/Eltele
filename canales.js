@@ -45,4 +45,6 @@ const listaCanales = [
 { "nombre": "SIMPSONS TV", "url": "ALEATORIO" },
 { "nombre": "DIBUS TV", "url": "ALEATORIO" },
 { "nombre": "HARRY", "url": "ALEATORIO" },
+{ "nombre": "1", "url": "http://179.1.87.75:8098/play/a0dn/index.m3u8" },
+{ "nombre": "2", "url": "http://179.1.87.75:8098/play/a0dt/index.m3u8" },
 ];
