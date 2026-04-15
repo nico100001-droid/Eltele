@@ -22,7 +22,7 @@ const listaCanales = [
 { nombre: "EsPn", url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true" },
 { nombre: "EsPn", url: "https://streamx550.com/global2.php?channel=espn" },
 { nombre: "FOXsports", url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz" },
-{ nombre: "FOX sports 2", url: "https:https://streamx550.com/global2.php?channel=fox2ar" },
+{ nombre: "FOX sports 2", url: "https://streamx550.com/global2.php?channel=fox2ar" },
 { nombre: "Espn Prem", url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
 { nombre: "Espn Prem2", url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
 { nombre: "Espn prem3", url: "https://streamtpnew.com/global2.php?stream=espnpremium" },
