@@ -48,6 +48,7 @@ const listaCanales = [
 { "nombre": "SIMPSONS TV", "url": "ALEATORIO" },
 { "nombre": "DIBUS TV", "url": "ALEATORIO" },
 { "nombre": "HARRY", "url": "ALEATORIO" },
+{ nombre: "C5N", url: "https://val04.ride.com.ar/tvmia/an06/playlist.m3u8" },
 { "nombre": "1", "url": "http://179.1.87.75:8098/play/a0dn/index.m3u8" },
 { "nombre": "2", "url": "http://179.1.87.75:8098/play/a0dt/index.m3u8" },
 ];
