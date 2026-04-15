@@ -27,7 +27,7 @@ const listaCanales = [
 { nombre: "Espn 2", url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn" },
 { nombre: "TNT S prem", url: "https://cointv.site/html/cvattde.html?get=VE5UX1Nwb3J0c19IRA" },
 { nombre: "tyc", url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8" },
-{ nombre: "DTS", url: "https://51a1.streameasthd.net/dsports2/tracks-v1a1/mono.m3u8?ip=186.128.41.239&token=22194d453a4b38c5f16c5577e7dd4dd3882d6dee-ff-1775658444-1775604444" }, 
+{ nombre: "DSP", url: "https://streamx550.com/global1.php?channel=dsports" }, 
 { nombre: "Disco World", url: "https://cointv.site/html/cvatt.html?get=RGlzY292ZXJ5X1dvcmxkX0hE" },
 { nombre: "national g", url: "https://cointv.site/html/cvatt.html?get=TmF0R2VvSEQ=" },
 { nombre: "Garage TV", url: "https://stream1.sersat.com/hls/garagetv.m3u8" },
