@@ -20,6 +20,7 @@ const listaCanales = [
 { nombre: "Telef", url: "https://cointv.site/html/cvatt.html?get=VGVsZWZlSEQ=" },
 { nombre: "ATC", url: "https://g2.mc-slo.transport.edge-access.net/b16/ngrp:c7_vivo01_dai_source-20001_all/playlist.m3u8" },
 { nombre: "EsPn", url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true" },
+{ nombre: "EsPn", url: "https://streamx550.com/global2.php?channel=espn" },
 { nombre: "FOXsports", url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz" },
 { nombre: "Espn Prem", url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
 { nombre: "Espn Prem2", url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
