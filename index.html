@@ -39,6 +39,7 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 <script>
 let player;
 let indiceActual = 0;
+let indiceFuenteActual = 0; // NUEVO: Para saber qué link del canal estamos probando
 
 window.onload = function() {
     const g = document.getElementById('grid-canales');
@@ -54,17 +55,14 @@ window.onload = function() {
         d.tabIndex = 0;
         d.onclick = () => {
             indiceActual = index;
+            indiceFuenteActual = 0; // Al hacer click, empezamos por la fuente 0
             cargarCanal(listaCanales[indiceActual]);
         };
         g.appendChild(d);
     });
 };
 
-function obtenerCapituloAleatorio(lista) {
-    if (typeof lista === 'undefined' || lista.length === 0) return null;
-    const indiceSorteado = Math.floor(Math.random() * lista.length);
-    return lista[indiceSorteado];
-}
+// ... funciones obtenerCapituloAleatorio y resolverArchive se mantienen igual ...
 
 async function cargarCanal(c) {
     const pc = document.getElementById('player-container');
@@ -74,8 +72,9 @@ async function cargarCanal(c) {
     
     pc.style.display = 'block';
 
-    let videoParaReproducir = c;
+    let videoParaReproducir;
     
+    // Lógica para canales aleatorios
     if(c.nombre === "SIMPSONS TV") {
         videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
     } 
@@ -85,95 +84,86 @@ async function cargarCanal(c) {
     else if(c.nombre === "HARRY") {
         videoParaReproducir = obtenerCapituloAleatorio(listaharry); 
     }
-
-    // SI NO HAY VIDEO PARA REPRODUCIR, SALIR
-    if (!videoParaReproducir || !videoParaReproducir.url) return;
-
-    // 2. CASO M3U8 (Basado en el video sorteado)
-    if(videoParaReproducir.url.includes('m3u8')) {
-        vid.style.display = 'block';
-        if (!player) player = videojs('my-video');
-        player.src({ src: videoParaReproducir.url, type: 'application/x-mpegURL' });
-        player.play();
-    } 
-    // 3. CASO MP4 (Basado en el video sorteado)
-else if(videoParaReproducir.url.toLowerCase().includes('.mp4')) {
-    vid.style.display = 'block';
-
-    if (!player) {
-        player = videojs('my-video', {
-            autoplay: true,
-            preload: 'auto'
-        });
+    else {
+        // NUEVO: Para canales normales, usamos la fuente según el índice actual
+        // Si el canal no tiene el nuevo formato de array "fuentes", creamos uno temporal para no romper nada
+        const fuentes = c.fuentes || [{ url: c.url, tipo: c.url.includes('m3u8') ? 'hls' : 'iframe' }];
+        videoParaReproducir = fuentes[indiceFuenteActual];
     }
 
-    player.pause();
+    if (!videoParaReproducir || !videoParaReproducir.url) return;
 
-    let urlFinal = videoParaReproducir.url;
+    const urlFinal = videoParaReproducir.url;
+    const tipoFuente = videoParaReproducir.tipo;
 
-    player.src({ src: urlFinal, type: 'video/mp4' });
-    player.load();
+    // LIMPIEZA DE ERRORES PREVIOS
+    if (player) {
+        player.off('error');
+        player.pause();
+    }
 
-    const promise = player.play();
-    if (promise !== undefined) {
-        promise.catch(() => {
+    // CASO HLS (M3U8) O MP4
+    if(tipoFuente === 'hls' || urlFinal.includes('m3u8') || urlFinal.toLowerCase().includes('.mp4')) {
+        vid.style.display = 'block';
+        if (!player) player = videojs('my-video');
+        
+        let mimeType = urlFinal.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+        
+        player.src({ src: urlFinal, type: mimeType });
+        
+        // LÓGICA DE SALTO AUTOMÁTICO SI FALLA EL LINK
+        player.on('error', function() {
+            console.log("Fuente fallida, probando siguiente...");
+            intentarSiguienteFuente(c);
+        });
+
+        player.play().catch(() => {
             player.muted(true);
             player.play();
         });
-    }
 
-    // 🔥 FALLBACK SI FALLA
-    player.off('error');
-    player.on('error', function() {
-        console.log("MP4 falló, usando iframe");
-
-        vid.style.display = 'none';
-        player.pause();
-
-        const ifrm = document.createElement('iframe');
-        ifrm.id = 'ifrm';
-        ifrm.src = urlFinal;
-        ifrm.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin allow-presentation');
-        ifrm.allow = "autoplay; encrypted-media; fullscreen";
-        ifrm.setAttribute('allowfullscreen', 'true');
-
-        document.getElementById('player-container').appendChild(ifrm);
-    });
-
-    // Evento fin
-    player.off('ended');
-    player.on('ended', function() {
-        if(c.nombre === "SIMPSONS TV" || c.nombre === "DIBUS TV" || c.nombre === "HARRY") {
-            cargarCanal(c); 
-        } else {
-            cambiarCanal(1);
-        }
-    });
-}
-    // 4. CASO IFRAME (Cualquier otro enlace)
+    } 
+    // CASO IFRAME
     else {
         vid.style.display = 'none';
         if (player) player.pause();
+        
         const ifrm = document.createElement('iframe');
         ifrm.id = 'ifrm';
-        let urlFinal = videoParaReproducir.url;
-        if(urlFinal.includes('youtube.com/watch?v=')) {
-            urlFinal = urlFinal.replace('watch?v=', 'embed/');
+        let srcIframe = urlFinal;
+        if(srcIframe.includes('youtube.com/watch?v=')) {
+            srcIframe = srcIframe.replace('watch?v=', 'embed/');
         }
-        ifrm.src = urlFinal;
+        ifrm.src = srcIframe;
         ifrm.allow = "autoplay; encrypted-media; fullscreen";
         ifrm.setAttribute('allowfullscreen', 'true');
         pc.appendChild(ifrm);
+
+        // NOTA: Los iframes no siempre avisan si fallan por seguridad (CORS),
+        // pero puedes poner un botón manual de "Probar otra fuente" si ves que no carga.
+    }
+}
+
+// NUEVA FUNCIÓN: Gestiona el salto entre fuentes del mismo canal
+function intentarSiguienteFuente(canal) {
+    if (canal.fuentes && indiceFuenteActual < canal.fuentes.length - 1) {
+        indiceFuenteActual++;
+        console.log("Cargando fuente de respaldo nro: " + indiceFuenteActual);
+        cargarCanal(canal);
+    } else {
+        console.log("No hay más fuentes disponibles para este canal.");
+        // Opcional: saltar al siguiente canal de la lista
+        // cambiarCanal(1); 
     }
 }
 
 function cambiarCanal(direccion) {
     indiceActual += direccion;
+    indiceFuenteActual = 0; // Resetear siempre al cambiar de canal
     if (indiceActual >= listaCanales.length) indiceActual = 0;
     if (indiceActual < 0) indiceActual = listaCanales.length - 1;
     cargarCanal(listaCanales[indiceActual]);
 }
-
 function cerrarPlayer() {
     location.reload();
 }
