@@ -5,15 +5,15 @@
 <meta name="referrer" content="no-referrer" />
 <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
 <style>
-body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-.caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; }
-.caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; }
-#player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
-#player-container iframe { width: 100%; height: 100%; border: none; }
-.controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
-.btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
-.btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+    body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+    .caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; }
+    .caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; }
+    #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
+    #player-container iframe { width: 100%; height: 100%; border: none; }
+    .controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
+    .btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
+    .btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
 </style>
 </head>
 <body>
@@ -23,7 +23,7 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 
 <div id="player-container">
     <div class="controles-zapping">
-        <button id="btn-otra-fuente" class="btn-zapping" style="background: orange;" onclick="forzarSiguienteFuente()">♻ Otra Fuente</button>
+        <button id="btn-otra-fuente" class="btn-zapping" style="background: orange; display: none;" onclick="forzarSiguienteFuente()">♻ Otra Fuente</button>
         <button class="btn-zapping" onclick="cambiarCanal(-1)">◀ CH</button>
         <button class="btn-zapping" onclick="cambiarCanal(1)">CH ▶</button>
         <button class="btn-cerrar" onclick="cerrarPlayer()">X</button>
@@ -36,11 +36,11 @@ body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; ma
 <script src="SimpsonsTV.js"></script>
 <script src="DibusNico.js"></script>
 <script src="harry.js"></script>
-    
+
 <script>
 let player;
 let indiceActual = 0;
-let indiceFuenteActual = 0; // NUEVO: Para saber qué link del canal estamos probando
+let indiceFuenteActual = 0;
 
 window.onload = function() {
     const g = document.getElementById('grid-canales');
@@ -56,39 +56,46 @@ window.onload = function() {
         d.tabIndex = 0;
         d.onclick = () => {
             indiceActual = index;
-            indiceFuenteActual = 0; // Al hacer click, empezamos por la fuente 0
+            indiceFuenteActual = 0;
             cargarCanal(listaCanales[indiceActual]);
         };
         g.appendChild(d);
     });
 };
 
-// ... funciones obtenerCapituloAleatorio y resolverArchive se mantienen igual ...
+function forzarSiguienteFuente() {
+    const canalActual = listaCanales[indiceActual];
+    if (canalActual.fuentes && canalActual.fuentes.length > 1) {
+        indiceFuenteActual++;
+        if (indiceFuenteActual >= canalActual.fuentes.length) indiceFuenteActual = 0;
+        console.log("Cambiando a fuente index: " + indiceFuenteActual);
+        cargarCanal(canalActual);
+    }
+}
 
 async function cargarCanal(c) {
     const pc = document.getElementById('player-container');
     const vid = document.getElementById('my-video');
+    const btnFuente = document.getElementById('btn-otra-fuente');
     const iframeViejo = document.getElementById('ifrm');
-    if(iframeViejo) iframeViejo.remove();
     
+    if(iframeViejo) iframeViejo.remove();
     pc.style.display = 'block';
 
+    // Actualizar botón de fuentes
+    if (c.fuentes && c.fuentes.length > 1) {
+        btnFuente.style.display = 'inline-block';
+        btnFuente.innerText = `♻ Fuente ${indiceFuenteActual + 1} de ${c.fuentes.length}`;
+    } else {
+        btnFuente.style.display = 'none';
+    }
+
     let videoParaReproducir;
-    
-    // Lógica para canales aleatorios
-    if(c.nombre === "SIMPSONS TV") {
-        videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
-    } 
-    else if(c.nombre === "DIBUS TV") {
-        videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico); 
-    }
-    else if(c.nombre === "HARRY") {
-        videoParaReproducir = obtenerCapituloAleatorio(listaharry); 
-    }
+    if(c.nombre === "SIMPSONS TV") videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
+    else if(c.nombre === "DIBUS TV") videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico);
+    else if(c.nombre === "HARRY") videoParaReproducir = obtenerCapituloAleatorio(listaharry);
     else {
-        // NUEVO: Para canales normales, usamos la fuente según el índice actual
-        // Si el canal no tiene el nuevo formato de array "fuentes", creamos uno temporal para no romper nada
-        const fuentes = c.fuentes || [{ url: c.url, tipo: c.url.includes('m3u8') ? 'hls' : 'iframe' }];
+        const fuentes = c.fuentes || [{ url: c.url, tipo: c.url?.includes('m3u8') ? 'hls' : 'iframe' }];
         videoParaReproducir = fuentes[indiceFuenteActual];
     }
 
@@ -97,115 +104,70 @@ async function cargarCanal(c) {
     const urlFinal = videoParaReproducir.url;
     const tipoFuente = videoParaReproducir.tipo;
 
-    // LIMPIEZA DE ERRORES PREVIOS
     if (player) {
         player.off('error');
         player.pause();
     }
 
-    // CASO HLS (M3U8) O MP4
     if(tipoFuente === 'hls' || urlFinal.includes('m3u8') || urlFinal.toLowerCase().includes('.mp4')) {
         vid.style.display = 'block';
         if (!player) player = videojs('my-video');
         
         let mimeType = urlFinal.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
-        
         player.src({ src: urlFinal, type: mimeType });
         
-        // LÓGICA DE SALTO AUTOMÁTICO SI FALLA EL LINK
         player.on('error', function() {
-            console.log("Fuente fallida, probando siguiente...");
+            console.log("Fallo automático, intentando siguiente...");
             intentarSiguienteFuente(c);
         });
 
-        player.play().catch(() => {
-            player.muted(true);
-            player.play();
-        });
-
-    } 
-    // CASO IFRAME
-    else {
+        player.play().catch(() => { player.muted(true); player.play(); });
+    } else {
         vid.style.display = 'none';
         if (player) player.pause();
         
         const ifrm = document.createElement('iframe');
         ifrm.id = 'ifrm';
         let srcIframe = urlFinal;
-        if(srcIframe.includes('youtube.com/watch?v=')) {
-            srcIframe = srcIframe.replace('watch?v=', 'embed/');
-        }
+        if(srcIframe.includes('youtube.com/watch?v=')) srcIframe = srcIframe.replace('watch?v=', 'embed/');
         ifrm.src = srcIframe;
         ifrm.allow = "autoplay; encrypted-media; fullscreen";
         ifrm.setAttribute('allowfullscreen', 'true');
         pc.appendChild(ifrm);
-
-        // NOTA: Los iframes no siempre avisan si fallan por seguridad (CORS),
-        // pero puedes poner un botón manual de "Probar otra fuente" si ves que no carga.
     }
 }
 
-// NUEVA FUNCIÓN: Gestiona el salto entre fuentes del mismo canal
 function intentarSiguienteFuente(canal) {
     if (canal.fuentes && indiceFuenteActual < canal.fuentes.length - 1) {
         indiceFuenteActual++;
-        console.log("Cargando fuente de respaldo nro: " + indiceFuenteActual);
         cargarCanal(canal);
-    } else {
-        console.log("No hay más fuentes disponibles para este canal.");
-        // Opcional: saltar al siguiente canal de la lista
-        // cambiarCanal(1); 
     }
 }
 
 function cambiarCanal(direccion) {
     indiceActual += direccion;
-    indiceFuenteActual = 0; // Resetear siempre al cambiar de canal
+    indiceFuenteActual = 0;
     if (indiceActual >= listaCanales.length) indiceActual = 0;
     if (indiceActual < 0) indiceActual = listaCanales.length - 1;
     cargarCanal(listaCanales[indiceActual]);
 }
-function cerrarPlayer() {
-    location.reload();
+
+function cerrarPlayer() { location.reload(); }
+
+function obtenerCapituloAleatorio(lista) {
+    if (!lista || lista.length === 0) return null;
+    return lista[Math.floor(Math.random() * lista.length)];
 }
 
 document.addEventListener('keydown', function(e) {
     const pc = document.getElementById('player-container');
     if (pc.style.display !== 'block') return;
-
     switch(e.keyCode) {
-        case 33: case 38: case 427:
-            e.preventDefault();
-            cambiarCanal(-1);
-            break;
-        case 34: case 40: case 428:
-            e.preventDefault();
-            cambiarCanal(1);
-            break;
-        case 27: case 8: case 461:
-            e.preventDefault();
-            cerrarPlayer();
-            break;
+        case 33: case 38: case 427: e.preventDefault(); cambiarCanal(-1); break;
+        case 34: case 40: case 428: e.preventDefault(); cambiarCanal(1); break;
+        case 27: case 8: case 461: e.preventDefault(); cerrarPlayer(); break;
     }
 });
-    const cacheArchive = {};
-
-async function resolverArchive(url) {
-    if (cacheArchive[url]) return cacheArchive[url];
-
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            redirect: 'follow'
-        });
-
-        cacheArchive[url] = response.url;
-        return response.url;
-    } catch (e) {
-        console.log("Error resolviendo archive:", e);
-        return url;
-    }
-}
 </script>
 </body>
 </html>
