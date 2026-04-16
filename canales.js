@@ -31,4 +31,15 @@ const listaCanales = [
     fuentes: [
       { url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8", tipo: "hls" }
     ] },
+    { nombre: "HBO HD",
+    fuentes: [
+      { url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=", tipo: "iframe" },
+      { url: "https://respaldo1.com/hbo.m3u8", tipo: "hls" }
+    ] },
+  { nombre: "CH 15 Cine", 
+    fuentes: [
+      { url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8", tipo: "hls" },
+      { url: "https://otro-servidor.com/cine.m3u8", tipo: "hls" }
+    ] },
+  
 ];
