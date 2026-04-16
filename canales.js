@@ -1,54 +1,34 @@
 const listaCanales = [
-{ nombre: "HBO HD", url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=" },
-{ nombre: "HBO2", url: "https://cointv.site/html/cvatt.html?get=SEJPXzI=" },
-{ nombre: "HBo fa", url: "https://cointv.site/html/cvatt.html?get=SEJPX0ZhbWlseQ==" },
-{ nombre: "Sony", url: "https://cointv.site/cvatt.html?get=U29ueUhE"},
-{ nombre: "CH 15 Cine", url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8" },
-{ nombre: "NEOTV Cine", url: "https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8" },
-{ nombre: "TNT", url: "https://cointv.site/cvatt.html?get=VE5UX0hEX0FyZw" },
-{ nombre: "TNT Serie", url: "https://cointv.site/cvatt.html?get=VE5UU2VyaWVz"},
-{ nombre: "CH Peli 1", url: "https://run-rt-mx.otteravision.com/run/rt_mx/rt_mx.m3u8" },
-{ nombre: "CH Peli acción", url: "https://run-rt-ac.otteravision.com/run/rt_ac/rt_ac.m3u8" },
-{ nombre: "CH Peli terror", url: "https://run-ruthr.otteravision.com/run/ruthr/ruthr.m3u8" },
-{ nombre: "CH Peli 2", url: "https://run-rucrl.otteravision.com/run/rucrl/rucrl.m3u8" },
-{ nombre: "CH Peli Family", url: "https://run-runfl.otteravision.com/run/runfl/runfl.m3u8" },
-{ nombre: "AMC", url: "https://amc-amcespanol-1-us.plex.wurl.tv/playlist.m3u8" },
-{ nombre: "CH Peli 3", url: "https://stmv6.voxtvhd.com.br/cineaccion/cineaccion/playlist.m3u8" },
-{ nombre: "UNITV Villa Maria", url: "https://vivo.solumedia.com:19360/uniteve/uniteve.m3u8" },
-{ nombre: "CH 5 Tigre", url: "https://videostream.shockmedia.com.ar:19360/cincotv/cincotv.m3u8" },
-{ nombre: "CH Junin", url: "https://videostream.shockmedia.com.ar:19360/telejunin/telejunin.m3u8" },
-{ nombre: "Telef", url: "https://cointv.site/html/cvatt.html?get=VGVsZWZlSEQ=" },
-{ nombre: "ATC", url: "https://g2.mc-slo.transport.edge-access.net/b16/ngrp:c7_vivo01_dai_source-20001_all/playlist.m3u8" },
-{ nombre: "EsPn", url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true" },
-{ nombre: "EsPn", url: "https://streamx550.com/global2.php?channel=espn" },
-{ nombre: "FOXsports", url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz" },
-{ nombre: "FOX sports 2", url: "https://streamx550.com/global2.php?channel=fox2ar" },
-{ nombre: "Espn Prem", url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
-{ nombre: "Espn Prem2", url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE" },
-{ nombre: "Espn prem3", url: "https://streamtpnew.com/global2.php?stream=espnpremium" },
-{ nombre: "Espn 2", url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn" },
-{ nombre: "TNT S prem", url: "https://cointv.site/html/cvattde.html?get=VE5UX1Nwb3J0c19IRA" },
-{ nombre: "TNT S prem", url: "https://streamtpnew.com/global2.php?stream=tntsports" },
-{ nombre: "tyc", url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8" },
-{ nombre: "DSP", url: "https://streamx550.com/global2.php?channel=dsports" }, 
-{ nombre: "Disco World", url: "https://cointv.site/html/cvatt.html?get=RGlzY292ZXJ5X1dvcmxkX0hE" },
-{ nombre: "national g", url: "https://cointv.site/html/cvatt.html?get=TmF0R2VvSEQ=" },
-{ nombre: "Garage TV", url: "https://stream1.sersat.com/hls/garagetv.m3u8" },
-{ nombre: "Retro TV", url: "https://stream.enlineatv.net/hls/retrotv/index.m3u8" },
-{ nombre: "paka-paka", url: "https://cointv.site/cvatt.html?get=UEFLQV9QQUtB" },
-{ nombre: "Cartunitos", url: "https://cointv.site/cvatt.html?get=Qm9vbWVyYW5n" },
-{ nombre: "KANADE TV", url: "https://static.kanade.cl/hls/kanade.m3u8" },
-{ nombre: "Dibus Vision", url: "https://cdn.streamhispanatv.net:3531/live/tvsretrogtlive.m3u8" },
-{ nombre: "Pitufos", url: "https://imps-smrfs.otteravision.com/imps/smrfs/smrfs.m3u8" },
-{ nombre: "Nickelodeon", url: "https://jmp2.uk/plu-5d8d08395f39465da6fb3ec4.m3u8" },
-{ nombre: "Animalplanet", url: "https://cointv.site/cvatt.html?get=QW5pbWFsUGxhbmV0" },
-{ nombre: "History", url: "https://cointv.site/cvatt.html?get=SGlzdG9yeUhE" },  
-{ nombre: "H&H", url: "https://cointv.site/cvatt.html?get=RGlzY292ZXJ5SG9tZUhlYWx0aEhE" },
-{ nombre: "Animados", url: "https://raw.githubusercontent.com/nico100001-droid/Eltele/main/Animados.m3u8" },
-{ "nombre": "SIMPSONS TV", "url": "ALEATORIO" },
-{ "nombre": "DIBUS TV", "url": "ALEATORIO" },
-{ "nombre": "HARRY", "url": "ALEATORIO" },
-{ nombre: "C5N", url: "https://val04.ride.com.ar/tvmia/an06/playlist.m3u8" },
-{ "nombre": "1", "url": "http://179.1.87.75:8098/play/a0dn/index.m3u8" },
-{ "nombre": "2", "url": "http://179.1.87.75:8098/play/a0dt/index.m3u8" },
+  { nombre: "ESPN",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true", tipo: "iframe" },
+      { url: "https://streamx550.com/global2.php?channel=espn", tipo: "iframe" }
+    ] },
+  { nombre: "ESPN2",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
+    ] },
+  { nombre: "ESPN prem",
+    fuentes: [
+      { url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE", tipo: "iframe" },
+      { url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE", tipo: "iframe" },
+      { url: "https://streamtpnew.com/global2.php?stream=espnpremium", tipo: "iframe" }
+    ] },
+  { nombre: "TNT prem",
+    fuentes: [
+      { url: "https://cointv.site/html/cvattde.html?get=VE5UX1Nwb3J0c19IRA", tipo: "iframe" },
+      { url: "https://streamtpnew.com/global2.php?stream=tntsports", tipo: "iframe" }
+    ] },  
+  { nombre: "FOX sports",
+    fuentes: [
+      { url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz", tipo: "iframe" }
+    ] },
+  { nombre: "FOX sports 2",
+    fuentes: [
+      { url: "https://streamx550.com/global2.php?channel=fox2ar", tipo: "iframe" }
+    ] },
+  { nombre: "TyC",
+    fuentes: [
+      { url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8", tipo: "hls" }
+    ] },
 ];
