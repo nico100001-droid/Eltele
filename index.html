@@ -131,7 +131,8 @@ async function cargarCanal(c) {
         let srcIframe = urlFinal;
         if(srcIframe.includes('youtube.com/watch?v=')) srcIframe = srcIframe.replace('watch?v=', 'embed/');
         ifrm.src = srcIframe;
-        ifrm.allow = "autoplay; encrypted-media; fullscreen";
+        ifrm.allow = "autoplay; encrypted-media; fullscreen"; 
+        ifrm.setAttribute('allow', 'autoplay; encrypted-media; fullscreen'); // Refuerzo para algunos navegadores
         ifrm.setAttribute('allowfullscreen', 'true');
         pc.appendChild(ifrm);
     }
