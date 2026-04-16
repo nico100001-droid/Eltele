@@ -3,13 +3,15 @@ const listaCanales = [
     fuentes: [
       { url: "https://cointv.site/cvattde.html?get=RVNQTjJIRA", tipo: "iframe" },
       { url: "https://streamtpnew.com/global2.php?stream=tv_publica", tipo: "iframe" },
+    ] },
+    { nombre: "ESPN int",
+    fuentes: [
       { url: "https://streamx550.com/global2.php?channel=espn", tipo: "iframe" }
     ] },
   { nombre: "ESPN4",
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true", tipo: "iframe" }
-    ] },
-  
+    ] },  
   { nombre: "ESPN2",
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
