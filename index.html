@@ -85,7 +85,7 @@ async function cargarCanal(c) {
     // Actualizar botón de fuentes
     if (c.fuentes && c.fuentes.length > 1) {
         btnFuente.style.display = 'inline-block';
-        btnFuente.innerText = `♻ Fuente ${indiceFuenteActual + 1} de ${c.fuentes.length}`;
+        btnFuente.innerText = `♻  ${indiceFuenteActual + 1} de ${c.fuentes.length}`;
     } else {
         btnFuente.style.display = 'none';
     }
@@ -115,6 +115,11 @@ async function cargarCanal(c) {
         
         let mimeType = urlFinal.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
         player.src({ src: urlFinal, type: mimeType });
+        
+        player.one('ended', function() {
+            console.log("Video finalizado, cargando siguiente aleatorio...");
+            cargarCanal(c); 
+        });
         
         player.on('error', function() {
             console.log("Fallo automático, intentando siguiente...");
