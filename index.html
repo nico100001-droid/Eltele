@@ -86,7 +86,7 @@ function aplanarContenido(objetoSerie) {
         for (let temporada in objetoSerie[serie]) {
             objetoSerie[serie][temporada].forEach(ep => {
                 listaPlana.push({
-                    url: `https://www.youtube.com/embed/${ep.id}?autoplay=1`,
+                    url: `https://www.youtube-nocookie.com/embed/${ep.id}?autoplay=1&rel=0&enablejsapi=1&origin=${window.location.origin}`,
                     tipo: 'iframe',
                     titulo: ep.title
                 });
