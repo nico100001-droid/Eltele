@@ -86,7 +86,7 @@ function aplanarContenido(objetoSerie) {
         for (let temporada in objetoSerie[serie]) {
             objetoSerie[serie][temporada].forEach(ep => {
                 listaPlana.push({
-                    url: `https://www.youtube-nocookie.com/embed/${ep.id}?autoplay=1&rel=0&enablejsapi=1&origin=${window.location.origin}`,
+                    url: `https://www.youtube-nocookie.com/embed/${ep.id}?autoplay=1&rel=0&enablejsapi=1`,
                     tipo: 'iframe',
                     titulo: ep.title
                 });
@@ -175,18 +175,38 @@ async function cargarCanal(c) {
 
         player.on('error', () => intentarSiguienteFuente(c));
         player.play().catch(() => { player.muted(true); player.play(); });
-    } else {
+} else {
         vid.style.display = 'none';
         if (player) player.pause();
         
         const ifrm = document.createElement('iframe');
         ifrm.id = 'ifrm';
-        let srcIframe = urlFinal;
-        if(srcIframe.includes('youtube.com/watch?v=')) srcIframe = srcIframe.replace('watch?v=', 'embed/');
         
+        let srcIframe = urlFinal;
+
+        // Si es YouTube, nos aseguramos de que la URL sea perfecta
+        if (srcIframe.includes('youtube.com') || srcIframe.includes('youtube-nocookie.com')) {
+            // Extraer el ID del video si viene como watch?v=
+            if (srcIframe.includes('watch?v=')) {
+                const videoId = srcIframe.split('v=')[1].split('&')[0];
+                srcIframe = `https://www.youtube-nocookie.com/embed/${videoId}`;
+            }
+            
+            // Añadir parámetros vitales para evitar el Error 153
+            const connector = srcIframe.includes('?') ? '&' : '?';
+            const origin = window.location.protocol + "//" + window.location.host;
+            srcIframe += `${connector}autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
+        }
+
         ifrm.src = srcIframe;
-        ifrm.allow = "autoplay; encrypted-media; fullscreen"; 
+        
+        // Permisos expandidos para que YouTube no se sienta "atacado"
+        ifrm.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
         ifrm.setAttribute('allowfullscreen', 'true');
+        
+        // IMPORTANTE: Quitamos el setAttribute('sandbox') por ahora, 
+        // ya que YouTube suele dar error 153 si no tiene 'allow-same-origin'.
+        
         pc.appendChild(ifrm);
     }
 }
