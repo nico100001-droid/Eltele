@@ -111,6 +111,10 @@ const listaCanales = [
     fuentes: [
       { url: "ALEATORIO", tipo: "hls" },
     ] },
+          { nombre: "DINO",
+    fuentes: [
+      { url: "FUENTES", tipo: "hls" },
+    ] },
         { nombre: "HARRY",
     fuentes: [
       { url: "ALEATORIO", tipo: "hls" },
