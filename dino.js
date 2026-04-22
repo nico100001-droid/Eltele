@@ -11,6 +11,6 @@ const dino = {
       { id: "OH57rtnKCEM", title: "Episodio 1" },
       { id: "WpA23XqUnq0", title: "Episodio 2" },
       { id: "Sc-RYjjOtNQ", title: "Episodio 3" }
-    ],
+    ]
     }
 };
