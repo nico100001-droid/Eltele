@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>EL TELE</title>
-<meta name="referrer" content="no-referrer" />
-<link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
-<style>
-    body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-    .caja { background: #222; height: 120px; display: flex; align-items: center; justify-content: center; border-radius: 10px; cursor: pointer; font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; }
-    .caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; }
-    #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
-    #player-container iframe { width: 100%; height: 100%; border: none; }
-    .controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
-    .btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
-    .btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
-</style>
+    <meta charset="UTF-8">
+    <title>EL TELE</title>
+    <meta name="referrer" content="no-referrer" />
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; overflow-x: hidden; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .caja { 
+            background: #222; height: 120px; display: flex; align-items: center; 
+            justify-content: center; border-radius: 10px; cursor: pointer; 
+            font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; 
+            transition: all 0.3s;
+        }
+        .caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; transform: scale(1.05); }
+        
+        #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
+        #player-container iframe { width: 100%; height: 100%; border: none; }
+        
+        .controles-zapping { position: absolute; z-index: 101; right: 20px; top: 20px; display: flex; gap: 10px; }
+        .btn-zapping { background: rgba(80, 80, 80, 0.8); color: white; padding: 10px 15px; border: 1px solid #fff; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        .btn-cerrar { background: rgba(255, 0, 0, 0.8); color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        
+        #video-titulo {
+            position: absolute; bottom: 20px; left: 20px; z-index: 101;
+            background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 5px;
+            font-size: 18px; pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,6 +36,7 @@
 <div class="grid" id="grid-canales"></div>
 
 <div id="player-container">
+    <div id="video-titulo"></div>
     <div class="controles-zapping">
         <button id="btn-otra-fuente" class="btn-zapping" style="background: orange; display: none;" onclick="forzarSiguienteFuente()"> F </button>
         <button class="btn-zapping" onclick="cambiarCanal(-1)">◀CH</button>
@@ -36,6 +51,7 @@
 <script src="SimpsonsTV.js"></script>
 <script src="DibusNico.js"></script>
 <script src="harry.js"></script>
+<script src="dino.js"></script>
 
 <script>
 let player;
@@ -63,50 +79,87 @@ window.onload = function() {
     });
 };
 
+// Función para convertir objetos tipo Serie (Dino) en una lista plana
+function aplanarContenido(objetoSerie) {
+    let listaPlana = [];
+    for (let serie in objetoSerie) {
+        for (let temporada in objetoSerie[serie]) {
+            objetoSerie[serie][temporada].forEach(ep => {
+                listaPlana.push({
+                    url: `https://www.youtube.com/embed/${ep.id}?autoplay=1`,
+                    tipo: 'iframe',
+                    titulo: ep.title
+                });
+            });
+        }
+    }
+    return listaPlana;
+}
+
 function forzarSiguienteFuente() {
     const canalActual = listaCanales[indiceActual];
-    if (canalActual.fuentes && canalActual.fuentes.length > 1) {
-        indiceFuenteActual++;
-        if (indiceFuenteActual >= canalActual.fuentes.length) indiceFuenteActual = 0;
-        console.log("Cambiando a fuente index: " + indiceFuenteActual);
-        cargarCanal(canalActual);
+    const fuenteBase = canalActual.fuentes[0];
+    let limite = canalActual.fuentes.length;
+
+    // Si es un canal de episodios secuenciales, el limite es el total de caps
+    if (fuenteBase.url === "FUENTES" && canalActual.nombre === "DINO") {
+        limite = aplanarContenido(dino).length;
     }
+
+    indiceFuenteActual++;
+    if (indiceFuenteActual >= limite) indiceFuenteActual = 0;
+    cargarCanal(canalActual);
 }
 
 async function cargarCanal(c) {
     const pc = document.getElementById('player-container');
     const vid = document.getElementById('my-video');
     const btnFuente = document.getElementById('btn-otra-fuente');
+    const txtTitulo = document.getElementById('video-titulo');
     const iframeViejo = document.getElementById('ifrm');
     
     if(iframeViejo) iframeViejo.remove();
     pc.style.display = 'block';
+    txtTitulo.innerText = c.nombre;
 
-    if (c.fuentes && c.fuentes.length > 1) {
-        btnFuente.style.display = 'inline-block';
-        btnFuente.innerText = `♻  ${indiceFuenteActual + 1} de ${c.fuentes.length}`;
-    } else {
+    let videoParaReproducir = null;
+    const fuenteConfig = c.fuentes[0]; // Miramos la primera fuente para saber el modo
+
+    // --- LÓGICA DE SELECCIÓN DE CONTENIDO ---
+    if (fuenteConfig.url === "ALEATORIO") {
+        if (c.nombre === "SIMPSONS TV") videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
+        else if (c.nombre === "DIBUS TV") videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico);
+        else if (c.nombre === "HARRY") videoParaReproducir = obtenerCapituloAleatorio(listaharry);
+        
         btnFuente.style.display = 'none';
-    }
-
-    let videoParaReproducir;
-    if(c.nombre === "SIMPSONS TV") videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
-    else if(c.nombre === "DIBUS TV") videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico);
-    else if(c.nombre === "HARRY") videoParaReproducir = obtenerCapituloAleatorio(listaharry);
+    } 
+    else if (fuenteConfig.url === "FUENTES") {
+        let listaPlana = [];
+        if (c.nombre === "DINO") listaPlana = aplanarContenido(dino);
+        
+        videoParaReproducir = listaPlana[indiceFuenteActual];
+        btnFuente.style.display = 'inline-block';
+        btnFuente.innerText = `EP ${indiceFuenteActual + 1} / ${listaPlana.length}`;
+        txtTitulo.innerText = `${c.nombre}: ${videoParaReproducir.titulo}`;
+    } 
     else {
-        const fuentes = c.fuentes || [{ url: c.url, tipo: c.url?.includes('m3u8') ? 'hls' : 'iframe' }];
-        videoParaReproducir = fuentes[indiceFuenteActual];
+        // Canal Normal
+        videoParaReproducir = c.fuentes[indiceFuenteActual] || c.fuentes[0];
+        if (c.fuentes.length > 1) {
+            btnFuente.style.display = 'inline-block';
+            btnFuente.innerText = `♻ ${indiceFuenteActual + 1} de ${c.fuentes.length}`;
+        } else {
+            btnFuente.style.display = 'none';
+        }
     }
 
     if (!videoParaReproducir || !videoParaReproducir.url) return;
 
+    // --- RENDERIZADO DEL PLAYER ---
     const urlFinal = videoParaReproducir.url;
     const tipoFuente = videoParaReproducir.tipo;
 
-    if (player) {
-        player.off('error');
-        player.pause();
-    }
+    if (player) { player.off('error'); player.pause(); }
 
     if(tipoFuente === 'hls' || urlFinal.includes('m3u8') || urlFinal.toLowerCase().includes('.mp4')) {
         vid.style.display = 'block';
@@ -115,14 +168,12 @@ async function cargarCanal(c) {
         let mimeType = urlFinal.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
         player.src({ src: urlFinal, type: mimeType });
         
-        player.one('ended', function() {
-            cargarCanal(c); 
-        });
-        
-        player.on('error', function() {
-            intentarSiguienteFuente(c);
+        player.one('ended', () => { 
+            if (fuenteConfig.url === "FUENTES") forzarSiguienteFuente(); 
+            else cargarCanal(c); 
         });
 
+        player.on('error', () => intentarSiguienteFuente(c));
         player.play().catch(() => { player.muted(true); player.play(); });
     } else {
         vid.style.display = 'none';
@@ -132,13 +183,10 @@ async function cargarCanal(c) {
         ifrm.id = 'ifrm';
         let srcIframe = urlFinal;
         if(srcIframe.includes('youtube.com/watch?v=')) srcIframe = srcIframe.replace('watch?v=', 'embed/');
+        
         ifrm.src = srcIframe;
         ifrm.allow = "autoplay; encrypted-media; fullscreen"; 
         ifrm.setAttribute('allowfullscreen', 'true');
-        
-        if (urlFinal.includes('streamx550.com') || urlFinal.includes('clappr')) {
-            aplicarAutoStartP2P(ifrm);
-        }
         pc.appendChild(ifrm);
     }
 }
@@ -174,23 +222,6 @@ document.addEventListener('keydown', function(e) {
         case 27: case 8: case 461: e.preventDefault(); cerrarPlayer(); break;
     }
 });
-
-function aplicarAutoStartP2P(iframeElement) {
-    iframeElement.onload = () => {
-        setTimeout(() => {
-            try {
-                const doc = iframeElement.contentWindow.document;
-                const target = doc.getElementById('player') || doc.body;
-                if (target) {
-                    target.click();
-                    console.log("Simulación de clic enviada al iframe");
-                }
-            } catch (e) {
-                console.warn("Auto-start limitado por seguridad de dominio.");
-            }
-        }, 2500);
-    };
-}
 </script>
 </body>
 </html>
