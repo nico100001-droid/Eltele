@@ -91,6 +91,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://static.kanade.cl/hls/kanade.m3u8", tipo: "hls" },
     ] },
+      { nombre: "anime1",
+    fuentes: [
+      { url: "https://backend.energeek.cl/webtv/egretroweb/index.m3u8?token=ZZDemoIPTVGH", tipo: "hls" },
+    ] },
       { nombre: "VISION",
     fuentes: [
       { url: "https://cdn.streamhispanatv.net:3531/live/tvsretrogtlive.m3u8", tipo: "hls" },
