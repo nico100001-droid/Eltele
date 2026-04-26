@@ -60,6 +60,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://videostream.shockmedia.com.ar:19360/neotvdigital/neotvdigital.m3u8", tipo: "hls" },
     ] },
+ { nombre: "Bayres Movie", 
+    fuentes: [
+      { url: "https://streaming01.mikrolive.tv/bayrestv/live/playlist.m3u8", tipo: "hls" },
+    ] },
   { nombre: "ACM", 
     fuentes: [
       { url: "https://amc-amcespanol-1-us.plex.wurl.tv/playlist.m3u8", tipo: "hls" },
@@ -67,6 +71,10 @@ const listaCanales = [
   { nombre: "Cineaccion", 
     fuentes: [
       { url: "https://stmv6.voxtvhd.com.br/cineaccion/cineaccion/playlist.m3u8", tipo: "hls" },
+    ] },
+    { nombre: "GEN TV", 
+    fuentes: [
+      { url: "https://srv3.zcast.com.br/gentv/gentv/playlist.m3u8", tipo: "hls" },
     ] },
   { nombre: "Villa Maria TV", 
     fuentes: [
@@ -103,6 +111,10 @@ const listaCanales = [
       { nombre: "Pitufos",
     fuentes: [
       { url: "https://imps-smrfs.otteravision.com/imps/smrfs/smrfs.m3u8", tipo: "hls" },
+    ] },
+    { nombre: "Masha oso", 
+    fuentes: [
+      { url: "https://epg-ipv4.provider.plex.tv/library/parts/608049aefa2b8ae93c2c3995-69a526053eb39481c7edd563.m3u8?Accept-Language=es&X-Plex-Client-Identifier=m4vuj76q99s83xu1w12cym3q&X-Plex-Device-Name=Microsoft+Edge&X-Plex-Device-Screen-Resolution=1528x740%2C1536x864&X-Plex-Device=Windows&X-Plex-Features=external-media%2Cindirect-media%2Chub-style-list&X-Plex-Language=es&X-Plex-Model=standalone&X-Plex-Platform-Version=147.0&X-Plex-Platform=Microsoft+Edge&X-Plex-Playback-Session-Id=cb610d93-9d0a-4f48-8cf9-80ecd1af9e30&X-Plex-Product=Plex+Web&X-Plex-Session-Id=94f487b9-cb62-435f-8b0a-7713d8e5661c&X-Plex-Session-Identifier=jk6a5wfntl7wdxpfgrsyg5m0&X-Plex-Token=kab8fkuGynz8GnZ-JsSP&X-Plex-Version=4.159.0&redirectedFromV6=1", tipo: "hls" },
     ] },
       { nombre: "Nickelodeon",
     fuentes: [
