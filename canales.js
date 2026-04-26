@@ -26,8 +26,7 @@ const listaCanales = [
     fuentes: [
       { url: "https://cointv.site/html/cvattde.html?get=VE5UX1Nwb3J0c19IRA", tipo: "iframe" },
       { url: "https://streamtpnew.com/global2.php?stream=tntsports", tipo: "iframe" },
-      { url: "https://14c51.streameasthd.net/tntsports/tracks-v1a1/mono.m3u8?ip=186.128.86.242&token=e4e38ab1a6a472f89da3bdfb02e7ee051cd6b966-15-1777211909-1777157909
-", tipo: "iframe" }
+      { url: "https://14c51.streameasthd.net/tntsports/tracks-v1a1/mono.m3u8?ip=186.128.86.242&token=e4e38ab1a6a472f89da3bdfb02e7ee051cd6b966-15-1777211909-1777157909", tipo: "iframe" }
     ] },  
   { nombre: "FOX sports",
     fuentes: [
