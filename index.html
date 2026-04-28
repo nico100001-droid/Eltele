@@ -51,7 +51,7 @@
 <script src="SimpsonsTV.js"></script>
 <script src="DibusNico.js"></script>
 <script src="harry.js"></script>
-<script src="dino.js"></script>
+<script src="digi.js"></script>
 
 <script>
 let player;
@@ -79,7 +79,7 @@ window.onload = function() {
     });
 };
 
-// Función para convertir objetos tipo Serie (Dino) en una lista plana
+// Función para convertir objetos tipo Serie (Digi) en una lista plana
 function aplanarContenido(objetoSerie) {
     let listaPlana = [];
     for (let serie in objetoSerie) {
@@ -104,8 +104,8 @@ function forzarSiguienteFuente() {
     let limite = canalActual.fuentes.length;
 
     // Si es un canal de episodios secuenciales, el limite es el total de caps
-    if (fuenteBase.url === "FUENTES" && canalActual.nombre === "DINO") {
-        limite = aplanarContenido(dino).length;
+    if (fuenteBase.url === "FUENTES" && canalActual.nombre === "DIGI") {
+        limite = aplanarContenido(digi).length;
     }
 
     indiceFuenteActual++;
@@ -137,7 +137,7 @@ async function cargarCanal(c) {
     } 
     else if (fuenteConfig.url === "FUENTES") {
         let listaPlana = [];
-        if (c.nombre === "DINO") listaPlana = aplanarContenido(dino);
+        if (c.nombre === "DIGI") listaPlana = aplanarContenido(digi);
         
         videoParaReproducir = listaPlana[indiceFuenteActual];
         btnFuente.style.display = 'inline-block';
