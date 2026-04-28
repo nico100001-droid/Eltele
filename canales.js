@@ -132,7 +132,7 @@ const listaCanales = [
     fuentes: [
       { url: "ALEATORIO", tipo: "hls" },
     ] },
-          { nombre: "DINO",
+          { nombre: "DIGI",
     fuentes: [
       { url: "FUENTES", tipo: "hls" },
     ] },
