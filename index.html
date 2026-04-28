@@ -85,11 +85,9 @@ function aplanarContenido(objetoSerie) {
     for (let serie in objetoSerie) {
         for (let temporada in objetoSerie[serie]) {
             objetoSerie[serie][temporada].forEach(ep => {
-                // Usamos una instancia pública de Invidious
-                // Esto salta el Error 153 y cualquier bloqueo de publicidad
                 listaPlana.push({
-                    url: `https://invidious.projectsegfau.lt/embed/${ep.id}?autoplay=1`,
-                    tipo: 'iframe',
+                    url: ep.url,
+                    tipo: 'mp4',
                     titulo: ep.title
                 });
             });
