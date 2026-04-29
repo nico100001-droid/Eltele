@@ -14,6 +14,10 @@ const listaCanales = [
     ] }, 
     { nombre: "ESPN7",
     fuentes: [
+      { url: "https://streamtpnew.com/global1.php?stream=espn7", tipo: "iframe" }
+    ] }, 
+    { nombre: "disney6",
+    fuentes: [
       { url: "https://streamtpnew.com/global1.php?stream=disney6", tipo: "iframe" }
     ] }, 
   { nombre: "ESPN2",
