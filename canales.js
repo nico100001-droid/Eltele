@@ -11,7 +11,11 @@ const listaCanales = [
   { nombre: "ESPN4",
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true", tipo: "iframe" }
-    ] },  
+    ] }, 
+    { nombre: "ESPN7",
+    fuentes: [
+      { url: "https://streamtpnew.com/global1.php?stream=disney6", tipo: "iframe" }
+    ] }, 
   { nombre: "ESPN2",
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
