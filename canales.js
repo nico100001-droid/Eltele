@@ -3,6 +3,7 @@ const listaCanales = [
     fuentes: [
       { url: "https://cointv.site/cvattde.html?get=RVNQTjJIRA", tipo: "iframe" },
       { url: "https://streamtpnew.com/global2.php?stream=tv_publica", tipo: "iframe" },
+      { url: "https://cointv.site/canales/espn/", tipo: "iframe" }
     ] },
     { nombre: "ESPN int",
     fuentes: [
@@ -65,7 +66,7 @@ const listaCanales = [
     fuentes: [
       { url: "https://regionales.saohgdasregions.fun:9092/MTg2LjEyOC44Ni4yNDI=/59_.m3u8?token=oDbc9YkxDho3HSth2CNndQ&expires=1777302632", tipo: "iframe" },
     ] },
-  { nombre: "CH 15 Cine", 
+  { nombre: "5 del pueblo Cine", 
     fuentes: [
       { url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8", tipo: "hls" },
     ] },
