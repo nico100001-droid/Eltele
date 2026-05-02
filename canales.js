@@ -46,7 +46,8 @@ const listaCanales = [
     ] },
   { nombre: "TyC",
     fuentes: [
-      { url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8", tipo: "hls" }
+      { url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8", tipo: "hls" },
+      { url: "https://cointv.site/canales/tyc/", tipo: "iframe" }
     ] },
       { nombre: "DTS",
     fuentes: [
