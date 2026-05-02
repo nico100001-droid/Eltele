@@ -39,7 +39,8 @@ const listaCanales = [
     ] },  
   { nombre: "FOX sports",
     fuentes: [
-      { url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz", tipo: "iframe" }
+      { url: "https://cointv.site/cvattde.html?get=Rm94U3BvcnRz", tipo: "iframe" },
+      { url: "https://streamx550.com/global1.php?channel=fox1ar", tipo: "iframe" }
     ] },
   { nombre: "FOX sports 2",
     fuentes: [
