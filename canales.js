@@ -25,6 +25,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
     ] },
+    { nombre: "tnt",
+    fuentes: [
+      { url: "https://streamx550.com/global1.php?channel=fanatiz9", tipo: "iframe" }
+    ] },
   { nombre: "ESPN prem",
     fuentes: [
       { url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE", tipo: "iframe" },
