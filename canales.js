@@ -67,10 +67,6 @@ const listaCanales = [
     fuentes: [
       { url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=", tipo: "iframe" },
     ] },
-      { nombre: "cinecanal",
-    fuentes: [
-      { url: "https://regionales.saohgdasregions.fun:9092/MTg2LjEyOC44Ni4yNDI=/59_.m3u8?token=oDbc9YkxDho3HSth2CNndQ&expires=1777302632", tipo: "iframe" },
-    ] },
   { nombre: "5 del pueblo Cine", 
     fuentes: [
       { url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8", tipo: "hls" },
@@ -153,6 +149,6 @@ const listaCanales = [
     ] },
         { nombre: "HARRY",
     fuentes: [
-      { url: "FUENTES", tipo: "hls" },
+      { url: "ALEATORIO", tipo: "hls" },
     ] },
 ];
