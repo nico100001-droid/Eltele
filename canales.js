@@ -153,10 +153,6 @@ const listaCanales = [
     ] },
         { nombre: "HARRY",
     fuentes: [
-      { url: "ALEATORIO", tipo: "hls" },
-    ] },
-          { nombre: "Pagina Anime",
-    fuentes: [
-      { url: "https://ww3.animeonline.ninja/inicio/", tipo: "iframe" },
+      { url: "FUENTES", tipo: "hls" },
     ] },
 ];
