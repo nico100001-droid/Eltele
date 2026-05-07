@@ -65,7 +65,27 @@ const listaCanales = [
     ] },
     { nombre: "HBO",
     fuentes: [
-      { url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=", tipo: "iframe" },
+      { url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=&lang=1", tipo: "iframe" },
+    ] },
+      { nombre: "HBO 2",
+    fuentes: [
+      { url: "https://cointv.site/html/cvatt.html?get=SEJPXzI=", tipo: "iframe" },
+    ] },
+      { nombre: "HBO family",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=SEJPX0ZhbWlseQ==&lang=1", tipo: "iframe" },
+    ] },
+        { nombre: "CH Sony",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=U29ueUhE&start=true&lang=1", tipo: "iframe" },
+    ] },
+      { nombre: "TNT",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=VE5UX0hEX0FyZw&lang=1", tipo: "iframe" },
+    ] },
+      { nombre: "CH peli family",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=SEJPX0ZhbWlseQ==&lang=1", tipo: "hls" },
     ] },
   { nombre: "5 del pueblo Cine", 
     fuentes: [
@@ -107,6 +127,18 @@ const listaCanales = [
     fuentes: [
       { url: "https://stream1.sersat.com/hls/garagetv.m3u8", tipo: "hls" },
     ] },
+      { nombre: "TELEFE",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" },
+    ] },
+      { nombre: "Discovery world",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=RGlzY292ZXJ5X1dvcmxkX0hE&lang=1", tipo: "iframe" },
+    ] },
+        { nombre: "National GEO",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=TmF0R2VvSEQ=&lang=1", tipo: "iframe" },
+    ] },
       { nombre: "RetroTV",
     fuentes: [
       { url: "https://stream.enlineatv.net/hls/retrotv/index.m3u8", tipo: "hls" },
@@ -122,6 +154,10 @@ const listaCanales = [
       { nombre: "VISION",
     fuentes: [
       { url: "https://cdn.streamhispanatv.net:3531/live/tvsretrogtlive.m3u8", tipo: "hls" },
+    ] },
+          { nombre: "paka paka",
+    fuentes: [
+      { url: "https://cointv.site/cvatt.html?get=TmF0R2VvSEQ=&lang=1", tipo: "iframe" },
     ] },
       { nombre: "Pitufos",
     fuentes: [
