@@ -57,7 +57,8 @@ const listaCanales = [
     ] },
       { nombre: "DTS",
     fuentes: [
-      { url: "https://streamtpnew.com/global2.php?stream=dsports2", tipo: "iframe" },
+      { url: "https://streamx550.com/global2.php?channel=dsports", tipo: "iframe" },
+      { url: "https://streamtpnew.com/global2.php?stream=dsports2", tipo: "iframe" }
     ] },
       { nombre: "DTS +",
     fuentes: [
