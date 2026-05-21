@@ -58,7 +58,7 @@ const listaCanales = [
       { nombre: "DTS",
     fuentes: [
       { url: "https://streamx550.com/global2.php?channel=dsports", tipo: "iframe" },
-      { url: "https://streamtpnew.com/global2.php?stream=dsports2", tipo: "iframe" }
+      { url: "https://14c51.streameasthd.net/dsports/tracks-v1a1/mono.m3u8?ip=186.60.207.132&token=7a0de6ae204e7639fb1e54db832ae57b425d08b8-06-1779372496-1779318496", tipo: "iframe" }
     ] },
       { nombre: "DTS +",
     fuentes: [
@@ -70,7 +70,7 @@ const listaCanales = [
     ] },
       { nombre: "HBO 2",
     fuentes: [
-      { url: "https://cointv.site/html/cvatt.html?get=SEJPXzI=", tipo: "iframe" },
+      { url: "https://cointv.site/html/cvatt.html?get=SEJPX1I=", tipo: "iframe" },
     ] },
       { nombre: "HBO family",
     fuentes: [
