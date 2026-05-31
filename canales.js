@@ -53,6 +53,7 @@ const listaCanales = [
   { nombre: "TyC",
     fuentes: [
       { url: "https://live-04-11-tyc24.vodgc.net/tyc24/index.m3u8", tipo: "hls" },
+      { url: "https://streamtp-abc.net/global2.php?stream=tycsports", tipo: "iframe" },
       { url: "https://cointv.site/canales/tyc/", tipo: "iframe" }
     ] },
       { nombre: "DTS",
