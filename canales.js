@@ -25,6 +25,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
     ] },
+  { nombre: "ESPNalt",
+    fuentes: [
+      { url: "https://14c51.streameasthd.net/global/disney1/index.m3u8?token=187b98e615277991a462002aba30a6fffce43c61-92-1780705353-1780651353&ip=186.128.30.164", tipo: "iframe" }
+] },
     { nombre: "tnt",
     fuentes: [
       { url: "https://streamx550.com/global1.php?channel=fanatiz9", tipo: "iframe" }
