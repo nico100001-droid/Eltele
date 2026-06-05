@@ -9,18 +9,6 @@ const listaCanales = [
     fuentes: [
       { url: "https://streamx550.com/global2.php?channel=espn", tipo: "iframe" }
     ] },
-  { nombre: "ESPN4",
-    fuentes: [
-      { url: "https://cointv.site/cvatt.html?get=RVNQTkhE&start=true", tipo: "iframe" }
-    ] }, 
-    { nombre: "ESPN7",
-    fuentes: [
-      { url: "https://streamtpnew.com/global1.php?stream=espn7", tipo: "iframe" }
-    ] }, 
-    { nombre: "disney6",
-    fuentes: [
-      { url: "https://streamtpnew.com/global1.php?stream=disney6", tipo: "iframe" }
-    ] }, 
   { nombre: "ESPN2",
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
@@ -41,8 +29,7 @@ const listaCanales = [
     ] },
   { nombre: "TNT prem",
     fuentes: [
-      { url: "https://cointv.site/html/cvattde.html?get=VE5UX1Nwb3J0c19IRA", tipo: "iframe" },
-      { url: "https://streamtpnew.com/global2.php?stream=tntsports", tipo: "iframe" },
+      { url: "https://streamtp-x-y-z.ws/global2.php?stream=tntsports", tipo: "iframe" },
       { url: "https://14c51.streameasthd.net/tntsports/tracks-v1a1/mono.m3u8?ip=186.128.86.242&token=e4e38ab1a6a472f89da3bdfb02e7ee051cd6b966-15-1777211909-1777157909", tipo: "iframe" }
     ] },  
   { nombre: "FOX sports",
