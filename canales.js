@@ -11,11 +11,18 @@ const listaCanales = [
     ] },
   { nombre: "ESPN2",
     fuentes: [
-      { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
+      { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" },
+      { url: "https://bestleague.top/tok.html?get=RVNQTjJfQXJn", tipo: "iframe" },  
+      { url: "https://streamtp-x-y-z.ws/global2.php?stream=espn2", tipo: "iframe" }
     ] },
   { nombre: "ESPNalt",
     fuentes: [
       { url: "https://14c51.streameasthd.net/global/disney1/index.m3u8?token=187b98e615277991a462002aba30a6fffce43c61-92-1780705353-1780651353&ip=186.128.30.164", tipo: "iframe" }
+] },
+    { nombre: "DAZN F1",
+    fuentes: [
+    { url: "https://deporte-libre.online/mpd2.php?id=formula1-op2", tipo: "iframe" },
+    { url: "https://cartelive.club/player/3/60", tipo: "iframe" }
 ] },
     { nombre: "tnt",
     fuentes: [
@@ -23,7 +30,7 @@ const listaCanales = [
     ] },
   { nombre: "ESPN prem",
     fuentes: [
-      { url: "https://cointv.site/cvattde.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE", tipo: "iframe" },
+      { url: "https://streamtp-x-y-z.ws/global2.php?stream=espnpremium", tipo: "iframe" },
       { url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE", tipo: "iframe" },
       { url: "https://streamtpnew.com/global2.php?stream=espnpremium", tipo: "iframe" }
     ] },
