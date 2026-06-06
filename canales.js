@@ -1,7 +1,7 @@
 const listaCanales = [
   { nombre: "ESPN",
     fuentes: [
-      { url: "https://cointv.site/cvattde.html?get=RVNQTjJIRA", tipo: "iframe" },
+      { url: "https://bestleague.top/tok.html?get=RVNQTjJIRA", tipo: "iframe" },
       { url: "https://streamtpnew.com/global2.php?stream=tv_publica", tipo: "iframe" },
       { url: "https://cointv.site/canales/espn/", tipo: "iframe" }
     ] },
