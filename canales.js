@@ -24,9 +24,10 @@ const listaCanales = [
     { url: "https://deporte-libre.online/mpd2.php?id=formula1-op2", tipo: "iframe" },
     { url: "https://cartelive.club/player/3/60", tipo: "iframe" }
 ] },
-    { nombre: "tnt",
+    { nombre: "Disney/ESPN F1",
     fuentes: [
-      { url: "https://streamx550.com/global1.php?channel=fanatiz9", tipo: "iframe" }
+      { url: "https://streamtp-x-y-z.ws/global2.php?stream=disney1", tipo: "iframe" },
+      { url: "https://streamtp-x-y-z.ws/global2.php?stream=disney3", tipo: "iframe" }
     ] },
   { nombre: "ESPN prem",
     fuentes: [
