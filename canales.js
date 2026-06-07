@@ -148,6 +148,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://stream.enlineatv.net/hls/retrotv/index.m3u8", tipo: "hls" },
     ] },
+        { nombre: "Retroplus",
+    fuentes: [
+      { url: "https://tls-cl.cdnz.cl/retroplustvtres/live/chunklist_w1491948571.m3u8", tipo: "hls" },
+    ] },
       { nombre: "Kanade",
     fuentes: [
       { url: "https://static.kanade.cl/hls/kanade.m3u8", tipo: "hls" },
