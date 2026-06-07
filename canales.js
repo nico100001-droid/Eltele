@@ -2,12 +2,14 @@ const listaCanales = [
   { nombre: "ESPN",
     fuentes: [
       { url: "https://bestleague.top/tok.html?get=RVNQTjJIRA", tipo: "iframe" },
+      { url: "https://gollibre.com/en-vivo-online/espn/embed2.php", tipo: "iframe" },
       { url: "https://streamtpnew.com/global2.php?stream=tv_publica", tipo: "iframe" },
       { url: "https://cointv.site/canales/espn/", tipo: "iframe" }
     ] },
     { nombre: "ESPN int",
     fuentes: [
-      { url: "https://streamx550.com/global2.php?channel=espn", tipo: "iframe" }
+      { url: "https://streamx550.com/global2.php?channel=espn", tipo: "iframe" },
+      { url: "https://streamtp-x-y-z.ws/global2.php?stream=espn", tipo: "iframe" }
     ] },
   { nombre: "ESPN2",
     fuentes: [
