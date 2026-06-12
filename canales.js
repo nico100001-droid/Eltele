@@ -60,8 +60,8 @@ const listaCanales = [
     ] },
       { nombre: "DTS",
     fuentes: [
-      { url: "https://streamx550.com/global2.php?channel=dsports", tipo: "iframe" },
-      { url: "https://14c51.streameasthd.net/dsports/tracks-v1a1/mono.m3u8?ip=186.60.207.132&token=7a0de6ae204e7639fb1e54db832ae57b425d08b8-06-1779372496-1779318496", tipo: "iframe" }
+      { url: "https://streamtpday1.xyz/global2.php?stream=dsports", tipo: "iframe" },
+      { url: "https://sudamericaplay2.com/canal_8112/dsports4541.html", tipo: "iframe" }
     ] },
       { nombre: "DTS +",
     fuentes: [
