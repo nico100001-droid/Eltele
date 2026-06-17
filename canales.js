@@ -55,7 +55,7 @@ const listaCanales = [
   { nombre: "TyC",
     fuentes: [
       { url: "https://streamtpday1.xyz/global2.php?stream=tycsports", tipo: "iframe" },
-      { url: "https://streamtp-abc.net/global2.php?stream=tycsports", tipo: "iframe" },
+      { url: "https://stream-xhd.com/live1.php?stream=tycsports", tipo: "iframe" },
       { url: "https://cointv.site/canales/tyc/", tipo: "iframe" }
     ] },
       { nombre: "DTS",
