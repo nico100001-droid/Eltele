@@ -46,16 +46,10 @@
     <video id="my-video" class="video-js vjs-default-skin" controls style="width:100%; height:100%;"></video>
 </div>
     
-<div id="eltele-navigation" style="
-    position: fixed; 
-    top: 10px; 
-    left: 10px; 
-    z-index: 9999;
-    font-family: Arial, sans-serif;
-">
+<div id="eltele-navigation" style="position: fixed; top: 10px; left: 10px; z-index: 9999; font-family: Arial, sans-serif;">
     <select onchange="if(this.value) window.location.href=this.value;" style="
         background-color: rgba(30, 30, 30, 0.9);
-        color: #00ffcc; /* Color neón característico */
+        color: #00ffcc;
         border: 2px solid #444;
         border-radius: 8px;
         padding: 5px 15px;
@@ -110,7 +104,6 @@ window.onload = function() {
     });
 };
 
-// Función para convertir objetos tipo Serie (Digi) en una lista plana
 function aplanarContenido(objetoSerie) {
     let listaPlana = [];
     for (let serie in objetoSerie) {
@@ -132,7 +125,6 @@ function forzarSiguienteFuente() {
     const fuenteBase = canalActual.fuentes[0];
     let limite = canalActual.fuentes.length;
 
-    // Si es un canal de episodios secuenciales, el limite es el total de caps
     if (fuenteBase.url === "FUENTES" && canalActual.nombre === "DIGI") {
         limite = aplanarContenido(digi).length;
     }
@@ -154,9 +146,8 @@ async function cargarCanal(c) {
     txtTitulo.innerText = c.nombre;
 
     let videoParaReproducir = null;
-    const fuenteConfig = c.fuentes[0]; // Miramos la primera fuente para saber el modo
+    const fuenteConfig = c.fuentes[0];
 
-    // --- LÓGICA DE SELECCIÓN DE CONTENIDO ---
     if (fuenteConfig.url === "ALEATORIO") {
         if (c.nombre === "SIMPSONS TV") videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
         else if (c.nombre === "DIBUS TV") videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico);
@@ -174,7 +165,6 @@ async function cargarCanal(c) {
         txtTitulo.innerText = `${c.nombre}: ${videoParaReproducir.titulo}`;
     } 
     else {
-        // Canal Normal
         videoParaReproducir = c.fuentes[indiceFuenteActual] || c.fuentes[0];
         if (c.fuentes.length > 1) {
             btnFuente.style.display = 'inline-block';
@@ -186,7 +176,6 @@ async function cargarCanal(c) {
 
     if (!videoParaReproducir || !videoParaReproducir.url) return;
 
-    // --- RENDERIZADO DEL PLAYER ---
     const urlFinal = videoParaReproducir.url;
     const tipoFuente = videoParaReproducir.tipo;
 
@@ -205,8 +194,19 @@ async function cargarCanal(c) {
         });
 
         player.on('error', () => intentarSiguienteFuente(c));
-        player.play().catch(() => { player.muted(true); player.play(); });
-} else {
+        
+        // CORRECCIÓN MUTEADO: Forzar desmuteado e interacción de volumen limpia post-play
+        player.play()
+            .then(() => {
+                player.muted(false);
+                player.volume(1.0);
+            })
+            .catch(() => { 
+                // Fallback obligatorio del navegador si bloquea audio sin clic previo
+                player.muted(true); 
+                player.play(); 
+            });
+    } else {
         vid.style.display = 'none';
         if (player) player.pause();
         
@@ -215,28 +215,23 @@ async function cargarCanal(c) {
         
         let srcIframe = urlFinal;
 
-        // Si es YouTube, nos aseguramos de que la URL sea perfecta
         if (srcIframe.includes('youtube.com') || srcIframe.includes('youtube-nocookie.com')) {
-            // Extraer el ID del video si viene como watch?v=
             if (srcIframe.includes('watch?v=')) {
                 const videoId = srcIframe.split('v=')[1].split('&')[0];
                 srcIframe = `https://www.youtube-nocookie.com/embed/${videoId}`;
             }
-            
-            // Añadir parámetros vitales para evitar el Error 153
             const connector = srcIframe.includes('?') ? '&' : '?';
             const origin = window.location.protocol + "//" + window.location.host;
             srcIframe += `${connector}autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
         }
 
         ifrm.src = srcIframe;
-        
-        // Permisos expandidos para que YouTube no se sienta "atacado"
         ifrm.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
         ifrm.setAttribute('allowfullscreen', 'true');
         
-        // IMPORTANTE: Quitamos el setAttribute('sandbox') por ahora, 
-        // ya que YouTube suele dar error 153 si no tiene 'allow-same-origin'.
+        // CORRECCIÓN IFRAMES POPUPS: Sandbox estricto contra nuevas pestañas o redirecciones
+        // Mantiene scripts y mismo origen para reproducir, bloquea popups y navegación superior.
+        ifrm.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-presentation');
         
         pc.appendChild(ifrm);
     }
