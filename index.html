@@ -77,6 +77,7 @@
 <script src="DibusNico.js"></script>
 <script src="harry.js"></script>
 <script src="digi.js"></script>
+<script src="boys.js"></script>
 
 <script>
 let player;
@@ -125,10 +126,13 @@ function forzarSiguienteFuente() {
     const fuenteBase = canalActual.fuentes[0];
     let limite = canalActual.fuentes.length;
 
-    if (fuenteBase.url === "FUENTES" && canalActual.nombre === "DIGI") {
-        limite = aplanarContenido(digi).length;
+    if (fuenteBase.url === "FUENTES") {
+        if (canalActual.nombre === "DIGI") {
+            limite = aplanarContenido(digi).length;
+        } else if (canalActual.nombre === "BOYS") {
+            limite = aplanarContenido(boys).length;
+        }
     }
-
     indiceFuenteActual++;
     if (indiceFuenteActual >= limite) indiceFuenteActual = 0;
     cargarCanal(canalActual);
@@ -158,6 +162,7 @@ async function cargarCanal(c) {
     else if (fuenteConfig.url === "FUENTES") {
         let listaPlana = [];
         if (c.nombre === "DIGI") listaPlana = aplanarContenido(digi);
+        else if (c.nombre === "BOYS") listaPlana = aplanarContenido(boys);
         
         videoParaReproducir = listaPlana[indiceFuenteActual];
         btnFuente.style.display = 'inline-block';
