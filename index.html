@@ -47,7 +47,7 @@
 </div>
     
 <div id="eltele-navigation" style="position: fixed; top: 10px; left: 10px; z-index: 9999; font-family: Arial, sans-serif;">
-    <select onchange="if(this.value) window.location.href=this.value;" style="
+    <button onclick="toggleElteleMenu()" id="eltele-btn" style="
         background-color: rgba(30, 30, 30, 0.9);
         color: #00ffcc;
         border: 2px solid #444;
@@ -56,19 +56,55 @@
         font-size: 12px;
         cursor: pointer;
         outline: none;
+    ">peli/serie ▼</button>
+
+    <ul id="eltele-dropdown" style="
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgb(30, 30, 30);
+        border: 2px solid #444;
+        border-radius: 8px;
+        list-style: none;
+        padding: 5px 0;
+        margin: 5px 0 0 0;
+        min-width: 150px;
     ">
-        <option value="" disabled selected>peli/serie</option>
-        <option value="index.html">🏠 Inicio ELTELE</option>
-        <option value="https://ww3.animeonline.ninja/inicio/">📂 Anime</option>
-        <option value="https://www3.seriesmetro.net/">📂 series metro</option>
-        <option value="https://www.poseidonhd2.co/">📂 Peli poseidon</option>
-        <option value="https://www.cuevana8.plus/">📂 cuevana 1</option>
-        <option value="https://www.peelink2.com/inicio">📂 Peelink</option>
-        <option value="https://repelishd.run/">📂 repelis</option>
-        <option value="https://pelicinehd.com/">📂 pelicine</option>
-        <option value="https://tvlibre-online.com/">📂 TVlibre</option>
-        <option value="https://tele-libre.fans/">📂 TeleLibre</option>
-    </select>
+        <li><a href="index.html" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">🏠 Inicio ELTELE</a></li>
+        <li><a href="https://ww3.animeonline.ninja/inicio/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 Anime</a></li>
+        <li><a href="https://www3.seriesmetro.net/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 series metro</a></li>
+        <li><a href="https://www.poseidonhd2.co/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 Peli poseidon</a></li>
+        <li><a href="https://www.cuevana8.plus/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 cuevana 1</a></li>
+        <li><a href="https://www.peelink2.com/inicio" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 Peelink</a></li>
+        <li><a href="https://repelishd.run/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 repelis</a></li>
+        <li><a href="https://pelicinehd.com/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 pelicine</a></li>
+        <li><a href="https://tvlibre-online.com/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 TVlibre</a></li>
+        <li><a href="https://tele-libre.fans/" style="display:block; padding:8px 15px; color:#00ffcc; text-decoration:none; font-size:12px;">📂 TeleLibre</a></li>
+    </ul>
+</div>
+
+<script>
+function toggleElteleMenu() {
+    var menu = document.getElementById("eltele-dropdown");
+    if (menu.style.display === "none" || menu.style.display === "") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+
+// Cierra el menú si se hace clic fuera (opcional, para navegación con puntero)
+window.onclick = function(event) {
+    if (!event.target.matches('#eltele-btn')) {
+        var dropdown = document.getElementById("eltele-dropdown");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        }
+    }
+}
+</script>
+    
 </div>
     
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
