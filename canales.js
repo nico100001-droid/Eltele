@@ -58,14 +58,14 @@ const listaCanales = [
       { url: "https://stream-xhd.com/live1.php?stream=tycsports", tipo: "iframe" },
       { url: "https://cointv.site/canales/tyc/", tipo: "iframe" }
     ] },
-      { nombre: "DTS",
+      { nombre: "Dsports",
     fuentes: [
       { url: "https://streamtpday1.xyz/global2.php?stream=dsports", tipo: "iframe" },
       { url: "https://sudamericaplay2.com/canal_8112/dsports4541.html", tipo: "iframe" }
     ] },
-      { nombre: "DTS +",
+      { nombre: "Dsports 2 +",
     fuentes: [
-      { url: "https://streamtpnew.com/global2.php?stream=dsportsplus", tipo: "iframe" },
+      { url: "https://sudamericaplay2.com/canal_8112/dsports2.html", tipo: "iframe" },
     ] },
     { nombre: "HBO",
     fuentes: [
