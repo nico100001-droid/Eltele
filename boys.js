@@ -2,7 +2,7 @@ const boys = {
   "Serie A": {
 "Temporada ": [
       { url: "https://minochinos.com/v/wzg3lpv3kwlj", title: "Episodio 1" },
-      { url: "hhttps://minochinos.com/v/ot9p5oxqvuu7", title: "Episodio 2" },
+      { url: "https://minochinos.com/v/ot9p5oxqvuu7", title: "Episodio 2" },
       { url: "https://minochinos.com/v/xwr3eotlxhrb", title: "Episodio 3" },
       { url: "https://minochinos.com/v/oe3wa1iuqkg8", title: "Episodio 4" },
       { url: "https://archive.org/download/digimon-adventure-latino/Digimon%20Adventure%20-%20S01E05.mp4", title: "Episodio 5" },
