@@ -44,10 +44,10 @@ const listaCanales = [
     ] },  
   { nombre: "FOX sports",
     fuentes: [
+      { url: "https://streamtpday1.xyz/global2.php?stream=fox1ar", tipo: "iframe" },
       { url: "https://bestleague.top/tok.html?get=Rm94U3BvcnRz", tipo: "iframe" },
-      { url: "https://cointv.site/cvatt.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" },
-      { url: "https://streamx550.com/global1.php?channel=fox1ar", tipo: "iframe" }
-    ] },
+      { url: "https://cointv.site/cvatt.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" }
+        ] },
   { nombre: "FOX sports 2",
     fuentes: [
       { url: "https://streamx550.com/global2.php?channel=fox2ar", tipo: "iframe" }
