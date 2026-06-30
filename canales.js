@@ -61,6 +61,7 @@ const listaCanales = [
       { nombre: "Dsports",
     fuentes: [
       { url: "https://streamtpday1.xyz/global2.php?stream=dsports", tipo: "iframe" },
+      { url: "https://latamvidzfy.org/dsports.php", tipo: "iframe" },
       { url: "https://sudamericaplay2.com/canal_8112/dsports4541.html", tipo: "iframe" }
     ] },
       { nombre: "Dsports 2 +",
