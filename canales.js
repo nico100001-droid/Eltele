@@ -221,5 +221,5 @@ const listaCanales = [
         { nombre: "HARRY",
     fuentes: [
       { url: "ALEATORIO", tipo: "hls" },
-    ] },
+    ] }
 ];
