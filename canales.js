@@ -54,8 +54,7 @@ const listaCanales = [
     ] },
   { nombre: "TyC",
     fuentes: [
-      { url: "https://jwzrh.vivolatamz.org/tycsports/tracks-v1a1/mono.m3u8?ip=186.128.23.194&token=b1f611b70e67799739851154f6e056abce7e838a-f3-1782899520-1782845520
-", tipo: "hls" },
+      { url: "https://jwzrh.vivolatamz.org/tycsports/tracks-v1a1/mono.m3u8?ip=186.128.23.194&token=b1f611b70e67799739851154f6e056abce7e838a-f3-1782899520-1782845520", tipo: "hls" },
       { url: "https://streamtpday1.xyz/global2.php?stream=dsports", tipo: "iframe" },
       { url: "https://stream-xhd.com/live1.php?stream=tycsports", tipo: "iframe" },
       { url: "https://cointv.site/canales/tyc/", tipo: "iframe" }
