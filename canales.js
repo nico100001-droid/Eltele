@@ -28,7 +28,7 @@ const listaCanales = [
 ] },
     { nombre: "Disney/ESPN F1",
     fuentes: [
-      { url: "https://streamtp-x-y-z.ws/global2.php?stream=disney1", tipo: "iframe" },
+      { url: "https://streamtp.sbs/global2.php?stream=disney1", tipo: "iframe" },
       { url: "https://streamtp-x-y-z.ws/global2.php?stream=disney3", tipo: "iframe" }
     ] },
   { nombre: "ESPN prem",
@@ -62,13 +62,16 @@ const listaCanales = [
     ] },
       { nombre: "Dsports",
     fuentes: [
-      { url: "https://streamtpday1.xyz/global2.php?stream=dsports", tipo: "iframe" },
-      { url: "https://latamvidzfy.org/dsports.php", tipo: "iframe" },
-      { url: "https://sudamericaplay2.com/canal_8112/dsports4541.html", tipo: "iframe" }
+      { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" },
+      { url: "https://latamvidzfy.org/dsports.php", tipo: "iframe" }
     ] },
       { nombre: "Dsports 2 +",
     fuentes: [
       { url: "https://sudamericaplay2.com/canal_8112/dsports2.html", tipo: "iframe" },
+    ] },
+        { nombre: "Dsports caz",
+    fuentes: [
+      { url: "https://sudamericaplay.sbs/canal_8112/cza_dsports.html", tipo: "iframe" },
     ] },
     { nombre: "HBO",
     fuentes: [
