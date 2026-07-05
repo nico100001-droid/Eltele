@@ -90,6 +90,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=VE5UX0hEX0FyZw&lang=1", tipo: "iframe" },
     ] },
+        { nombre: "TELEFE",
+    fuentes: [
+      { url: "https://bestleague.top/tok.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" },
+    ] },
       { nombre: "CH peli family",
     fuentes: [
       { url: "https://cointv.site/cvatt.html?get=SEJPX0ZhbWlseQ==&lang=1", tipo: "hls" },
