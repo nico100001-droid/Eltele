@@ -95,7 +95,8 @@ const listaCanales = [
     ] },
         { nombre: "TELEFE",
     fuentes: [
-      { url: "https://bestleague.top/tok.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" },
+      { url: "https://telelibree.com/en-vivo/telefe/embed2.php", tipo: "iframe" },
+      { url: "https://bestleague.top/tok.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" }
     ] },
       { nombre: "CH peli family",
     fuentes: [
