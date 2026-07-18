@@ -6,13 +6,12 @@ const listaCanales = [
     ] },
     { nombre: "ESPN int",
     fuentes: [
-      { url: "https://streamx550.com/global2.php?channel=espn", tipo: "iframe" },
-      { url: "https://streamtp-x-y-z.ws/global2.php?stream=espn", tipo: "iframe" }
+      { url: "https://streamtp.sbs/global1.php?stream=espnmx", tipo: "iframe" }
     ] },
   { nombre: "ESPN2",
     fuentes: [
+     { url: "https://bestleague.top/tok.html?get=RVNQTjJfQXJn", tipo: "iframe" },  
       { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" },
-      { url: "https://bestleague.top/tok.html?get=RVNQTjJfQXJn", tipo: "iframe" },  
       { url: "https://streamtp-x-y-z.ws/global2.php?stream=espn2", tipo: "iframe" }
     ] },
   { nombre: "ESPNalt",
