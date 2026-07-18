@@ -73,6 +73,14 @@ const listaCanales = [
     fuentes: [
       { url: "https://sudamericaplay.sbs/canal_8112/cza_dsports.html", tipo: "iframe" },
     ] },
+    { nombre: "Warner",
+    fuentes: [
+      { url: "https://regionales.saohgdasregions.fun/tvenvivo.php?stream=58_&exp", tipo: "iframe" }
+    ] },
+    { nombre: "FOX sports 2",
+    fuentes: [
+      { url: "https://streamx550.com/global2.php?channel=fox2ar", tipo: "iframe" }
+    ] },
     { nombre: "HBO",
     fuentes: [
       { url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=&lang=1", tipo: "iframe" },
@@ -95,7 +103,8 @@ const listaCanales = [
     ] },
         { nombre: "TELEFE",
     fuentes: [
-      { url: "https://telelibree.com/en-vivo/telefe/embed2.php", tipo: "iframe" },
+      { url: "https://telelibree.com/en-vivo/telefe/embed.php", tipo: "iframe" },
+      { url: "https://regionales.saohgdasregions.fun/tvenvivo.php?stream=3_&exp", tipo: "iframe" },
       { url: "https://bestleague.top/tok.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" }
     ] },
       { nombre: "CH peli family",
