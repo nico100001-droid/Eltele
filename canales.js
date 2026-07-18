@@ -73,7 +73,7 @@ const listaCanales = [
     ] },
     { nombre: "Warner",
     fuentes: [
-      { url: "https://regionales.saohgdasregions.fun/tvenvivo.php?stream=58_&exp", tipo: "iframe" }
+      { url: "https://regionales.saohgdasregions.fun/tvenvivo.php?stream=58_&exp230", tipo: "iframe" }
     ] },
     { nombre: "FOX sports 2",
     fuentes: [
