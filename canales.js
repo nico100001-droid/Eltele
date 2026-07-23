@@ -30,7 +30,8 @@ const listaCanales = [
     ] },
   { nombre: "ESPN prem",
     fuentes: [
-      { url: "https://streamtp-x-y-z.ws/global2.php?stream=espnpremium", tipo: "iframe" },
+      { url: "https://streamx-hd.com/live2.php?stream=espnpremium", tipo: "iframe" },
+     { url: "https://streamtp-x-y-z.ws/global2.php?stream=espnpremium", tipo: "iframe" },
       { url: "https://nebunexa.life/tok.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE", tipo: "iframe" },
       { url: "https://streamtpnew.com/global2.php?stream=espnpremium", tipo: "iframe" }
     ] },
