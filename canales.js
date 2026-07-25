@@ -42,7 +42,7 @@ const listaCanales = [
     ] },  
   { nombre: "FOX sports",
     fuentes: [
-      { url: "https://streamtpday1.xyz/global2.php?stream=fox1ar", tipo: "iframe" },
+      { url: "https://khala.skylivehd.com/global/fox1ar/index.m3u8?ip=186.128.58.194&token=b6a31d515e752588bf048e09f77d8638076de4d7-1f-1784995044-1784941044", tipo: "iframe" },
       { url: "https://bestleague.top/tok.html?get=Rm94U3BvcnRz", tipo: "iframe" },
       { url: "https://cointv.site/cvatt.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" }
         ] },
