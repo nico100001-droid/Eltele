@@ -44,7 +44,7 @@ const listaCanales = [
     fuentes: [
       { url: "https://khala.skylivehd.com/global/fox1ar/index.m3u8?ip=186.128.58.194&token=b6a31d515e752588bf048e09f77d8638076de4d7-1f-1784995044-1784941044", tipo: "iframe" },
       { url: "https://bestleague.top/tok.html?get=Rm94U3BvcnRz", tipo: "iframe" },
-      { url: "https://cointv.site/cvatt.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" }
+      { url: "https://telelibrefull.online/en-vivo-online/fox-sports/embed2.php", tipo: "iframe" }
         ] },
   { nombre: "FOX sports 2",
     fuentes: [
