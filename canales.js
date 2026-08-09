@@ -60,24 +60,7 @@ const listaCanales = [
     ] },
       { nombre: "Dsports",
     fuentes: [
-      { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" },
-      { url: "https://latamvidzfy.org/dsports.php", tipo: "iframe" }
-    ] },
-      { nombre: "Dsports 2 +",
-    fuentes: [
-      { url: "https://sudamericaplay2.com/canal_8112/dsports2.html", tipo: "iframe" },
-    ] },
-        { nombre: "Dsports caz",
-    fuentes: [
-      { url: "https://sudamericaplay.sbs/canal_8112/cza_dsports.html", tipo: "iframe" },
-    ] },
-    { nombre: "Warner",
-    fuentes: [
-      { url: "https://regionales.saohgdasregions.fun/tvenvivo.php?stream=58_&exp230", tipo: "iframe" }
-    ] },
-    { nombre: "FOX sports 2",
-    fuentes: [
-      { url: "https://streamx550.com/global2.php?channel=fox2ar", tipo: "iframe" }
+      { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" }
     ] },
     { nombre: "HBO",
     fuentes: [
@@ -218,9 +201,9 @@ const listaCanales = [
     fuentes: [
       { url: "https://amg00627-amg00627c30-rakuten-es-3990.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanescc-rakutenes/playlist.m3u8", tipo: "hls" },
     ] },
-    { nombre: "C5N",
+    { nombre: "Dibu 5",
     fuentes: [
-      { url: "https://val04.ride.com.ar/tvmia/an06/playlist.m3u8", tipo: "hls" },
+      { url: "https://cartelive.club/player/4/107", tipo: "iframe" },
     ] },
       { nombre: "DIBUS TV",
     fuentes: [
