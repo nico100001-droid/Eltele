@@ -11,13 +11,12 @@ const listaCanales = [
     ] },
   { nombre: "ESPN2",
     fuentes: [
-     { url: "https://bestleague.top/tok.html?get=RVNQTjJfQXJn", tipo: "iframe" },  
-      { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" },
-      { url: "https://streamtp-x-y-z.ws/global2.php?stream=espn2", tipo: "iframe" }
+     { url: "https://streamtp-golden1.click/global1.php?stream=espn2", tipo: "iframe" },  
+      { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
     ] },
-  { nombre: "ESPNalt",
+  { nombre: "ESPN disney",
     fuentes: [
-      { url: "https://14c51.streameasthd.net/global/disney1/index.m3u8?token=187b98e615277991a462002aba30a6fffce43c61-92-1780705353-1780651353&ip=186.128.30.164", tipo: "iframe" }
+      { url: "https://streamx-hd.com/live1.php?stream=disney12", tipo: "iframe" }
 ] },
     { nombre: "DAZN F1",
     fuentes: [
@@ -41,8 +40,8 @@ const listaCanales = [
     ] },  
   { nombre: "FOX sports",
     fuentes: [
-      { url: "https://khala.skylivehd.com/global/fox1ar/index.m3u8?ip=186.128.58.194&token=b6a31d515e752588bf048e09f77d8638076de4d7-1f-1784995044-1784941044", tipo: "iframe" },
-      { url: "https://bestleague.top/tok.html?get=Rm94U3BvcnRz", tipo: "iframe" },
+      { url: "https://streamx-hd.com/live1.php?stream=fox1ar", tipo: "iframe" },
+      { url: "https://cartelive.club/player/4/78", tipo: "iframe" },
       { url: "https://telelibrefull.online/en-vivo-online/fox-sports/embed2.php", tipo: "iframe" }
         ] },
   { nombre: "FOX sports 2",
