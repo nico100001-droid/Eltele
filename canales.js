@@ -60,7 +60,7 @@ const listaCanales = [
     ] },
       { nombre: "Dsports",
     fuentes: [
-      { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" }
+      { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" },
     ] },
         { nombre: "TELEFE",
     fuentes: [
@@ -109,7 +109,7 @@ const listaCanales = [
       { nombre: "TELEFE",
     fuentes: [
       { url: "https://bestleague.top/tok.html?get=VGVsZWZlSEQ=", tipo: "iframe" },
-      { url: "https://cointv.site/cvatt.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" },
+      { url: "https://cointv.site/cvatt.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" }
     ] },
       { nombre: "Discovery world",
     fuentes: [
