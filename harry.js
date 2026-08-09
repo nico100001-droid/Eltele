@@ -2,8 +2,8 @@
 const listaharry = [
     { "nombre": "la piedra filosofal 01", "url": "https://uqload.is/embed-xgq9z725f5ud.html" },
     { "nombre": "La Camara Secreta 02", "url": "https://uqload.is/embed-w62yrm45ct9c.html" },
-    { "nombre": "el prisionero de Azkaban 03", "url": "https://jefferycontrolmodel.com/e/zytetp11zqxn" },
-    { "nombre": "el cáliz de fuego 04", "url": "https://jefferycontrolmodel.com/e/zw3hzw59h7bf" },
+    { "nombre": "el prisionero de Azkaban 03", "url": "https://uqload.is/embed-jvlfy5m8fwrn.html" },
+    { "nombre": "el cáliz de fuego 04", "url": "https://uqload.is/embed-f3ziu587jy2q.html" },
     { "nombre": "la orden del Fénix 05", "url": "https://jefferycontrolmodel.com/e/4mu28xmc6t3k" },
     { "nombre": "el misterio del príncipe06", "url": "https://jefferycontrolmodel.com/e/o548916w2kej" },
     { "nombre": "las Reliquias de la Muerte: Parte 1 07", "url": "https://jefferycontrolmodel.com/e/vyj8xlbi18pz" },
