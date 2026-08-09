@@ -47,7 +47,7 @@ const listaCanales = [
   { nombre: "FOX sports 2",
     fuentes: [
       { url: "https://cartelive.club/player/4/79", tipo: "iframe" },
-      { url: "https://streamtp-golden1.click/global1.php?stream=fox2ar", tipo: "iframe" }
+      { url: "https://streamtp-golden1.click/global1.php?stream=fox2ar", tipo: "iframe" },
       { url: "https://streamx-hd.com/live1.php?stream=fox2ar", tipo: "iframe" }
     ] },
   { nombre: "TyC",
@@ -62,35 +62,9 @@ const listaCanales = [
     fuentes: [
       { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" }
     ] },
-    { nombre: "HBO",
-    fuentes: [
-      { url: "https://cointv.site/html/cvatt.html?get=SEJPSEQ=&lang=1", tipo: "iframe" },
-    ] },
-      { nombre: "HBO 2",
-    fuentes: [
-      { url: "https://cointv.site/html/cvatt.html?get=SEJPX1I=", tipo: "iframe" },
-    ] },
-      { nombre: "HBO family",
-    fuentes: [
-      { url: "https://cointv.site/cvatt.html?get=SEJPX0ZhbWlseQ==&lang=1", tipo: "iframe" },
-    ] },
-        { nombre: "CH Sony",
-    fuentes: [
-      { url: "https://cointv.site/cvatt.html?get=U29ueUhE&start=true&lang=1", tipo: "iframe" },
-    ] },
-      { nombre: "TNT",
-    fuentes: [
-      { url: "https://cointv.site/cvatt.html?get=VE5UX0hEX0FyZw&lang=1", tipo: "iframe" },
-    ] },
         { nombre: "TELEFE",
     fuentes: [
       { url: "https://telelibree.com/en-vivo/telefe/embed.php", tipo: "iframe" },
-      { url: "https://regionales.saohgdasregions.fun/tvenvivo.php?stream=3_&exp", tipo: "iframe" },
-      { url: "https://bestleague.top/tok.html?get=VGVsZWZlSEQ=&lang=1", tipo: "iframe" }
-    ] },
-      { nombre: "CH peli family",
-    fuentes: [
-      { url: "https://cointv.site/cvatt.html?get=SEJPX0ZhbWlseQ==&lang=1", tipo: "hls" },
     ] },
   { nombre: "5 del pueblo Cine", 
     fuentes: [
