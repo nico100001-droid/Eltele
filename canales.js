@@ -12,12 +12,11 @@ const listaCanales = [
     ] },
   { nombre: "ESPN disney",
     fuentes: [
-      { url: "https://streamx-hd.com/live1.php?stream=disney12", tipo: "iframe" }
+      { url: "https://streamx-hd.com/live1.php?stream=disney12", tipo: "iframe" },
 ] },
     { nombre: "DAZN F1",
     fuentes: [
-    { url: "https://deporte-libre.online/mpd2.php?id=formula1-op2", tipo: "iframe" },
-    { url: "https://cartelive.club/player/3/60", tipo: "iframe" }
+    { url: "https://cartelive.club/player/3/60", tipo: "iframe" },
 ] },
     { nombre: "Disney/ESPN F1",
     fuentes: [
@@ -26,7 +25,7 @@ const listaCanales = [
     ] },
   { nombre: "ESPN prem",
     fuentes: [
-      { url: "https://streamx-hd.com/live2.php?stream=espnpremium", tipo: "iframe" },
+      { url: "https://streamx-hd.com/live1.php?stream=espnpremium", tipo: "iframe" },
       { url: "https://cartelive.club/player/4/76", tipo: "iframe" }
     ] },
   { nombre: "TNT prem",
@@ -49,7 +48,6 @@ const listaCanales = [
   { nombre: "TyC",
     fuentes: [
       { url: "https://cartelive.club/player/4/77", tipo: "hls" },
-      { url: "https://streamtpday1.xyz/global2.php?stream=dsports", tipo: "iframe" },
       { url: "https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8", tipo: "hls" },
       { url: "https://stream-xhd.com/live1.php?stream=tycsports", tipo: "iframe" },
       { url: "https://zonatv.sbs/canales/tyc/", tipo: "iframe" }
