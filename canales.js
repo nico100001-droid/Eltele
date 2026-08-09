@@ -47,7 +47,7 @@ const listaCanales = [
     ] },
   { nombre: "TyC",
     fuentes: [
-      { url: "https://cartelive.club/player/4/77", tipo: "hls" },
+      { url: "https://cartelive.club/player/4/77", tipo: "iframe" },
       { url: "https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8", tipo: "hls" },
       { url: "https://stream-xhd.com/live1.php?stream=tycsports", tipo: "iframe" },
       { url: "https://zonatv.sbs/canales/tyc/", tipo: "iframe" }
