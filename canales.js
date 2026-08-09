@@ -5,10 +5,6 @@ const listaCanales = [
       { url: "https://deporte-libre.buzz/en-vivo-online/espn/embed3.php", tipo: "iframe" },
       { url: "https://deporte-libre.buzz/mpd2.php?id=espn-op3", tipo: "iframe" }
     ] },
-    { nombre: "ESPN int",
-    fuentes: [
-      { url: "https://streamtp.sbs/global1.php?stream=espnmx", tipo: "iframe" }
-    ] },
   { nombre: "ESPN2",
     fuentes: [
      { url: "https://cartelive.club/player/4/88", tipo: "iframe" },  
