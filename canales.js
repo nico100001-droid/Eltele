@@ -11,8 +11,8 @@ const listaCanales = [
     ] },
   { nombre: "ESPN2",
     fuentes: [
-     { url: "https://streamtp-golden1.click/global1.php?stream=espn2", tipo: "iframe" },  
-      { url: "https://cointv.site/cvatt.html?get=RVNQTjJfQXJn", tipo: "iframe" }
+     { url: "https://cartelive.club/player/4/88", tipo: "iframe" },  
+     { url: "https://streamtp-golden1.click/global1.php?stream=espn2", tipo: "iframe" }
     ] },
   { nombre: "ESPN disney",
     fuentes: [
@@ -46,7 +46,9 @@ const listaCanales = [
         ] },
   { nombre: "FOX sports 2",
     fuentes: [
-      { url: "https://streamx550.com/global2.php?channel=fox2ar", tipo: "iframe" }
+      { url: "https://cartelive.club/player/4/79", tipo: "iframe" },
+      { url: "https://streamtp-golden1.click/global1.php?stream=fox2ar", tipo: "iframe" }
+      { url: "https://streamx-hd.com/live1.php?stream=fox2ar", tipo: "iframe" }
     ] },
   { nombre: "TyC",
     fuentes: [
