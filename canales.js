@@ -56,9 +56,9 @@ const listaCanales = [
     fuentes: [
       { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" },
     ] },
-        { nombre: "TELEFE",
+        { nombre: "Simpsons",
     fuentes: [
-      { url: "https://telelibree.com/en-vivo/telefe/embed.php", tipo: "iframe" },
+      { url: "https://lbgo.bozztv.com/ssh101/ssh101/simplat/chunks.m3u8", tipo: "hls" },
     ] },
   { nombre: "5 del pueblo Cine", 
     fuentes: [
