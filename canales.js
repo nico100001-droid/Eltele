@@ -60,6 +60,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://lbgo.bozztv.com/ssh101/ssh101/simplat/chunks.m3u8", tipo: "hls" },
     ] },
+        { nombre: "family",
+    fuentes: [
+      { url: "https://cdn.40mediagroup.com/live/c7eds/ENT_Family/SA_LIVE_hls_enc/tracks-v1a1/mono.ts.m3u8", tipo: "hls" },
+    ] },  
   { nombre: "5 del pueblo Cine", 
     fuentes: [
       { url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8", tipo: "hls" },
