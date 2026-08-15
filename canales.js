@@ -30,6 +30,7 @@ const listaCanales = [
     ] },
   { nombre: "TNT prem",
     fuentes: [
+      { url: "https://pelisjuanita.com/tv/servers/shakaplayer.php?id=tnt_sports_hd", tipo: "iframe" },
       { url: "https://cartelive.club/player/4/75", tipo: "iframe" },
       { url: "https://streamx-hd.com/live2.php?stream=tntsports", tipo: "iframe" }
     ] },  
