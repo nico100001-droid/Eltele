@@ -64,6 +64,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://cdn.40mediagroup.com/live/c7eds/ENT_Family/SA_LIVE_hls_enc/tracks-v1a1/mono.ts.m3u8", tipo: "hls" },
     ] },  
+          { nombre: "Chavo del 8",
+    fuentes: [
+      { url: "https://live20.bozztv.com/giatvplayout7/giatv-211465/tracks-v1a1/mono.ts.m3u8", tipo: "hls" },
+    ] }, 
   { nombre: "5 del pueblo Cine", 
     fuentes: [
       { url: "https://stmv4.voxtvhd.com.br/canal5pueblo/canal5pueblo/playlist.m3u8", tipo: "hls" },
