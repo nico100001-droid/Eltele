@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EL TELE</title>
     <meta name="referrer" content="no-referrer" />
-    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.3/video-js.min.css" rel="stylesheet" />
     <style>
         body { 
             background: #1e293b; 
@@ -109,7 +109,7 @@
     </ul>
 </div>
 
-<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.3/video.min.js"></script>
 <script src="canales.js"></script>
 <script src="SimpsonsTV.js"></script>
 <script src="DibusNico.js"></script>
@@ -125,7 +125,7 @@ let indiceFuenteActual = 0;
 window.onload = function() {
     const g = document.getElementById('grid-canales');
     if (typeof listaCanales === 'undefined') {
-        alert("Error: No se encontró la lista de canales en canales.js");
+        console.error("Error: No se encontró la lista de canales en canales.js");
         return;
     }
 
@@ -145,11 +145,7 @@ window.onload = function() {
 
 function toggleElteleMenu() {
     var menu = document.getElementById("eltele-dropdown");
-    if (menu.style.display === "none" || menu.style.display === "") {
-        menu.style.display = "block";
-    } else {
-        menu.style.display = "none";
-    }
+    menu.style.display = (menu.style.display === "none" || menu.style.display === "") ? "block" : "none";
 }
 
 window.onclick = function(event) {
@@ -163,6 +159,7 @@ window.onclick = function(event) {
 
 function aplanarContenido(objetoSerie) {
     let listaPlana = [];
+    if (typeof objetoSerie === 'undefined') return listaPlana;
     for (let serie in objetoSerie) {
         for (let temporada in objetoSerie[serie]) {
             objetoSerie[serie][temporada].forEach(ep => {
@@ -183,15 +180,22 @@ function forzarSiguienteFuente() {
     let limite = canalActual.fuentes.length;
 
     if (fuenteBase.url === "FUENTES") {
-        if (canalActual.nombre === "DIGI") {
+        if (canalActual.nombre === "DIGI" && typeof digi !== 'undefined') {
             limite = aplanarContenido(digi).length;
-        } else if (canalActual.nombre === "BOYS") {
+        } else if (canalActual.nombre === "BOYS" && typeof boys !== 'undefined') {
             limite = aplanarContenido(boys).length;
         }
     }
     indiceFuenteActual++;
     if (indiceFuenteActual >= limite) indiceFuenteActual = 0;
     cargarCanal(canalActual);
+}
+
+function intentarSiguienteFuente(canal) {
+    if (canal.fuentes && indiceFuenteActual < canal.fuentes.length - 1) {
+        indiceFuenteActual++;
+        cargarCanal(canal);
+    }
 }
 
 async function cargarCanal(c) {
@@ -209,21 +213,23 @@ async function cargarCanal(c) {
     const fuenteConfig = c.fuentes[0];
 
     if (fuenteConfig.url === "ALEATORIO") {
-        if (c.nombre === "SIMPSONS TV") videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
-        else if (c.nombre === "DIBUS TV") videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico);
-        else if (c.nombre === "HARRY") videoParaReproducir = obtenerCapituloAleatorio(listaharry);
+        if (c.nombre === "SIMPSONS TV" && typeof listaSimpsons !== 'undefined') videoParaReproducir = obtenerCapituloAleatorio(listaSimpsons);
+        else if (c.nombre === "DIBUS TV" && typeof listaDibusNico !== 'undefined') videoParaReproducir = obtenerCapituloAleatorio(listaDibusNico);
+        else if (c.nombre === "HARRY" && typeof listaharry !== 'undefined') videoParaReproducir = obtenerCapituloAleatorio(listaharry);
         
         btnFuente.style.display = 'none';
     } 
     else if (fuenteConfig.url === "FUENTES") {
         let listaPlana = [];
-        if (c.nombre === "DIGI") listaPlana = aplanarContenido(digi);
-        else if (c.nombre === "BOYS") listaPlana = aplanarContenido(boys);
+        if (c.nombre === "DIGI" && typeof digi !== 'undefined') listaPlana = aplanarContenido(digi);
+        else if (c.nombre === "BOYS" && typeof boys !== 'undefined') listaPlana = aplanarContenido(boys);
         
-        videoParaReproducir = listaPlana[indiceFuenteActual];
-        btnFuente.style.display = 'inline-block';
-        btnFuente.innerText = `EP ${indiceFuenteActual + 1} / ${listaPlana.length}`;
-        txtTitulo.innerText = `${c.nombre}: ${videoParaReproducir.titulo}`;
+        if (listaPlana.length > 0) {
+            videoParaReproducir = listaPlana[indiceFuenteActual];
+            btnFuente.style.display = 'inline-block';
+            btnFuente.innerText = `EP ${indiceFuenteActual + 1} / ${listaPlana.length}`;
+            txtTitulo.innerText = `${c.nombre}: ${videoParaReproducir.titulo}`;
+        }
     } 
     else {
         videoParaReproducir = c.fuentes[indiceFuenteActual] || c.fuentes[0];
@@ -307,13 +313,6 @@ window.addEventListener('blur', function() {
         window.focus();
     }, 100);
 });
-
-function intentarSiguienteFuente(canal) {
-    if (canal.fuentes && indiceFuenteActual < canal.fuentes.length - 1) {
-        indiceFuenteActual++;
-        cargarCanal(canal);
-    }
-}
 
 function cambiarCanal(direccion) {
     indiceActual += direccion;
