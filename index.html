@@ -2,11 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EL TELE</title>
     <meta name="referrer" content="no-referrer" />
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; margin: 0; overflow-x: hidden; }
+        body { 
+            background: #1e293b; 
+            background-image: radial-gradient(circle at 50% 0%, #064e3b 0%, #1e293b 70%);
+            background-attachment: fixed;
+            color: #fff; 
+            font-family: sans-serif; 
+            padding: 20px; 
+            margin: 0; 
+            min-height: 100vh;
+            overflow-x: hidden; 
+        }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
         .caja { 
             background: #222; height: 120px; display: flex; align-items: center; 
@@ -28,35 +39,21 @@
             background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 5px;
             font-size: 18px; pointer-events: none; transition: opacity 1s;
         }
-/* Oculta y deshabilita la ventana de confirmación del navegador TV */
-.wrapper[data-area="area3"],
-div.mask[data-onopen="0"],
-.actions p[data-onopen="0"] {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-}
 
-        
+        .wrapper[data-area="area3"],
+        div.mask[data-onopen="0"],
+        .actions p[data-onopen="0"] {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
     </style>
 </head>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eltele</title>
-    <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background-color: #1e293b;
-      background-image: radial-gradient(circle at 50% 0%, #064e3b 0%, #1e293b 70%);
-      background-attachment: fixed;
-    }
-  </style>
-</head>
 <body>
+
 <h1 style="text-align:center; color:#666;">EL TELE</h1>
 <div class="grid" id="grid-canales"></div>
 
@@ -112,29 +109,6 @@ div.mask[data-onopen="0"],
     </ul>
 </div>
 
-<script>
-function toggleElteleMenu() {
-    var menu = document.getElementById("eltele-dropdown");
-    if (menu.style.display === "none" || menu.style.display === "") {
-        menu.style.display = "block";
-    } else {
-        menu.style.display = "none";
-    }
-}
-
-// Cierra el menú si se hace clic fuera (opcional, para navegación con puntero)
-window.onclick = function(event) {
-    if (!event.target.matches('#eltele-btn')) {
-        var dropdown = document.getElementById("eltele-dropdown");
-        if (dropdown.style.display === "block") {
-            dropdown.style.display = "none";
-        }
-    }
-}
-</script>
-    
-</div>
-    
 <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 <script src="canales.js"></script>
 <script src="SimpsonsTV.js"></script>
@@ -167,6 +141,24 @@ window.onload = function() {
         };
         g.appendChild(d);
     });
+};
+
+function toggleElteleMenu() {
+    var menu = document.getElementById("eltele-dropdown");
+    if (menu.style.display === "none" || menu.style.display === "") {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('#eltele-btn')) {
+        var dropdown = document.getElementById("eltele-dropdown");
+        if (dropdown && dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        }
+    }
 };
 
 function aplanarContenido(objetoSerie) {
@@ -264,14 +256,12 @@ async function cargarCanal(c) {
 
         player.on('error', () => intentarSiguienteFuente(c));
         
-        // CORRECCIÓN MUTEADO: Forzar desmuteado e interacción de volumen limpia post-play
         player.play()
             .then(() => {
                 player.muted(false);
                 player.volume(1.0);
             })
             .catch(() => { 
-                // Fallback obligatorio del navegador si bloquea audio sin clic previo
                 player.muted(true); 
                 player.play(); 
             });
@@ -297,42 +287,14 @@ async function cargarCanal(c) {
         ifrm.src = srcIframe;
         ifrm.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
         ifrm.setAttribute('allowfullscreen', 'true');
-        
-        // CORRECCIÓN IFRAMES POPUPS: Sandbox estricto contra nuevas pestañas o redirecciones
-} else {
-        vid.style.display = 'none';
-        if (player) player.pause();
-        
-        const ifrm = document.createElement('iframe');
-        ifrm.id = 'ifrm';
-        
-        let srcIframe = urlFinal;
-
-        if (srcIframe.includes('youtube.com') || srcIframe.includes('youtube-nocookie.com')) {
-            if (srcIframe.includes('watch?v=')) {
-                const videoId = srcIframe.split('v=')[1].split('&')[0];
-                srcIframe = `https://www.youtube-nocookie.com/embed/${videoId}`;
-            }
-            const connector = srcIframe.includes('?') ? '&' : '?';
-            const origin = window.location.protocol + "//" + window.location.host;
-            srcIframe += `${connector}autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
-        }
-
-        ifrm.src = srcIframe;
-        ifrm.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-        ifrm.setAttribute('allowfullscreen', 'true');
-        
-        // 1. Sandbox estricto: Permite ejecucion de reproductor pero bloquea popups y navegacion del sitio padre
         ifrm.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-presentation');
         
         pc.appendChild(ifrm);
 
-        // 2. Cobertura de proteccion contra el primer clic publicitario (click-trap)
         const escudoAd = document.createElement('div');
         escudoAd.id = 'escudo-ad';
         escudoAd.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; z-index:100; background:transparent;';
         
-        // Al hacer el primer clic en la pantalla, se remueve el escudo y permite interactuar con el reproductor
         escudoAd.onclick = function() {
             escudoAd.remove();
         };
@@ -340,7 +302,6 @@ async function cargarCanal(c) {
     }
 }
 
-// 3. Previene redirección de foco si el navegador intentara abrir una pestaña secundaria
 window.addEventListener('blur', function() {
     setTimeout(function() {
         window.focus();
