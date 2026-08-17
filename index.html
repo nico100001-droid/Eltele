@@ -28,6 +28,19 @@
             background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 5px;
             font-size: 18px; pointer-events: none; transition: opacity 1s;
         }
+/* Oculta y deshabilita la ventana de confirmación del navegador TV */
+.wrapper[data-area="area3"],
+div.mask[data-onopen="0"],
+.actions p[data-onopen="0"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+        
     </style>
 </head>
     <meta charset="UTF-8">
