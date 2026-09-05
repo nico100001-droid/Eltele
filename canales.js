@@ -12,7 +12,8 @@ const listaCanales = [
     ] },
   { nombre: "ESPN disney",
     fuentes: [
-      { url: "https://streamxhd.com/live1.php?stream=disney5", tipo: "iframe" },
+      { url: "https://streamxhd.com/live1.php?stream=disney17
+", tipo: "iframe" },
 ] },
     { nombre: "DAZN F1",
     fuentes: [
