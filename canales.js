@@ -55,7 +55,7 @@ const listaCanales = [
     ] },
       { nombre: "Dsports",
     fuentes: [
-      { url: "https://streamtp.sbs/global2.php?stream=dsports", tipo: "iframe" },
+      { url: "https://tv-90.com/dsportsar.php", tipo: "iframe" },
     ] },
         { nombre: "Simpsons",
     fuentes: [
