@@ -85,6 +85,10 @@ const listaCanales = [
     fuentes: [
       { url: "https://amc-amcespanol-1-us.plex.wurl.tv/playlist.m3u8", tipo: "hls" },
     ] },
+    { nombre: "cinecanal", 
+    fuentes: [
+      { url: "https://regionales.saohgdassregions.com/playlist.php?id=59_&sig=2ace662018ab36f0c87ba68e6b053831c05eb97985c41a6ef519cd7814a809da", tipo: "iframe" },
+    ] },
   { nombre: "Cineaccion", 
     fuentes: [
       { url: "https://stmv6.voxtvhd.com.br/cineaccion/cineaccion/playlist.m3u8", tipo: "hls" },
