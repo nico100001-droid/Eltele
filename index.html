@@ -40,7 +40,7 @@
         .simbolo-fondo {
             position: absolute;
             font-size: 85px;
-            opacity: 0.18;
+            opacity: 0.20;
             user-select: none;
             pointer-events: none;
             z-index: 1;
@@ -173,7 +173,7 @@ window.onload = function() {
             
             const colorAplicado = c.color || c.colorSimbolo || '#ffffff';
             spanSimbolo.style.color = colorAplicado;
-            spanSimbolo.style.filter = `drop-shadow(0px 0px 10px ${colorAplicado})`;
+            spanSimbolo.style.filter = `drop-shadow(2px 15px 7px ${colorAplicado})`;
 
             d.appendChild(spanSimbolo);
         }
