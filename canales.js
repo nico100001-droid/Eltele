@@ -45,8 +45,8 @@ simbolo: "📺",
    simbolo: "⚽",
   colorSimbolo: "#FF0000",
     fuentes: [
-      { url: "https://cartelive.club/player/4/75", tipo: "iframe" },
-      { url: "https://streamx-hd.com/live2.php?stream=tntsports", tipo: "iframe" }
+      { url: "https://streamx-hd.com/live2.php?stream=tntsports", tipo: "iframe" },
+      { url: "https://cartelive.club/player/4/75", tipo: "iframe" }
     ] },  
   { nombre: "FOX sports",
    simbolo: "📺",
