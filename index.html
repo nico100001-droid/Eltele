@@ -166,7 +166,6 @@ window.onload = function() {
         d.className = 'caja';
         d.tabIndex = 0;
 
-        // Renderizado del símbolo en marca de agua si existe
         if (c.simbolo) {
             const spanSimbolo = document.createElement('span');
             spanSimbolo.className = 'simbolo-fondo';
@@ -179,7 +178,6 @@ window.onload = function() {
             d.appendChild(spanSimbolo);
         }
 
-        // Renderizado del nombre del canal
         const spanNombre = document.createElement('span');
         spanNombre.className = 'nombre-canal';
         spanNombre.innerText = c.nombre;
@@ -254,9 +252,8 @@ async function cargarCanal(c) {
     const vid = document.getElementById('my-video');
     const btnFuente = document.getElementById('btn-otra-fuente');
     const txtTitulo = document.getElementById('video-titulo');
-    const iframeViejo = document.getElementById('ifrm');
+    let iframeViejo = document.getElementById('ifrm');
     
-    if(iframeViejo) iframeViejo.remove();
     pc.style.display = 'block';
     txtTitulo.innerText = c.nombre;
 
@@ -295,31 +292,63 @@ async function cargarCanal(c) {
     if (!videoParaReproducir || !videoParaReproducir.url) return;
 
     const urlFinal = videoParaReproducir.url;
+    const esIframe = videoParaReproducir.tipo === 'iframe';
 
-    if (player) { player.off('error'); player.pause(); }
+    if (esIframe) {
+        if (player) {
+            player.pause();
+        }
+        vid.style.display = 'none';
 
-    vid.style.display = 'block';
-    if (!player) player = videojs('my-video');
-    
-    let mimeType = urlFinal.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
-    player.src({ src: urlFinal, type: mimeType });
-    
-    player.one('ended', () => { 
-        if (fuenteConfig.url === "FUENTES") forzarSiguienteFuente(); 
-        else cargarCanal(c); 
-    });
+        if (!iframeViejo) {
+            iframeViejo = document.createElement('iframe');
+            iframeViejo.id = 'ifrm';
+            iframeViejo.allow = "autoplay; encrypted-media; picture-in-picture";
+            iframeViejo.allowFullscreen = true;
+            pc.appendChild(iframeViejo);
+        }
+        iframeViejo.style.display = 'block';
+        iframeViejo.src = urlFinal;
+    } else {
+        if (iframeViejo) {
+            iframeViejo.remove();
+        }
 
-    player.on('error', () => intentarSiguienteFuente(c));
-    
-    player.play()
-        .then(() => {
-            player.muted(false);
-            player.volume(1.0);
-        })
-        .catch(() => { 
-            player.muted(true); 
-            player.play(); 
+        vid.style.display = 'block';
+
+        if (!player) {
+            player = videojs('my-video');
+        } else {
+            player.off('error');
+            player.pause();
+        }
+
+        let mimeType = 'video/mp4';
+        if (urlFinal.includes('.m3u8')) {
+            mimeType = 'application/x-mpegURL';
+        } else if (videoParaReproducir.tipo === 'mp4') {
+            mimeType = 'video/mp4';
+        }
+
+        player.src({ src: urlFinal, type: mimeType });
+
+        player.one('ended', () => { 
+            if (fuenteConfig.url === "FUENTES") forzarSiguienteFuente(); 
+            else cargarCanal(c); 
         });
+
+        player.on('error', () => intentarSiguienteFuente(c));
+
+        player.play()
+            .then(() => {
+                player.muted(false);
+                player.volume(1.0);
+            })
+            .catch(() => { 
+                player.muted(true); 
+                player.play(); 
+            });
+    }
 }
 
 window.addEventListener('blur', function() {
