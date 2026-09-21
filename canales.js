@@ -230,6 +230,12 @@ simbolo: "📺",
     fuentes: [
       { url: "https://live20.bozztv.com/giatv/giatv-dball/dball/chunks.m3u8", tipo: "hls" },
     ] },
+      { nombre: "Dragon Ball Z", 
+        simbolo: "㊝",
+  colorSimbolo: "#DEA07E",
+    fuentes: [
+      { url: "https://live20.bozztv.com/akamaissh101/ssh101/dbsuperlat/chunks.m3u8", tipo: "hls" },
+    ] },
         { nombre: "Spiderman",
             simbolo: "🕷",
   colorSimbolo: "#E6A34C",
