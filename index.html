@@ -20,13 +20,45 @@
         }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
         .caja { 
-            background: #222; height: 120px; display: flex; align-items: center; 
-            justify-content: center; border-radius: 10px; cursor: pointer; 
-            font-size: 20px; border: 2px solid #444; text-align: center; padding: 10px; 
+            position: relative;
+            background: #222; 
+            height: 120px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 20px; 
+            border: 2px solid #444; 
+            text-align: center; 
+            padding: 10px; 
             transition: all 0.3s;
+            overflow: hidden;
         }
         .caja:focus, .caja:hover { background: blue; border-color: #fff; outline: none; transform: scale(1.05); }
         
+        .simbolo-fondo {
+            position: absolute;
+            font-size: 85px;
+            opacity: 0.18;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .nombre-canal {
+            position: relative;
+            z-index: 2;
+            font-weight: bold;
+            text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.9), 0px 0px 2px rgba(0, 0, 0, 1);
+        }
+
         #player-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; }
         #player-container iframe { width: 100%; height: 100%; border: none; }
         
@@ -132,8 +164,27 @@ window.onload = function() {
     listaCanales.forEach((c, index) => {
         const d = document.createElement('div');
         d.className = 'caja';
-        d.innerText = c.nombre;
         d.tabIndex = 0;
+
+        // Renderizado del símbolo en marca de agua si existe
+        if (c.simbolo) {
+            const spanSimbolo = document.createElement('span');
+            spanSimbolo.className = 'simbolo-fondo';
+            spanSimbolo.textContent = c.simbolo;
+            
+            const colorAplicado = c.color || c.colorSimbolo || '#ffffff';
+            spanSimbolo.style.color = colorAplicado;
+            spanSimbolo.style.filter = `drop-shadow(0px 0px 10px ${colorAplicado})`;
+
+            d.appendChild(spanSimbolo);
+        }
+
+        // Renderizado del nombre del canal
+        const spanNombre = document.createElement('span');
+        spanNombre.className = 'nombre-canal';
+        spanNombre.innerText = c.nombre;
+        d.appendChild(spanNombre);
+
         d.onclick = () => {
             indiceActual = index;
             indiceFuenteActual = 0;
@@ -244,67 +295,31 @@ async function cargarCanal(c) {
     if (!videoParaReproducir || !videoParaReproducir.url) return;
 
     const urlFinal = videoParaReproducir.url;
-    const tipoFuente = videoParaReproducir.tipo;
 
     if (player) { player.off('error'); player.pause(); }
 
-    if(tipoFuente === 'hls' || urlFinal.includes('m3u8') || urlFinal.toLowerCase().includes('.mp4')) {
-        vid.style.display = 'block';
-        if (!player) player = videojs('my-video');
-        
-        let mimeType = urlFinal.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
-        player.src({ src: urlFinal, type: mimeType });
-        
-        player.one('ended', () => { 
-            if (fuenteConfig.url === "FUENTES") forzarSiguienteFuente(); 
-            else cargarCanal(c); 
+    vid.style.display = 'block';
+    if (!player) player = videojs('my-video');
+    
+    let mimeType = urlFinal.includes('m3u8') ? 'application/x-mpegURL' : 'video/mp4';
+    player.src({ src: urlFinal, type: mimeType });
+    
+    player.one('ended', () => { 
+        if (fuenteConfig.url === "FUENTES") forzarSiguienteFuente(); 
+        else cargarCanal(c); 
+    });
+
+    player.on('error', () => intentarSiguienteFuente(c));
+    
+    player.play()
+        .then(() => {
+            player.muted(false);
+            player.volume(1.0);
+        })
+        .catch(() => { 
+            player.muted(true); 
+            player.play(); 
         });
-
-        player.on('error', () => intentarSiguienteFuente(c));
-        
-        player.play()
-            .then(() => {
-                player.muted(false);
-                player.volume(1.0);
-            })
-            .catch(() => { 
-                player.muted(true); 
-                player.play(); 
-            });
-    } else {
-        vid.style.display = 'none';
-        if (player) player.pause();
-        
-        const ifrm = document.createElement('iframe');
-        ifrm.id = 'ifrm';
-        
-        let srcIframe = urlFinal;
-
-        if (srcIframe.includes('youtube.com') || srcIframe.includes('youtube-nocookie.com')) {
-            if (srcIframe.includes('watch?v=')) {
-                const videoId = srcIframe.split('v=')[1].split('&')[0];
-                srcIframe = `https://www.youtube-nocookie.com/embed/${videoId}`;
-            }
-            const connector = srcIframe.includes('?') ? '&' : '?';
-            const origin = window.location.protocol + "//" + window.location.host;
-            srcIframe += `${connector}autoplay=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(origin)}`;
-        }
-
-        ifrm.src = srcIframe;
-        ifrm.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-        ifrm.setAttribute('allowfullscreen', 'true');
-   
-        pc.appendChild(ifrm);
-
-        const escudoAd = document.createElement('div');
-        escudoAd.id = 'escudo-ad';
-        escudoAd.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; z-index:100; background:transparent;';
-        
-        escudoAd.onclick = function() {
-            escudoAd.remove();
-        };
-        pc.appendChild(escudoAd);
-    }
 }
 
 window.addEventListener('blur', function() {
