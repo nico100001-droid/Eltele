@@ -80,7 +80,7 @@ simbolo: "📺",
       { url: "https://tv-90.com/dsportsar.php", tipo: "iframe" },
     ] },
         { nombre: "Simpsons",
-            simbolo: "https://img.icons8.com/?size=100&id=HAUEex9XtCwy&format=png&color=000000",
+            simbolo: "🍩",
   colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://lbgo.bozztv.com/ssh101/ssh101/simplat/chunks.m3u8", tipo: "hls" },
