@@ -241,6 +241,12 @@ simbolo: "📺",
     fuentes: [
       { url: "https://cartelive.club/player/4/107", tipo: "iframe" },
     ] },
+      { nombre: "Dibu magic",
+        simbolo: "🥳",
+  colorSimbolo: "#C4F77C",
+    fuentes: [
+      { url: "https://live20.bozztv.com/akamaissh101/ssh101/retromagicocnl/chunks.m3u8", tipo: "hls" },
+    ] },
       { nombre: "DIBUS TV",
           simbolo: "📺🤪",
   colorSimbolo: "#97F77C",
