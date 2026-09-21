@@ -1,52 +1,72 @@
 const listaCanales = [
   { nombre: "ESPN",
+simbolo: "📺",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://streamx-hd.com/live1.php?stream=espn", tipo: "iframe" },
       { url: "https://deporte-libre.buzz/en-vivo-online/espn/embed3.php", tipo: "iframe" },
       { url: "https://deporte-libre.buzz/mpd2.php?id=espn-op3", tipo: "iframe" }
     ] },
   { nombre: "ESPN2",
+   simbolo: "📺",
+  colorSimbolo: "#FF0000",
     fuentes: [
      { url: "https://cartelive.club/player/4/88", tipo: "iframe" },  
      { url: "https://streamtp-golden1.click/global1.php?stream=espn2", tipo: "iframe" }
     ] },
   { nombre: "ESPN disney",
+      simbolo: "📺",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://streamxhd.com/live1.php?stream=disney2", tipo: "iframe" },
       { url: "https://streamxhd.st/live1.php?stream=disney2", tipo: "iframe" }
 ] },
     { nombre: "DAZN F1",
+        simbolo: "🏁",
+  colorSimbolo: "#FF0000",
     fuentes: [
     { url: "https://cartelive.club/player/3/60", tipo: "iframe" },
 ] },
     { nombre: "Disney/ESPN F1",
+        simbolo: "🏁",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://streamtp.sbs/global2.php?stream=disney1", tipo: "iframe" },
       { url: "https://streamtp-x-y-z.ws/global2.php?stream=disney3", tipo: "iframe" }
     ] },
   { nombre: "ESPN prem",
-    fuentes: [
+   simbolo: "⚽",
+  colorSimbolo: "#FF0000",
+       fuentes: [
       { url: "https://streamx-hd.com/live1.php?stream=espnpremium", tipo: "iframe" },
       { url: "https://cartelive.club/player/4/76", tipo: "iframe" }
     ] },
   { nombre: "TNT prem",
+   simbolo: "⚽",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://cartelive.club/player/4/75", tipo: "iframe" },
       { url: "https://streamx-hd.com/live2.php?stream=tntsports", tipo: "iframe" }
     ] },  
   { nombre: "FOX sports",
+   simbolo: "📺",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://streamx-hd.com/live1.php?stream=fox1ar", tipo: "iframe" },
       { url: "https://cartelive.club/player/4/78", tipo: "iframe" },
       { url: "https://telelibrefull.online/en-vivo-online/fox-sports/embed2.php", tipo: "iframe" }
         ] },
   { nombre: "FOX sports 2",
+simbolo: "📺",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://cartelive.club/player/4/79", tipo: "iframe" },
       { url: "https://streamtp-golden1.click/global1.php?stream=fox2ar", tipo: "iframe" },
       { url: "https://streamx-hd.com/live1.php?stream=fox2ar", tipo: "iframe" }
     ] },
   { nombre: "TyC",
+   simbolo: "📺",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://cartelive.club/player/4/77", tipo: "iframe" },
       { url: "https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8", tipo: "hls" },
@@ -54,10 +74,14 @@ const listaCanales = [
       { url: "https://zonatv.sbs/canales/tyc/", tipo: "iframe" }
     ] },
       { nombre: "Dsports",
+       simbolo: "⚽",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://tv-90.com/dsportsar.php", tipo: "iframe" },
     ] },
         { nombre: "Simpsons",
+            simbolo: "https://img.icons8.com/?size=100&id=HAUEex9XtCwy&format=png&color=000000",
+  colorSimbolo: "#FF0000",
     fuentes: [
       { url: "https://lbgo.bozztv.com/ssh101/ssh101/simplat/chunks.m3u8", tipo: "hls" },
     ] },
