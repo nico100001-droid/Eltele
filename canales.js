@@ -96,6 +96,12 @@ simbolo: "📺",
   colorSimbolo: "#74D656",
     fuentes: [
       { url: "https://live20.bozztv.com/giatvplayout7/giatv-211465/tracks-v1a1/mono.ts.m3u8", tipo: "hls" },
+    ] },
+          { nombre: "Chespirito TV",
+    simbolo: "🎨",
+  colorSimbolo: "#74D656",
+    fuentes: [
+      { url: "https://live20.bozztv.com/giatvplayout7/giatv-211111/tracks-v1a1/mono.ts.m3u8", tipo: "hls" },
     ] }, 
   { nombre: "5 del pueblo Cine", 
       simbolo: "🎬",
