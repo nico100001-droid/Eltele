@@ -125,7 +125,26 @@ simbolo: "📺",
         simbolo: "🎬",
   colorSimbolo: "#E6EDAF",
     fuentes: [
-      { url: "https://regionales.saohgdassregions.com/playlist.php?id=59_&sig=2ace662018ab36f0c87ba68e6b053831c05eb97985c41a6ef519cd7814a809da", tipo: "iframe" },
+      { url: "https://zapster.trapemn.tv:1936/zapster-hls/cinecanal.stream/playlist.m3u8", tipo: "hls" },
+      { url: "https://regionales.saohgdassregions.com/playlist.php?id=59_&sig=2ace662018ab36f0c87ba68e6b053831c05eb97985c41a6ef519cd7814a809da", tipo: "iframe" }
+    ] },
+    { nombre: "SPACE", 
+      simbolo: "🌌",
+  colorSimbolo: "#2780F5",
+    fuentes: [
+      { url: "https://zapster.trapemn.tv:1936/zapster-hls/space.stream/playlist.m3u8", tipo: "hls" },
+    ] },
+      { nombre: "SONY cine", 
+      simbolo: "🏻",
+  colorSimbolo: "#9E9E9E",
+    fuentes: [
+      { url: "https://a-cdn.klowdtv.com/803B48A/a-klowdtv.com/live1/cine_720p/chunks.m3u8", tipo: "hls" },
+    ] },
+      { nombre: "SONY cinema", 
+      simbolo: "🏻",
+  colorSimbolo: "#9E9E9E",
+    fuentes: [
+      { url: "https://spt-sonyonecomedias-mx.tcl.wurl.tv/2000.m3u8", tipo: "hls" },
     ] },
       { nombre: "cine 2", 
         simbolo: "📽️",
