@@ -230,7 +230,7 @@ simbolo: "📺",
     fuentes: [
       { url: "https://live20.bozztv.com/giatv/giatv-dball/dball/chunks.m3u8", tipo: "hls" },
     ] },
-      { nombre: "Dragon Ball Z", 
+      { nombre: "Dragon Ball SUPER", 
         simbolo: "㊝",
   colorSimbolo: "#DEA07E",
     fuentes: [
