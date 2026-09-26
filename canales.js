@@ -109,6 +109,12 @@ simbolo: "📺",
     fuentes: [
       { url: "https://live20.bozztv.com/giatvplayout7/giatv-209644/tracks-v1a1/mono.ts.m3u8", tipo: "hls" },
     ] },
+      { nombre: "Europa Europa", 
+        simbolo: "e&E",
+  colorSimbolo: "#DEA07E",
+    fuentes: [
+      { url: "https://full-online.xyz/proxy/ssl/?url=http://190.61.101.11:7050/play/a082/index.m3u8", tipo: "hls" },
+    ] },
   { nombre: "5 del pueblo Cine", 
       simbolo: "🎬",
   colorSimbolo: "#938CCF",
