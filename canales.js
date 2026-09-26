@@ -18,7 +18,7 @@ simbolo: "📺",
       simbolo: "📺",
   colorSimbolo: "#FF0026",
     fuentes: [
-      { url: "https://streamxhd.com/live1.php?stream=disney2", tipo: "iframe" },
+      { url: "https://streamx305.sbs/global1.php?channel=disney1", tipo: "iframe" },
       { url: "https://streamxhd.st/live1.php?stream=disney2", tipo: "iframe" }
 ] },
     { nombre: "DAZN F1",
@@ -52,7 +52,7 @@ simbolo: "📺",
    simbolo: "📺",
   colorSimbolo: "#3C00FF",
     fuentes: [
-      { url: "https://streamx-hd.com/live1.php?stream=fox1ar", tipo: "iframe" },
+      { url: "https://streamx305.sbs/global1.php?channel=fox1ar", tipo: "iframe" },
       { url: "https://cartelive.club/player/4/78", tipo: "iframe" },
       { url: "https://telelibrefull.online/en-vivo-online/fox-sports/embed2.php", tipo: "iframe" }
         ] },
