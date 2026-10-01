@@ -200,6 +200,12 @@ simbolo: "📺",
     fuentes: [
       { url: "https://stream1.sersat.com/hls/garagetv.m3u8", tipo: "hls" },
     ] },
+        { nombre: "HGTV",
+          simbolo: "📺",
+  colorSimbolo: "#D1D5F0",
+    fuentes: [
+      { url: "https://full-online.xyz/cvatt.php?get=SG9tZV9hbmRfR2FyZGVu", tipo: "iframe" },
+    ] },
       { nombre: "RetroTV",
           simbolo: "🎬📻",
   colorSimbolo: "#FF0000",
