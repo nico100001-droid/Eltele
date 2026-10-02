@@ -3,7 +3,7 @@ const listaCanales = [
 simbolo: "📺",
   colorSimbolo: "#FF0000",
     fuentes: [
-      { url: "https://streamx-hd.com/live1.php?stream=espn", tipo: "iframe" },
+      { url: "https://tvf90.com/2.php?stream=espn", tipo: "iframe" },
       { url: "https://deporte-libre.buzz/en-vivo-online/espn/embed3.php", tipo: "iframe" },
       { url: "https://deporte-libre.buzz/mpd2.php?id=espn-op3", tipo: "iframe" }
     ] },
@@ -12,7 +12,7 @@ simbolo: "📺",
   colorSimbolo: "#FF0000",
     fuentes: [
      { url: "https://cartelive.club/player/4/88", tipo: "iframe" },  
-     { url: "https://streamtp-golden1.click/global1.php?stream=espn2", tipo: "iframe" }
+     { url: "https://tvf90.com/2.php?stream=espn2", tipo: "iframe" }
     ] },
   { nombre: "ESPN disney",
       simbolo: "📺",
@@ -78,6 +78,12 @@ simbolo: "📺",
   colorSimbolo: "#00C8FF",
     fuentes: [
       { url: "https://tv-90.com/dsportsar.php", tipo: "iframe" },
+    ] },
+        { nombre: "Telefe",
+       simbolo: "📺",
+  colorSimbolo: "#00C8FF",
+    fuentes: [
+      { url: "https://tvf90.com/online.php?stream=telefe", tipo: "iframe" },
     ] },
         { nombre: "Simpsons",
             simbolo: "🍩",
