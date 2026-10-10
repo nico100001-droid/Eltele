@@ -31,8 +31,16 @@ simbolo: "📺",
         simbolo: "🏁",
   colorSimbolo: "#FF0000",
     fuentes: [
-      { url: "https://streamtp.sbs/global2.php?stream=disney1", tipo: "iframe" },
-      { url: "https://streamtp-x-y-z.ws/global2.php?stream=disney3", tipo: "iframe" }
+      { url: "https://streamx305.sbs/global1.php?channel=disney8", tipo: "iframe" },
+      { url: "https://streamxhd.com/live2.php?stream=disney4", tipo: "iframe" }
+    ] },
+      { nombre: "F1 on board",
+        simbolo: "🏁",
+  colorSimbolo: "#FF0000",
+    fuentes: [
+      { url: "https://streamxhd.com/live2.php?stream=disney5", tipo: "iframe" },
+      { url: "https://streamxhd.com/live2.php?stream=disney6", tipo: "iframe" },
+      { url: "https://streamxhd.click/live2.php?stream=disney9", tipo: "iframe" }
     ] },
   { nombre: "ESPN prem",
    simbolo: "⚽",
