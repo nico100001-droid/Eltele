@@ -26,6 +26,7 @@ simbolo: "📺",
   colorSimbolo: "#FF0000",
     fuentes: [
     { url: "https://cartelive.club/player/3/60", tipo: "iframe" },
+    { url: "https://streamxhd.com/live2.php?stream=daznf1", tipo: "iframe" }
 ] },
     { nombre: "Disney/ESPN F1",
         simbolo: "🏁",
